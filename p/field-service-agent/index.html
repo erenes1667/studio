@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Field Service Agent</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0908'/%3E%3Cpath d='M14 12h34v9H24v8h20v9H24v8h26v9H14z' fill='%23ff6b2c'/%3E%3C/svg%3E">
+<meta name="description" content="A recorded end-to-end run of a field-service operations agent on a sample plumbing shop: intake, technician dispatch, order row, morning report. Real model calls, real timestamps, raw JSON per step.">
+<meta name="theme-color" content="#0a0b0c">
+<style>
+@font-face{font-family:'Big Shoulders Display';font-weight:100 900;font-style:normal;font-display:swap;src:url(fonts/big-shoulders-display-700.woff2) format('woff2')}
+@font-face{font-family:'Barlow';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/barlow-400.woff2) format('woff2')}
+@font-face{font-family:'Barlow';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/barlow-500.woff2) format('woff2')}
+@font-face{font-family:'Barlow';font-weight:600;font-style:normal;font-display:swap;src:url(fonts/barlow-600.woff2) format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-mono-400.woff2) format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-mono-500.woff2) format('woff2')}
+:root{
+  --bg:#0a0b0c; --bg2:#0f1113; --panel:#141719; --panel2:#1b1f22; --line:#262b30; --line2:#39414a;
+  --ink:#ece9e2; --mute:#99a0a7; --dim:#5f666d;
+  --amber:#ffb21f; --amber-d:#b97d00; --amber-glow:rgba(255,178,31,.22);
+  --steel:#86b4cc; --ok:#47d49a; --red:#ff5a4a;
+  --disp:"Big Shoulders Display","Arial Narrow",Impact,sans-serif; --sans:"Barlow","Helvetica Neue",Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --gut:clamp(16px,4vw,40px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:radial-gradient(1100px 620px at 12% -8%,rgba(255,178,31,.10),transparent 60%),radial-gradient(rgba(236,233,226,.055) 1px,transparent 1.2px);
+  background-size:auto,28px 28px;background-attachment:fixed,scroll}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:4px}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.wrap{width:100%;max-width:1320px;margin:0 auto;padding:0 var(--gut)}
+section{padding:clamp(48px,8vw,96px) 0 0}
+h2{font:800 clamp(34px,5vw,60px)/.95 var(--disp);text-transform:uppercase;letter-spacing:.005em}
+h2 small{display:block;font:500 11px/1 var(--mono);letter-spacing:.14em;color:var(--amber);margin-bottom:14px}
+.sub{color:var(--mute);max-width:62ch;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border:1px solid var(--line2);border-radius:4px;background:var(--panel);font-weight:600;font-size:14px;letter-spacing:.02em;text-decoration:none;transition:border-color .2s,color .2s,background .2s}
+.btn:hover{border-color:var(--amber);color:var(--amber)}
+.btn.pri{background:var(--amber);border-color:var(--amber);color:#1a1100}
+.btn.pri:hover{background:#ffc552;color:#1a1100}
+.btn[aria-pressed=true]{border-color:var(--amber);color:var(--amber)}
+.hz{height:6px;background:repeating-linear-gradient(-45deg,var(--amber) 0 10px,#0a0b0c 10px 20px)}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(10,11,12,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;height:52px}
+.brand{font:800 17px var(--disp);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.brand i{font-style:normal;color:var(--amber)}
+.top nav{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.top nav::-webkit-scrollbar{display:none}
+.top nav a{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--mute);padding:8px 10px;border-radius:4px;white-space:nowrap}
+.top nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding-top:clamp(36px,6vw,72px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.eyebrow{color:var(--amber);margin-bottom:18px;display:block}
+h1{font:800 clamp(46px,7vw,96px)/.9 var(--disp);text-transform:uppercase;letter-spacing:-.005em}
+h1 em{font-style:normal;color:var(--amber)}
+.lede{font-size:clamp(16px,1.5vw,19px);color:var(--mute);max-width:56ch;margin-top:24px}
+.lede b{color:var(--ink);font-weight:500}
+.ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.simline{margin-top:18px;font:400 12.5px var(--mono);color:var(--amber)}
+.receipt{border:1px solid var(--line2);background:linear-gradient(180deg,var(--panel2),var(--panel));padding:20px;border-radius:6px;position:relative}
+.receipt:before{content:"";position:absolute;left:0;right:0;top:-1px;height:4px;background:repeating-linear-gradient(-45deg,var(--amber) 0 8px,transparent 8px 16px)}
+.receipt h3{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.receipt dl{display:grid;grid-template-columns:auto 1fr;gap:9px 16px;font:400 12.5px var(--mono)}
+.receipt dt{color:var(--mute)}
+.receipt dd{text-align:right;color:var(--ink);overflow-wrap:anywhere}
+.receipt hr{grid-column:1/-1;border:0;border-top:1px dashed var(--line2);margin:2px 0}
+
+/* player */
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:28px 0 18px}
+.controls .btn{padding:9px 14px;font-size:13px}
+.controls .pos{margin-left:auto;font:400 12px var(--mono);color:var(--mute)}
+.stage{display:grid;grid-template-columns:300px 300px minmax(0,1fr);gap:24px;align-items:stretch}
+.tabs{display:none;gap:6px;margin-bottom:12px}
+.tabs button{flex:1;padding:9px 6px;border:1px solid var(--line2);border-radius:4px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.tabs button[aria-selected=true]{border-color:var(--amber);color:var(--amber);background:rgba(255,178,31,.06)}
+.phonebox{display:flex;flex-direction:column;gap:10px;min-width:0}
+.phone{height:560px;border-radius:38px;padding:8px;background:linear-gradient(150deg,#2a2f35,#0c0e10 45%,#20252a);box-shadow:0 0 0 1px #3a424b,0 30px 70px rgba(0,0,0,.65),0 0 90px var(--amber-glow);display:flex}
+.screen{flex:1;min-width:0;border-radius:31px;background:#0b0d0f;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.screen:before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:74px;height:20px;border-radius:12px;background:#000;z-index:2}
+.mhead{padding:34px 14px 9px;text-align:center;border-bottom:1px solid var(--line)}
+.mhead b{display:block;font:600 13px var(--sans)}
+.mhead span{font:400 10.5px var(--mono);color:var(--mute);letter-spacing:.04em}
+.thread{flex:1;min-height:0;overflow-y:auto;padding:12px 10px;display:flex;flex-direction:column;gap:7px;scroll-behavior:smooth;scrollbar-width:none}
+.thread::-webkit-scrollbar{display:none}
+.b{max-width:86%;padding:8px 12px;border-radius:16px;font-size:13.5px;line-height:1.38;overflow-wrap:anywhere;animation:pop .32s cubic-bezier(.2,.9,.3,1.15) both}
+.b.a{align-self:flex-start;background:var(--panel2);border-bottom-left-radius:5px}
+.b.u{align-self:flex-end;background:var(--amber);color:#1a1100;border-bottom-right-radius:5px;font-weight:500}
+.sys{align-self:center;text-align:center;font:500 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mute);padding:5px 9px;border:1px solid var(--line);border-radius:4px;background:var(--panel);animation:pop .3s both}
+.dots{align-self:flex-start;display:flex;gap:4px;padding:11px 13px;background:var(--panel2);border-radius:16px;border-bottom-left-radius:5px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--mute);animation:dt 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dt{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
+.phone-cap{text-align:center}
+.side{display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel{border:1px solid var(--line2);border-radius:6px;background:linear-gradient(180deg,var(--panel2),var(--panel));padding:16px}
+.clock{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.clock b{display:block;font:500 clamp(24px,2.6vw,34px)/1.1 var(--mono);letter-spacing:.02em;margin-top:6px}
+.clock .sc b{color:var(--amber)}
+.clock .real b{font-size:clamp(15px,1.5vw,18px);color:var(--steel);padding-top:7px}
+.clock .real small{display:block;font:400 11px var(--mono);color:var(--mute);margin-top:6px}
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.pipe div{padding:9px 6px 8px;border-top:3px solid var(--line2);font:500 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--dim);transition:.35s}
+.pipe div.done{border-color:var(--ok);color:var(--mute)}
+.pipe div.on{border-color:var(--amber);color:var(--amber);background:linear-gradient(180deg,rgba(255,178,31,.10),transparent)}
+.job{flex:1;transition:border-color .4s,box-shadow .4s}
+.job.done{border-color:var(--ok);box-shadow:0 0 40px rgba(71,212,154,.10)}
+.job h3,.card-h{font:800 22px var(--disp);text-transform:uppercase;letter-spacing:.03em;margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.chip{font:500 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--line2);border-radius:3px;color:var(--mute)}
+.chip.amber{color:var(--amber);border-color:var(--amber-d)}
+.chip.ok{color:#04140d;background:var(--ok);border-color:var(--ok)}
+.chip.red{color:#fff;background:var(--red);border-color:var(--red)}
+.chip.steel{color:var(--steel);border-color:#4d6878}
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.f{border:1px solid var(--line);border-radius:4px;padding:7px 10px;min-height:52px;background:rgba(10,11,12,.5);transition:border-color .4s,background .4s}
+.f.w2{grid-column:span 2}.f.w3{grid-column:span 3}
+.f .l{display:block;margin-bottom:3px;font-size:10px}
+.f .v{font-size:14.5px;font-weight:500;overflow-wrap:anywhere;min-height:20px}
+.f.empty .v{color:var(--dim);font-weight:400}
+.f.flash{border-color:var(--amber);background:rgba(255,178,31,.07)}
+
+.lower{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;margin-top:24px}
+.tw{overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+th{font:500 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);text-align:left;padding:6px 10px 8px;border-bottom:1px solid var(--line2);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr.new td{animation:rowin 1.6s ease-out both}
+@keyframes rowin{from{background:rgba(255,178,31,.22)}to{background:transparent}}
+td.id{font:500 12px var(--mono);white-space:nowrap}
+td.id .chip{display:inline-block;margin-top:5px}
+.rep h4{font:500 17px/1.3 var(--sans);margin-bottom:12px}
+.rep ul{list-style:none;display:grid;gap:8px;font-size:13.5px;color:var(--mute)}
+.rep li{padding-left:14px;position:relative}
+.rep li:before{content:"";position:absolute;left:0;top:.6em;width:6px;height:2px;background:var(--amber)}
+.rep .att{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line2);font-size:13.5px}
+.empty-note{color:var(--dim);font-size:13.5px}
+
+.steps{display:grid;grid-template-columns:minmax(280px,380px) minmax(0,1fr);gap:24px;margin-top:24px;align-items:start}
+.slist{list-style:none;border:1px solid var(--line2);border-radius:6px;background:var(--panel);max-height:640px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+.slist button{display:grid;grid-template-columns:30px 1fr auto;gap:2px 10px;width:100%;text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);align-items:baseline;border-left:3px solid transparent;transition:background .2s}
+.slist li:last-child button{border-bottom:0}
+.slist button:hover{background:var(--panel2)}
+.slist button .n{font:500 12px var(--mono);color:var(--dim)}
+.slist button .t{font-size:14px;font-weight:500}
+.slist button .ts{grid-column:2/4;font:400 11px var(--mono);color:var(--mute)}
+.slist button[aria-current=step]{background:var(--panel2);border-left-color:var(--amber)}
+.slist button[aria-current=step] .n{color:var(--amber)}
+.slist button.todo{opacity:.4}
+.detail{border:1px solid var(--line2);border-radius:6px;background:var(--panel);padding:18px;min-width:0}
+.detail h3{font:800 26px/1 var(--disp);text-transform:uppercase;letter-spacing:.02em;margin:8px 0 14px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:14px}
+.meta div{border:1px solid var(--line);border-radius:4px;padding:7px 10px}
+.meta b{display:block;font:500 12.5px var(--mono);margin-top:2px;overflow-wrap:anywhere}
+.blk{margin-top:12px}
+.blk .mono{display:block;margin-bottom:5px}
+pre{font:400 12px/1.55 var(--mono);background:#07080a;border:1px solid var(--line);border-radius:4px;padding:10px 12px;white-space:pre-wrap;overflow-wrap:anywhere;color:#d7d3c9;max-height:260px;overflow:auto}
+.guard{margin-top:12px;font-size:13.5px;color:var(--mute)}
+.guard.hit{color:var(--amber)}
+
+/* simulated box */
+.sim{border:2px solid var(--amber);border-radius:6px;background:linear-gradient(180deg,rgba(255,178,31,.07),rgba(255,178,31,.02));position:relative;overflow:hidden}
+.sim .hz{position:absolute;left:0;top:0;bottom:0;width:8px;height:auto;background:repeating-linear-gradient(-45deg,var(--amber) 0 10px,#0a0b0c 10px 20px)}
+.sim-in{padding:clamp(18px,3vw,32px) clamp(18px,3vw,32px) clamp(18px,3vw,32px) clamp(26px,3.4vw,44px)}
+.sim h2{font-size:clamp(30px,4vw,48px)}
+.sim .cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px);margin-top:20px}
+.sim h3{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.sim .real h3{color:var(--ok)}.sim .fake h3{color:var(--amber)}
+.sim ul{list-style:none;display:grid;gap:9px;font-size:15px}
+.sim li{padding-left:16px;position:relative}
+.sim li:before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%}
+.sim .real li:before{background:var(--ok)}.sim .fake li:before{border:2px solid var(--amber)}
+
+/* architecture */
+.arch{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin-top:30px;position:relative}
+.node{display:flex;flex-direction:column;min-width:0;position:relative;padding:0 12px 0 0}
+.node:not(:last-child):after{content:"";position:absolute;top:34px;right:0;width:12px;height:2px;background:var(--line2)}
+.node>button.nb{width:100%;text-align:left;border:1px solid var(--line2);border-radius:6px;background:var(--panel);padding:14px 14px 16px;min-height:136px;transition:.2s;position:relative}
+.node>button.nb:hover{border-color:var(--amber-d)}
+.node>button.nb[aria-pressed=true]{border-color:var(--amber);background:linear-gradient(180deg,rgba(255,178,31,.12),var(--panel));box-shadow:0 0 36px var(--amber-glow)}
+.nb .k{display:block;font:500 10.5px var(--mono);letter-spacing:.1em;color:var(--amber);margin-bottom:8px}
+.nb .nm{display:block;font:800 21px/1.05 var(--disp);text-transform:uppercase;letter-spacing:.02em}
+.nb .ds{display:block;font-size:12.5px;color:var(--mute);margin-top:6px;line-height:1.35}
+.tools{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line2);min-height:64px;align-content:flex-start}
+.tools span{font:500 10.5px var(--mono);letter-spacing:.04em;padding:3px 7px;border:1px solid var(--line2);border-radius:3px;color:var(--steel);background:rgba(134,180,204,.05)}
+.adetail{margin-top:20px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.adetail .panel h4{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.adetail p{font-size:14.5px;color:var(--mute)}
+.adetail .jump{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.adetail .jump button{font:500 11px var(--mono);padding:4px 8px;border:1px solid var(--line2);border-radius:3px;color:var(--steel)}
+.adetail .jump button:hover{border-color:var(--amber);color:var(--amber)}
+
+/* safety */
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:30px;counter-reset:r}
+.rule{border:1px solid var(--line2);border-radius:6px;background:var(--panel);padding:18px 18px 16px;counter-increment:r;position:relative}
+.rule:before{content:counter(r,decimal-leading-zero);font:800 34px/1 var(--disp);color:var(--amber);display:block;margin-bottom:8px}
+.rule h3{font:600 16px/1.25 var(--sans);margin-bottom:6px}
+.rule p{font-size:14px;color:var(--mute)}
+.rule code,.paper code{font:400 12px var(--mono);color:var(--steel);background:rgba(134,180,204,.08);padding:1px 5px;border-radius:3px}
+.tester{margin-top:22px;border:1px solid var(--line2);border-radius:6px;background:var(--panel);padding:18px}
+.tester h3{font:800 22px var(--disp);text-transform:uppercase;letter-spacing:.03em}
+.tester p.s{font-size:13.5px;color:var(--mute);margin:4px 0 12px}
+.tester .row{display:flex;gap:8px}
+.tester input{flex:1;min-width:0;background:#07080a;border:1px solid var(--line2);border-radius:4px;padding:11px 13px;font:400 14px var(--sans);color:var(--ink)}
+.tester input:focus{outline:none;border-color:var(--amber)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chips button{font:400 12.5px var(--sans);padding:5px 10px;border:1px solid var(--line2);border-radius:999px;color:var(--mute)}
+.chips button:hover{border-color:var(--amber);color:var(--amber)}
+.verdict{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.verdict div{border:1px solid var(--line);border-radius:4px;padding:10px 12px;font-size:13.5px;min-height:74px}
+.verdict div.fire{border-color:var(--red);background:rgba(255,90,74,.07)}
+.verdict div.fire.price{border-color:var(--amber);background:rgba(255,178,31,.07)}
+.verdict b{display:block;font:500 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:4px}
+
+/* handover paper */
+.paper-wrap{margin-top:30px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:30px;align-items:start}
+.paper{background:#ece9e2;color:#16130d;border-radius:3px;padding:clamp(22px,3.4vw,44px);box-shadow:0 24px 70px rgba(0,0,0,.6);font-size:14.5px;line-height:1.5;position:relative}
+.paper:before{content:"SAMPLE";position:absolute;right:18px;top:16px;font:500 11px var(--mono);letter-spacing:.14em;color:#b97d00;border:1px solid #b97d00;padding:2px 8px;border-radius:3px}
+.paper h3{font:800 clamp(24px,3vw,34px)/1 var(--disp);text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px;padding-right:90px}
+.paper .by{font:400 11.5px var(--mono);color:#5b5546;margin-bottom:16px;display:block}
+.paper h4{font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;margin:16px 0 5px;color:#16130d;border-top:1px solid #c9c3b3;padding-top:10px}
+.paper p,.paper li{color:#2b261b}
+.paper ul{padding-left:18px;display:grid;gap:3px}
+.paper code{background:#ddd7c6;color:#16130d}
+.paper pre{background:#16130d;color:#ece9e2;border:0;font-size:11.5px;max-height:none;margin:6px 0}
+.paper table{min-width:0;font-size:13px;margin-top:4px}
+.paper th{color:#5b5546;border-bottom:1px solid #c9c3b3;padding-left:0}
+.paper td{border-bottom:1px solid #d6d0c0;padding-left:0}
+.paper .two{display:grid;grid-template-columns:1fr 1fr;gap:0 26px}
+.sidebar-n p{color:var(--mute);font-size:14.5px;margin-bottom:14px}
+
+/* video */
+.vid{margin-top:30px;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:30px;align-items:center}
+video{width:100%;border:1px solid var(--line2);border-radius:6px;background:#000;display:block;aspect-ratio:16/9}
+.vid p{color:var(--mute);font-size:14.5px;margin-bottom:12px}
+
+/* pricing */
+.price{margin-top:30px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px}
+.big{border:1px solid var(--amber);border-radius:6px;padding:clamp(22px,3vw,36px);background:linear-gradient(180deg,rgba(255,178,31,.10),rgba(255,178,31,.02))}
+.big .n{font:800 clamp(64px,9vw,120px)/.85 var(--disp);color:var(--amber)}
+.big .n small{font-size:.34em;color:var(--ink);letter-spacing:.04em;margin-left:6px;text-transform:uppercase}
+.big p{margin-top:16px;color:var(--mute)}
+.big p b{color:var(--ink);font-weight:600}
+.scope ul{list-style:none;display:grid;gap:10px;margin-top:6px}
+.scope li{padding-left:18px;position:relative;font-size:15px}
+.scope li:before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--amber)}
+.scope .note{margin-top:14px;color:var(--mute);font-size:13.5px}
+.contact{margin-top:14px;font:400 13px var(--mono);color:var(--mute)}
+.contact a{color:var(--amber)}
+
+footer{margin-top:clamp(60px,9vw,110px);border-top:1px solid var(--line);padding:26px 0 40px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+footer a{color:var(--ink);text-decoration:none;font:800 16px var(--disp);letter-spacing:.12em;text-transform:uppercase}
+footer a:hover{color:var(--amber)}
+footer span{font:400 12px var(--mono);color:var(--mute)}
+noscript p{margin:20px 0;padding:14px;border:1px solid var(--amber);color:var(--amber)}
+
+@media (max-width:1180px){
+  .stage{grid-template-columns:280px 280px minmax(0,1fr)}
+  .phone{height:540px}
+  .arch{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .nb .nm{font-size:18px}
+}
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;align-items:start}
+  .tabs{display:flex}
+  .stage{grid-template-columns:minmax(0,1fr);gap:16px}
+  .stage[data-tab=cust] .pb-tech,.stage[data-tab=tech] .pb-cust{display:none}
+  .phonebox{align-items:center}
+  .phone{width:100%;max-width:340px;height:520px}
+  .lower,.steps,.vid,.price,.paper-wrap{grid-template-columns:minmax(0,1fr)}
+  .arch{grid-template-columns:minmax(0,1fr);gap:0}
+  .node{padding:0 0 22px 0}
+  .node:not(:last-child):after{top:auto;bottom:6px;right:auto;left:30px;width:2px;height:10px}
+  .node>button.nb{min-height:0}
+  .tools{min-height:0}
+  .adetail,.rules{grid-template-columns:minmax(0,1fr)}
+  .sim .cols{grid-template-columns:minmax(0,1fr)}
+  .verdict{grid-template-columns:minmax(0,1fr)}
+  .slist{max-height:300px}
+  .top nav a:nth-child(n+4){display:none}
+}
+@media (max-width:520px){
+  .fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .f.w2,.f.w3{grid-column:span 2}
+  .clock{grid-template-columns:1fr}
+  .controls .pos{margin-left:0;width:100%}
+  .pipe div{font-size:9px;padding:8px 2px 6px;letter-spacing:.02em;text-align:center}
+  .tester .row{flex-direction:column}
+  .paper .two{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+@media print{
+  body{background:#fff}
+  body>*:not(main),main>*:not(#handover){display:none!important}
+  #handover>.wrap>*:not(.paper-wrap),.sidebar-n{display:none!important}
+  #handover{padding:0}
+  .paper-wrap{display:block;margin:0}
+  .paper{box-shadow:none;padding:0}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../../index.html">Enes Eren <i>Studio</i></a>
+  <nav aria-label="Sections"><a href="#run">Run</a><a href="#simulated">Simulated</a><a href="#arch">Architecture</a><a href="#safety">Safety</a><a href="#handover">Handover</a><a href="#video">Recording</a><a href="#pricing">Pricing</a></nav>
+</div></header>
+
+<main>
+<section class="hero" style="padding-top:clamp(36px,6vw,72px)"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <span class="mono eyebrow">Proof for the Freelancer gig: AI Agent Developer &amp; Automation Engineer</span>
+      <h1>Missed call in. Technician booked, order logged, <em>report out.</em></h1>
+      <p class="lede">I ran a sample plumbing and heating shop through the whole list: <b>technician outreach, calls, order intake, data entry, reporting.</b> Every step keeps its real timestamp and its raw JSON. Press play, or open any step.</p>
+      <div class="ctas"><a class="btn pri" href="#run">Play the recorded run</a><a class="btn" href="#video">Watch the 60 second recording</a><a class="btn" href="#handover">Read the handover doc</a></div>
+      <p class="simline">Simulated: no live Twilio, simulated clock, 555 numbers. Details in the box below the player.</p>
+    </div>
+    <aside class="receipt" aria-label="Run receipt">
+      <h3>Run receipt (real)</h3>
+      <dl id="receipt"><dt>loading</dt><dd>run data</dd></dl>
+    </aside>
+  </div>
+  <noscript><p>The replay needs JavaScript. The 60 second MP4 further down plays without it.</p></noscript>
+</div></section>
+
+<section id="run"><div class="wrap">
+  <h2><small>01 / THE RUN</small>One chain, thirteen steps</h2>
+  <p class="sub">The page plays a run I recorded with the real model. Nothing is fetched while you watch: the run is a file, so it works with the server off. The words from the caller and the technicians are scripted. Everything the agents say back is model output, checked by plain code.</p>
+
+  <div class="controls" role="group" aria-label="Playback">
+    <button class="btn pri" id="play" type="button">Pause</button>
+    <button class="btn" id="restart" type="button">Restart</button>
+    <button class="btn" id="skip" type="button">Skip to end</button>
+    <button class="btn" id="speed" type="button" aria-pressed="false">2x speed</button>
+    <span class="pos" id="pos">Step 0 of 0</span>
+  </div>
+
+  <div class="tabs" id="tabs" role="tablist" aria-label="Phone">
+    <button type="button" role="tab" data-tab="cust" aria-selected="true">Customer phone</button>
+    <button type="button" role="tab" data-tab="tech" aria-selected="false">Technician phone</button>
+  </div>
+  <div class="stage" id="stage" data-tab="cust">
+    <div class="phonebox pb-cust">
+      <div class="phone"><div class="screen"><div class="mhead"><b>Cold Creek (SAMPLE)</b><span id="custnum">Customer phone</span></div><div class="thread" id="cust" aria-live="polite"></div></div></div>
+      <span class="mono phone-cap">Customer, scripted words</span>
+    </div>
+    <div class="phonebox pb-tech">
+      <div class="phone"><div class="screen"><div class="mhead"><b>Dispatcher</b><span id="technum">Technician phone</span></div><div class="thread" id="tech" aria-live="polite"></div></div></div>
+      <span class="mono phone-cap">Technician, scripted replies</span>
+    </div>
+    <div class="side">
+      <div class="panel clock"><div class="sc"><span class="mono">Sim clock (scripted)</span><b id="simclock">--</b></div><div class="real"><span class="mono">Real time of this step</span><b id="realclock">--</b><small id="realmeta">&nbsp;</small></div></div>
+      <div class="panel"><div class="pipe" id="pipe"><div data-a="inbound">Inbound</div><div data-a="intake">Intake</div><div data-a="dispatcher">Dispatch</div><div data-a="orders">Orders</div><div data-a="report">Report</div></div></div>
+      <div class="panel job" id="job"><h3>Job card <span class="chip" id="jstatus">Waiting</span></h3><div class="fields" id="fields"></div></div>
+    </div>
+  </div>
+
+  <div class="lower">
+    <div class="panel"><div class="card-h">Orders table <span class="chip steel">Page element, not a live sheet</span></div>
+      <div class="tw"><table id="orders"><thead><tr><th>ID</th><th>Customer</th><th>Zone</th><th>Service</th><th>Window</th><th>Technician</th><th>Urgency</th><th>Status</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="panel rep" id="report"><div class="card-h">Morning report <span class="chip" id="repwhen">Tue</span></div><p class="empty-note" id="repempty">Appears at the end of the run.</p><div id="repbody" hidden></div></div>
+  </div>
+
+  <div class="steps">
+    <ol class="slist" id="slist" aria-label="Steps"></ol>
+    <div class="detail" id="detail" aria-live="polite"></div>
+  </div>
+</div></section>
+
+<section id="simulated"><div class="wrap">
+  <div class="sim"><span class="hz" aria-hidden="true"></span><div class="sim-in">
+    <h2><small>02 / HONEST LABELS</small>What is simulated</h2>
+    <div class="cols">
+      <div class="real"><h3>Real</h3><ul>
+        <li id="real-calls">Model calls to claude-haiku-5-5, with the timestamps, latency and token counts you see in each step.</li>
+        <li>The roster match, the SMS drafts, the order row and the morning report text. They are model output, kept as returned.</li>
+        <li>The safety rules. They ran in the recording as plain code, and the tester below runs the same patterns in your browser.</li>
+      </ul></div>
+      <div class="fake"><h3>Simulated</h3><ul>
+        <li><b>No live Twilio.</b> No call came in and no SMS left the machine.</li>
+        <li><b>Simulated clock.</b> Monday 6:12 PM to Tuesday 7:30 AM is scripted. The real run took seconds.</li>
+        <li><b>555 numbers.</b> Every phone number is fictional.</li>
+        <li>The caller's and technicians' words are scripted. The shop, roster and the two earlier orders are sample data.</li>
+        <li>The orders table is a page element, not a Google Sheet. The email channel is in the design, not in this run.</li>
+      </ul></div>
+    </div>
+  </div></div>
+</div></section>
+
+<section id="arch"><div class="wrap">
+  <h2><small>03 / ARCHITECTURE</small>Click a block</h2>
+  <p class="sub">Five blocks, one hand-off each. The tools under each block are the production stack I would wire to your accounts. This recording runs the same chain as a Python script on the Claude API.</p>
+  <div class="arch" id="archrow"></div>
+  <div class="adetail" id="adetail"></div>
+</div></section>
+
+<section id="safety"><div class="wrap">
+  <h2><small>04 / SAFETY RULES</small>Plain code decides. The model writes.</h2>
+  <p class="sub">The model never gets the last word on anything that can hurt a customer, a technician or the shop. These rules are plain code, not model output, and sit in <code style="font:400 13px var(--mono);color:var(--steel)">server.py</code> and <code style="font:400 13px var(--mono);color:var(--steel)">agents.py</code>.</p>
+  <div class="rules">
+    <div class="rule"><h3>Emergency keywords force the emergency path</h3><p>Gas smell, flooding, burst pipe, no heat, sewage, carbon monoxide, sparks, fire. Urgency becomes <code>emergency</code>, the emergency line is added, and a gas smell adds "leave the building and call 911". Emergency jobs go to on-call technicians only.</p></div>
+    <div class="rule"><h3>The model never quotes a price</h3><p>Any dollar figure in a model text is replaced by a fixed line. A price question gets the fixed line too. It covers customer texts, technician texts, order notes and the report.</p></div>
+    <div class="rule"><h3>The roster check is code</h3><p>The model ranks technicians. Code then checks zone, skill, slot and on-call status and drops anyone who fails. Nobody off the roster is ever texted.</p></div>
+    <div class="rule"><h3>Only an explicit YES assigns a job</h3><p>Accept and decline words come from <code>templates.json</code>. Free text such as "not free until 3pm" can only decline or ask again. It can never assign.</p></div>
+    <div class="rule"><h3>Report numbers come from a count</h3><p>Code counts the orders. If the model writes a number it was not given, the report falls back to the counted summary.</p></div>
+    <div class="rule"><h3>Unknown zone means a person looks</h3><p>If no service zone is found in the address, nothing is dispatched. The job goes to the office. A cap of 300 model calls per process stops a runaway loop.</p></div>
+  </div>
+
+  <div class="tester">
+    <h3>Try the rules</h3>
+    <p class="s">Runs the same patterns as <code style="font:400 12px var(--mono);color:var(--steel)">server.py</code> in your browser. No model, no network.</p>
+    <div class="row"><input id="tin" type="text" value="I smell gas in my kitchen" aria-label="Customer message" autocomplete="off"></div>
+    <div class="chips" id="tchips"></div>
+    <div class="verdict" id="verdict"></div>
+  </div>
+</div></section>
+
+<section id="handover"><div class="wrap">
+  <h2><small>05 / HANDOVER DOC (SAMPLE)</small>You can run it without me</h2>
+  <p class="sub">The gig asks for a solution you can manage yourself. This is the one-page doc that ships with it, written for this sample shop.</p>
+  <div class="paper-wrap">
+    <article class="paper" aria-label="Sample handover document">
+      <h3>Field service agent: handover</h3>
+      <span class="by">Sample shop. Fictional data. Read by the agents on every run.</span>
+      <h4>1. What runs, in order</h4>
+      <p>Missed call, then text-back, then the intake agent books a slot. The dispatcher matches a technician and texts the offer. A YES makes the order row. The report agent writes the morning report.</p>
+      <h4>2. Change the roster</h4>
+      <p>Open <code>roster.json</code>. One block per technician. Save the file. The next run reads it. No restart.</p>
+<pre>{"id": "t-new", "name": "First Last",
+ "phone": "&lt;technician mobile&gt;",
+ "zones": ["Tempe", "Mesa"],
+ "skills": ["leak", "drain"],
+ "off_slots": ["wed-am"],
+ "on_call": false}</pre>
+      <ul><li><code>zones</code>: only these cities get texted for a job.</li><li><code>skills</code>: keys from the <code>skills</code> list at the bottom of the file.</li><li><code>off_slots</code>: slot ids the person cannot take.</li><li><code>on_call</code>: true means they take emergencies.</li></ul>
+      <div class="two">
+        <div><h4>3. Change hours and slots</h4>
+        <p>Open <code>business.json</code>. <code>hours</code> is the text the intake agent tells customers. <code>office_opens</code> sets when the morning report is ready. Each entry in <code>slots</code> is one bookable window: an id, a label and a day.</p></div>
+        <div><h4>4. Change templates</h4>
+        <p>Open <code>templates.json</code>. Keep the <code>{placeholders}</code> as they are.</p></div>
+      </div>
+      <table><thead><tr><th>Key</th><th>What it changes</th></tr></thead><tbody>
+        <tr><td><code>customer_opening</code></td><td>The first text after a missed call</td></tr>
+        <tr><td><code>dispatch_style</code></td><td>How the model words the technician text</td></tr>
+        <tr><td><code>dispatch_tail</code></td><td>The YES or NO line added to every offer</td></tr>
+        <tr><td><code>customer_confirm</code></td><td>The text when a technician accepts</td></tr>
+        <tr><td><code>accept_words</code>, <code>decline_words</code></td><td>Words that count as YES or NO</td></tr>
+        <tr><td><code>no_price_line</code></td><td>The fixed line used instead of any price</td></tr>
+      </tbody></table>
+      <h4>5. What to leave to a developer</h4>
+      <p>Emergency keywords and the price filter live in <code>server.py</code>. The roster check and reply parser live in <code>agents.py</code>. Adding a keyword is one line.</p>
+      <h4>6. When something looks wrong</h4>
+      <p>Every run saves each step: input, raw model text, the result after the checks, and a <code>guards</code> list. Read <code>guards</code> first. It says what the code changed or dropped.</p>
+    </article>
+    <div class="sidebar-n">
+      <p>The doc is the contract for handover: it names the files you edit and the files you leave alone. It names no real client, number or company.</p>
+      <button class="btn" type="button" id="print">Print or save as PDF</button>
+    </div>
+  </div>
+</div></section>
+
+<section id="video"><div class="wrap">
+  <h2><small>06 / RECORDING</small>60 seconds, screen capture</h2>
+  <div class="vid">
+    <video controls preload="metadata" playsinline poster="recording-poster.jpg" aria-label="60 second screen recording of the run player"><source src="run-recording.mp4" type="video/mp4">Your browser cannot play this MP4.</video>
+    <div>
+      <p>A screen capture of this page playing the recorded run at normal speed: missed call, intake, technician match, the decline and the YES, the order row, the morning report.</p>
+      <p class="mono">MP4, under 4 MB, no audio</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <h2><small>07 / PRICING</small>Hourly, with a first milestone</h2>
+  <div class="price">
+    <div class="big"><div class="n">$40<small>per hour</small></div><p><b>First milestone: 30 hours.</b> That is $1,200 at this rate. Hours are logged against the milestone.</p></div>
+    <div class="panel scope"><h3 class="card-h">Milestone 1, proposed scope</h3>
+      <ul>
+        <li>Connect your inbound number and email address to the intake agent.</li>
+        <li>Load your real roster, hours and templates.</li>
+        <li>Write orders to your Google Sheet or CRM.</li>
+        <li>Send the morning report to the people you name.</li>
+        <li>Write the handover doc against your own setup.</li>
+      </ul>
+      <p class="note">Scope is set after I see your roster and where orders live today.</p>
+      <p class="contact">Enes Eren, Istanbul. <a href="mailto:erenes1667@gmail.com">erenes1667@gmail.com</a> &middot; <a href="https://github.com/erenes1667">github.com/erenes1667</a></p>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><a href="../../index.html">Enes Eren Studio</a><span>Sample data. Fictional shop and numbers. No client is named on this page.</span></div></footer>
+
+<script src="web/sample-run.js"></script>
+<script src="web/rules.js"></script>
+<script>
+(function(){
+"use strict";
+var R = window.SAMPLE_RUN, S = R.steps, $ = function(s, r){ return (r||document).querySelector(s); };
+function h(t, c, x){ var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+var narrow = function(){ return matchMedia("(max-width:960px)").matches; };
+function ts(iso){ return iso.replace("T", " "); }
+function hms(iso){ return iso.slice(11); }
+
+/* ---------- receipt ---------- */
+var wall = ((Date.parse(R.finished_at) - Date.parse(R.started_at)) / 1000).toFixed(1);
+var rec = $("#receipt"); rec.textContent = "";
+[["started", ts(R.started_at)], ["finished", hms(R.finished_at)], ["wall clock", wall + " s"], ["hr"], ["model", R.model], ["model calls", String(R.model_calls)],
+ ["rule steps (no model)", String(S.filter(function(s){ return s.mode === "rule"; }).length)], ["steps with raw JSON", S.length + " of " + S.length], ["hr"], ["API key in the browser", "none"]].forEach(function(p){
+  if (p[0] === "hr"){ rec.appendChild(h("hr")); return; }
+  rec.appendChild(h("dt", "", p[0])); rec.appendChild(h("dd", "", p[1]));
+});
+$("#real-calls").textContent = "Model calls to " + R.model + ": " + R.model_calls + " of them, with the timestamps, latency and token counts shown in each step.";
+
+/* ---------- player state ---------- */
+var gen = 0, paused = false, speed = 1, cur = -1, playing = false, atEnd = false;
+function sleep(ms, tok){
+  return new Promise(function(res, rej){
+    var left = ms * (reduce ? .4 : 1);
+    (function tick(){
+      if (tok !== gen) return rej("cancel");
+      if (left <= 0) return res();
+      setTimeout(function(){ if (!paused) left -= 50 * speed; tick(); }, 50);
+    })();
+  });
+}
+var threads = { cust: $("#cust"), tech: $("#tech") };
+function scrollEnd(el){ el.scrollTop = el.scrollHeight; }
+function showTab(t){ if (!narrow()) return; $("#stage").dataset.tab = t; document.querySelectorAll("#tabs button").forEach(function(b){ b.setAttribute("aria-selected", String(b.dataset.tab === t)); }); }
+document.querySelectorAll("#tabs button").forEach(function(b){ b.addEventListener("click", function(){ $("#stage").dataset.tab = b.dataset.tab; document.querySelectorAll("#tabs button").forEach(function(x){ x.setAttribute("aria-selected", String(x === b)); }); }); });
+
+function bubble(ch, dir, text){
+  var el = h("div", dir === "sys" ? "sys" : "b " + dir, text); threads[ch].appendChild(el); scrollEnd(threads[ch]); return el;
+}
+var FIELDS = [["name","Customer"],["issue","Issue","w2"],["address","Address","w2"],["zone","Zone"],["skill","Skill needed"],["urgency","Urgency"],["slot","Window","w2"],["tech","Technician"]];
+var job = {};
+function buildFields(){
+  var box = $("#fields"); box.textContent = "";
+  FIELDS.forEach(function(f){ var d = h("div", "f empty" + (f[2] ? " " + f[2] : "")); d.dataset.k = f[0]; d.appendChild(h("span", "l mono", f[1])); d.appendChild(h("div", "v", "waiting")); box.appendChild(d); });
+}
+function setJob(fields, animate){
+  Object.keys(fields).forEach(function(k){
+    var v = fields[k]; if (v == null || v === "") return;
+    if (k === "slot_id") return;
+    job[k] = v;
+    if (k === "status"){ var c = $("#jstatus"); c.textContent = v; c.className = "chip " + (/assigned|logged|Booked/.test(v) ? "ok" : "amber"); $("#job").classList.toggle("done", /logged/.test(v)); return; }
+    var d = $('#fields [data-k="' + k + '"]'); if (!d) return;
+    var val = d.querySelector(".v"); var changed = val.textContent !== String(v); val.textContent = v; d.classList.remove("empty");
+    if (k === "urgency"){ val.textContent = ""; val.appendChild(h("span", "chip " + (v === "emergency" ? "red" : v === "urgent" ? "amber" : "steel"), v)); }
+    if (animate && changed){ d.classList.add("flash"); setTimeout(function(){ d.classList.remove("flash"); }, 1100); }
+  });
+}
+var obody = $("#orders tbody");
+function addOrder(row, animate){
+  var tr = h("tr", animate ? "new" : ""); var id = h("td", "id", row.id); if (row.sample){ id.appendChild(document.createElement("br")); id.appendChild(h("span", "chip", "sample")); } else { id.appendChild(document.createElement("br")); id.appendChild(h("span", "chip ok", "new")); }
+  tr.appendChild(id);
+  [row.customer, row.zone, row.service, row.window, row.tech].forEach(function(t){ tr.appendChild(h("td", "", t)); });
+  var u = h("td"); u.appendChild(h("span", "chip " + (row.urgency === "emergency" ? "red" : row.urgency === "urgent" ? "amber" : "steel"), row.urgency)); tr.appendChild(u);
+  tr.appendChild(h("td", "", row.status));
+  obody.appendChild(tr);
+}
+function showReport(rep){
+  $("#repempty").hidden = true; var b = $("#repbody"); b.hidden = false; b.textContent = "";
+  b.appendChild(h("h4", "", rep.headline));
+  var ul = h("ul"); rep.lines.forEach(function(l){ ul.appendChild(h("li", "", l)); }); b.appendChild(ul);
+  var att = h("div", "att"); att.appendChild(h("span", "mono", "Needs attention")); att.appendChild(h("p", "", rep.needs_attention.length ? rep.needs_attention.join(" ") : "Nothing needs a person.")); b.appendChild(att);
+}
+function setPipe(agent){
+  var order = ["inbound", "intake", "dispatcher", "orders", "report"], i = order.indexOf(agent);
+  document.querySelectorAll("#pipe div").forEach(function(d, k){ d.className = k < i ? "done" : k === i ? "on" : ""; });
+}
+function reset(){
+  threads.cust.textContent = ""; threads.tech.textContent = ""; obody.textContent = ""; job = {}; buildFields();
+  $("#jstatus").textContent = "Waiting"; $("#jstatus").className = "chip"; $("#job").classList.remove("done");
+  R.orders_seed.forEach(function(o){ addOrder(o, false); });
+  $("#repempty").hidden = false; $("#repbody").hidden = true; $("#simclock").textContent = "--"; $("#realclock").textContent = "--"; $("#realmeta").innerHTML = "&nbsp;";
+  setPipe(""); cur = -1; atEnd = false; markList(-1); $("#pos").textContent = "Step 0 of " + S.length;
+  $("#detail").textContent = ""; $("#detail").appendChild(h("p", "empty-note", "Pick a step, or press play."));
+  showTab("cust");
+}
+
+/* ---------- step list and detail ---------- */
+var slist = $("#slist");
+S.forEach(function(s, i){
+  var li = h("li"), b = h("button", "todo"); b.type = "button"; b.dataset.i = i;
+  b.appendChild(h("span", "n", String(s.n).padStart(2, "0"))); b.appendChild(h("span", "t", s.title)); b.appendChild(h("span", "chip " + (s.mode === "model" ? "amber" : ""), s.mode === "model" ? "model" : "rule"));
+  b.appendChild(h("span", "ts", hms(s.t0) + "  " + s.ms.toLocaleString("en-US") + " ms"));
+  b.addEventListener("click", function(){ if (playing && !paused) setPause(true); showDetail(i); markList(i, true); });
+  li.appendChild(b); slist.appendChild(li);
+});
+function markList(i, force){
+  slist.querySelectorAll("button").forEach(function(b, k){ b.classList.toggle("todo", k > Math.max(cur, i)); if (k === i) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current"); });
+  if (i >= 0 && !force){ var b = slist.children[i].firstChild, top = b.offsetTop - slist.offsetTop; slist.scrollTop = Math.max(0, top - 120); }
+}
+function pretty(t){ try { return JSON.stringify(JSON.parse(t), null, 2); } catch (e) { return t; } }
+function showDetail(i){
+  var s = S[i], d = $("#detail"); d.textContent = "";
+  d.appendChild(h("span", "mono", "Step " + s.n + " of " + S.length + " / " + s.agent + " agent"));
+  d.appendChild(h("h3", "", s.title));
+  var m = h("div", "meta");
+  [["Real start (UTC)", ts(s.t0)], ["Latency", s.ms.toLocaleString("en-US") + " ms"], ["Run by", s.mode === "model" ? s.model : "plain code, no model"],
+   ["Tokens in / out", s.usage && s.usage.in != null ? s.usage.in + " / " + s.usage.out : "none"], ["Sim clock", s.sim], ["Input words", s.scripted_input ? "scripted" : "from the previous step"]].forEach(function(p){
+    var c = h("div"); c.appendChild(h("span", "mono", p[0])); c.appendChild(h("b", "", p[1])); m.appendChild(c);
+  });
+  d.appendChild(m);
+  function blk(label, txt){ var b = h("div", "blk"); b.appendChild(h("span", "mono", label)); b.appendChild(h("pre", "", txt)); d.appendChild(b); }
+  blk("Input", s.input);
+  blk(s.mode === "model" ? "Raw model output (re-indented to read)" : "Raw text the rule read", s.raw ? pretty(s.raw) : "(none: this step is a fixed template)");
+  blk("Result after the code checks", JSON.stringify(s.result, null, 2));
+  var g = h("p", "guard" + (s.guards.length ? " hit" : "")); g.textContent = s.guards.length ? "Guards fired: " + s.guards.join(" | ") : "Guards: none fired, the model output passed every check."; d.appendChild(g);
+}
+
+/* ---------- events ---------- */
+async function applyStep(i, tok, animate){
+  var s = S[i]; cur = i;
+  $("#pos").textContent = "Step " + s.n + " of " + S.length; $("#simclock").textContent = s.sim;
+  $("#realclock").textContent = hms(s.t0).slice(0, 12); $("#realmeta").textContent = s.ms.toLocaleString("en-US") + " ms, " + (s.mode === "model" ? s.model : "rule, no model");
+  setPipe(s.agent); showDetail(i); markList(i);
+  for (var k = 0; k < s.events.length; k++){
+    var e = s.events[k];
+    if (e.ch === "cust" || e.ch === "tech"){
+      if (animate) showTab(e.ch);
+      if (e.dir === "a" && animate){ var dots = h("div", "dots"); dots.appendChild(h("i")); dots.appendChild(h("i")); dots.appendChild(h("i")); threads[e.ch].appendChild(dots); scrollEnd(threads[e.ch]); await sleep(750, tok); dots.remove(); }
+      bubble(e.ch, e.dir, e.text);
+    } else if (e.ch === "job") setJob(e.fields, animate);
+    else if (e.ch === "orders") addOrder(e.row, animate);
+    else if (e.ch === "report") showReport(e.report);
+    if (animate) await sleep(e.ch === "job" ? 500 : 1000, tok);
+  }
+  if (animate) await sleep(900, tok);
+}
+async function run(from){
+  var tok = ++gen; playing = true; paused = false; syncBtn();
+  try {
+    for (var i = from; i < S.length; i++) await applyStep(i, tok, true);
+    atEnd = true; playing = false; syncBtn();
+  } catch (e) { if (e !== "cancel") throw e; }
+}
+function setPause(p){ paused = p; syncBtn(); }
+function syncBtn(){ $("#play").textContent = atEnd ? "Replay" : (playing && !paused) ? "Pause" : cur < 0 ? "Play" : "Resume"; }
+$("#play").addEventListener("click", function(){
+  if (atEnd){ reset(); run(0); return; }
+  if (!playing){ run(cur + 1); return; }
+  setPause(!paused);
+});
+$("#restart").addEventListener("click", function(){ gen++; reset(); run(0); });
+$("#skip").addEventListener("click", function(){
+  gen++; reset(); playing = false; paused = false;
+  var tok = gen; (async function(){ for (var i = 0; i < S.length; i++) await applyStep(i, tok, false); atEnd = true; syncBtn(); })();
+});
+$("#speed").addEventListener("click", function(){ speed = speed === 1 ? 2 : 1; this.setAttribute("aria-pressed", String(speed === 2)); this.textContent = speed === 2 ? "1x speed" : "2x speed"; });
+
+reset(); syncBtn();
+/* start when the player is on screen, once */
+var started = false;
+function go(){ if (started) return; started = true; run(0); }
+if ("IntersectionObserver" in window){
+  new IntersectionObserver(function(es, ob){ if (es[0].isIntersecting){ ob.disconnect(); go(); } }, { threshold: .25 }).observe($("#stage"));
+} else go();
+
+/* ---------- architecture ---------- */
+var NODES = [
+ { k: "01", nm: "Inbound", ds: "Call, SMS or email reaches the shop.", tools: ["Twilio voice and SMS", "n8n email trigger"], agent: "inbound",
+   does: "A missed or after-hours call gets a text within seconds. A text or an email lands in the same flow. All three become one thread per customer.",
+   rec: "Simulated. One scripted missed call. No Twilio account is connected and no email channel is in this run." },
+ { k: "02", nm: "Intake agent", ds: "Talks to the customer and fills the job.", tools: ["Claude API", "n8n"], agent: "intake",
+   does: "Collects name, address, issue and a time slot, one question at a time. Offers only slots from the shop's list. Never quotes a price.",
+   rec: "Real. Three model calls, raw JSON in each step. The cost question got the fixed no-price answer, and the code would have forced it if the model had not." },
+ { k: "03", nm: "Dispatcher agent", ds: "Matches a technician and handles the reply.", tools: ["Claude API", "Twilio SMS", "Roster in Google Sheets or your CRM"], agent: "dispatcher",
+   does: "Picks the skill, ranks technicians by zone and skill, drafts the offer text, reads the YES or NO, and moves to the next technician after a decline.",
+   rec: "Real model for ranking, drafts and the free-text reply. Plain code for the roster check, the YES or NO words and the confirmation." },
+ { k: "04", nm: "Orders table", ds: "One row per booked job.", tools: ["Google Sheets or your CRM", "n8n"], agent: "orders",
+   does: "Appends a row with customer, zone, service, window, technician and status. The model fills the service type and a work note. Code builds the row and the order id.",
+   rec: "Real model call. The table on this page stands in for the sheet or CRM, which is not connected." },
+ { k: "05", nm: "Report agent", ds: "Writes the morning report.", tools: ["Claude API", "n8n schedule", "Email or SMS out"], agent: "report",
+   does: "Code counts the open orders and the urgent ones. The model writes the words. Any number it was not given is rejected.",
+   rec: "Real model call. Not delivered anywhere: it is shown on the page." }
+];
+var arow = $("#archrow"), adet = $("#adetail"), sel = 2;
+function drawArch(){
+  arow.textContent = "";
+  NODES.forEach(function(n, i){
+    var box = h("div", "node"), b = h("button", "nb"); b.type = "button"; b.setAttribute("aria-pressed", String(i === sel));
+    b.appendChild(h("span", "k", n.k)); b.appendChild(h("span", "nm", n.nm)); b.appendChild(h("span", "ds", n.ds));
+    b.addEventListener("click", function(){ sel = i; drawArch(); });
+    var t = h("div", "tools"); n.tools.forEach(function(x){ t.appendChild(h("span", "", x)); });
+    box.appendChild(b); box.appendChild(t); arow.appendChild(box);
+  });
+  var n = NODES[sel]; adet.textContent = "";
+  [["What it does", n.does], ["In this recording", n.rec], ["Steps in the run", null]].forEach(function(p){
+    var c = h("div", "panel"); c.appendChild(h("h4", "", p[0]));
+    if (p[1]) c.appendChild(h("p", "", p[1]));
+    else { var j = h("div", "jump"); S.forEach(function(s, i){ if (s.agent === n.agent){ var bb = h("button", "", "Step " + s.n); bb.type = "button"; bb.addEventListener("click", function(){ if (playing && !paused) setPause(true); showDetail(i); markList(i, true); $("#detail").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); }); j.appendChild(bb); } }); c.appendChild(j); }
+    adet.appendChild(c);
+  });
+}
+drawArch();
+
+/* ---------- rules tester ---------- */
+var RX = { gas: new RegExp(RULES.gas, "i"), em: new RegExp(RULES.emergency, "i"), po: new RegExp(RULES.price_out, "i"), pa: new RegExp(RULES.price_ask, "i") };
+var CH = ["I smell gas in my kitchen", "my AC died and it is 110 out, how much will it cost?", "water is flooding the garage", "a dripping kitchen tap, whenever works"];
+var tin = $("#tin"), chips = $("#tchips");
+CH.forEach(function(c){ var b = h("button", "", c); b.type = "button"; b.addEventListener("click", function(){ tin.value = c; judge(); }); chips.appendChild(b); });
+function judge(){
+  var t = tin.value, v = $("#verdict"); v.textContent = "";
+  var em = RX.em.test(t), gas = RX.gas.test(t), pa = RX.pa.test(t);
+  function cell(label, body, fire, cls){ var d = h("div", fire ? "fire " + (cls || "") : ""); d.appendChild(h("b", "", label)); d.appendChild(document.createTextNode(body)); v.appendChild(d); }
+  cell("Urgency", em ? "Forced to emergency. " + (gas ? "Reply starts: If you smell gas, leave the building now and call 911 from outside. " : "") + "Emergency line " + RULES.emergency_line + " is added. Dispatch goes to on-call technicians only." : "No keyword hit. The model sets routine or urgent.", em);
+  cell("Price", pa ? "Price question. The reply is the fixed line: " + RULES.price_line : "No price question. Any dollar figure the model writes is still replaced.", pa, "price");
+  cell("Who decides", em || pa ? "Plain code. The model's wording does not matter here." : "The model, inside the checks above.", false);
+}
+tin.addEventListener("input", judge); judge();
+
+$("#print").addEventListener("click", function(){ window.print(); });
+})();
+</script>
+</body>
+</html>

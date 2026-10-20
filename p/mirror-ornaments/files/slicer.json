@@ -1,0 +1,116 @@
+{
+ "car": {
+  "slicer": "BambuStudio 02.08.04.57 (CLI)",
+  "printer": "Bambu Lab P2S 0.4 mm nozzle",
+  "plate": "Textured PEI",
+  "filament": "Bambu PETG Basic @BBL P2S (nozzle 250 C, first layer 245 C, plate 70 C)",
+  "layer_mm": 0.2,
+  "walls": 4,
+  "infill_pct": 20,
+  "layers": 25,
+  "time_model_only": "35m 59s",
+  "time_total": "36m 19s",
+  "time_total_s": 2179,
+  "colour_changes": 2,
+  "colour_change_layers": [
+   11,
+   19
+  ],
+  "layer_colour_ranges": [
+   [
+    1,
+    10,
+    1
+   ],
+   [
+    11,
+    18,
+    2
+   ],
+   [
+    19,
+    25,
+    3
+   ]
+  ],
+  "model_g": 19.14,
+  "total_g": 21.1,
+  "waste_g": 1.95,
+  "per_spool_g": [
+   9.6,
+   7.87,
+   3.62
+  ],
+  "feature_types": [
+   "Bottom surface",
+   "Bridge",
+   "Custom",
+   "Floating vertical shell",
+   "Gap infill",
+   "Inner wall",
+   "Internal solid infill",
+   "Outer wall",
+   "Prime tower",
+   "Sparse infill",
+   "Top surface"
+  ],
+  "support_toolpaths_with_auto_support_on": 0,
+  "same_weight_with_auto_support_on": true
+ },
+ "state": {
+  "slicer": "BambuStudio 02.08.04.57 (CLI)",
+  "printer": "Bambu Lab P2S 0.4 mm nozzle",
+  "plate": "Textured PEI",
+  "filament": "Bambu PETG Basic @BBL P2S (nozzle 250 C, first layer 245 C, plate 70 C)",
+  "layer_mm": 0.2,
+  "walls": 4,
+  "infill_pct": 20,
+  "layers": 25,
+  "time_model_only": "22m 52s",
+  "time_total": "23m 12s",
+  "time_total_s": 1393,
+  "colour_changes": 1,
+  "colour_change_layers": [
+   16
+  ],
+  "layer_colour_ranges": [
+   [
+    1,
+    15,
+    1
+   ],
+   [
+    16,
+    25,
+    2
+   ]
+  ],
+  "model_g": 11.76,
+  "total_g": 12.93,
+  "waste_g": 1.17,
+  "per_spool_g": [
+   10.98,
+   1.95
+  ],
+  "feature_types": [
+   "Bottom surface",
+   "Bridge",
+   "Custom",
+   "Floating vertical shell",
+   "Gap infill",
+   "Inner wall",
+   "Internal solid infill",
+   "Outer wall",
+   "Prime tower",
+   "Sparse infill",
+   "Top surface"
+  ],
+  "support_toolpaths_with_auto_support_on": 0,
+  "same_weight_with_auto_support_on": true
+ },
+ "profile_softening_c": {
+  "pla": 45,
+  "petg": 60,
+  "source": "temperature_vitrification in the BambuStudio filament profiles Generic PLA @BBL P2S and Bambu PETG Basic @BBL P2S 0.4 nozzle"
+ }
+}

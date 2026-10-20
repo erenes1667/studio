@@ -1,0 +1,97 @@
+{
+ "car-1-charcoal": {
+  "watertight": true,
+  "winding": true,
+  "volume_ok": true,
+  "volume_mm3": 13178.8,
+  "shells": 1,
+  "tris": 2356,
+  "bbox": [
+   95.6,
+   101.6,
+   2.0
+  ],
+  "z": [
+   0.0,
+   2.0
+  ],
+  "unsupported_down_faces": 0,
+  "max_sloped_overhang_deg": 0.0
+ },
+ "car-2-red": {
+  "watertight": true,
+  "winding": true,
+  "volume_ok": true,
+  "volume_mm3": 8828.5,
+  "shells": 1,
+  "tris": 1784,
+  "bbox": [
+   92.0,
+   86.4,
+   1.6
+  ],
+  "z": [
+   2.0,
+   3.6
+  ],
+  "unsupported_down_faces": 0,
+  "max_sloped_overhang_deg": 0.0
+ },
+ "car-3-cream": {
+  "watertight": true,
+  "winding": true,
+  "volume_ok": true,
+  "volume_mm3": 2821.0,
+  "shells": 7,
+  "tris": 3096,
+  "bbox": [
+   78.4,
+   79.3,
+   1.4
+  ],
+  "z": [
+   3.6,
+   5.0
+  ],
+  "unsupported_down_faces": 0,
+  "max_sloped_overhang_deg": 0.0
+ },
+ "state-1-navy": {
+  "watertight": true,
+  "winding": true,
+  "volume_ok": true,
+  "volume_mm3": 12182.3,
+  "shells": 1,
+  "tris": 1028,
+  "bbox": [
+   92.218,
+   101.6,
+   3.0
+  ],
+  "z": [
+   0.0,
+   3.0
+  ],
+  "unsupported_down_faces": 0,
+  "max_sloped_overhang_deg": 0.0
+ },
+ "state-2-red": {
+  "watertight": true,
+  "winding": true,
+  "volume_ok": true,
+  "volume_mm3": 1329.6,
+  "shells": 3,
+  "tris": 2660,
+  "bbox": [
+   84.884,
+   94.864,
+   2.0
+  ],
+  "z": [
+   3.0,
+   5.0
+  ],
+  "unsupported_down_faces": 0,
+  "max_sloped_overhang_deg": 0.0
+ }
+}

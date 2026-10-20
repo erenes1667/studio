@@ -1,0 +1,11 @@
+{
+  "_note": "SAMPLE templates. Edit the text, keep the {placeholders}. Read by agents.py on every run.",
+  "customer_opening": "Hi, this is the after-hours assistant for Cold Creek. Sorry we missed your call.",
+  "dispatch_tail": "Reply YES to accept or NO to decline.",
+  "dispatch_style": "Plain words, one or two sentences, no emoji. Say the job, the address and the time window. Do not mention money.",
+  "customer_confirm": "Good news {customer}: {tech_first} from Cold Creek has your job. Window: {slot}.",
+  "accept_words": ["yes", "y", "accept", "ok", "okay", "yep", "yup"],
+  "decline_words": ["no", "n", "decline", "pass", "cannot", "cant"],
+  "no_price_line": "I cannot give prices by text. The tech gives you a written quote on site before any work starts.",
+  "report_title": "Morning report"
+}

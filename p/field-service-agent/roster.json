@@ -1,0 +1,18 @@
+{
+  "_note": "SAMPLE roster. Fictional technicians, fictional 555-01xx numbers. Replace with the shop's real roster.",
+  "technicians": [
+    {"id": "t-hale",  "name": "Marcus Hale",  "phone": "(602) 555-0111", "zones": ["Tempe", "Mesa", "Phoenix"],        "skills": ["water-heater", "leak", "drain"],        "off_slots": ["wed-am"],            "on_call": false},
+    {"id": "t-nair",  "name": "Priya Nair",   "phone": "(602) 555-0122", "zones": ["Tempe", "Scottsdale", "Phoenix"],  "skills": ["water-heater", "leak", "fixtures"],     "off_slots": [],                    "on_call": false},
+    {"id": "t-reyes", "name": "Tomas Reyes",  "phone": "(623) 555-0133", "zones": ["Glendale", "Phoenix"],             "skills": ["ac", "furnace"],                        "off_slots": ["tue-pm"],            "on_call": false},
+    {"id": "t-okafor","name": "Dee Okafor",   "phone": "(480) 555-0144", "zones": ["Mesa", "Tempe"],                   "skills": ["ac", "furnace", "drain"],               "off_slots": ["tue-am", "tue-mid"], "on_call": false},
+    {"id": "t-park",  "name": "Jun Park",     "phone": "(480) 555-0155", "zones": ["Scottsdale", "Glendale", "Phoenix", "Tempe", "Mesa"], "skills": ["leak", "drain", "water-heater", "fixtures"], "off_slots": [], "on_call": true}
+  ],
+  "skills": {
+    "water-heater": "Water heater repair and replacement",
+    "leak": "Leak detection and repair",
+    "drain": "Drain cleaning",
+    "ac": "AC repair and tune-ups",
+    "furnace": "Furnace and heat pump repair",
+    "fixtures": "Faucet, toilet and fixture installs"
+  }
+}

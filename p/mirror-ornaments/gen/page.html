@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Mirror Ornament Drafts | Enes Eren Studio</title>
+<meta name="description" content="Two draft rearview mirror ornaments as real 3D models: a 3 color retro car and a 2 color state with a heart. 4 inches tall, flat back, no supports. Viewer, STL and 3MF files, PETG print notes.">
+<meta name="theme-color" content="#0a0908">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0908'/%3E%3Cpath d='M14 12h34v9H24v8h20v9H24v8h26v9H14z' fill='%23ff6b2c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="ornaments.css">
+<script>document.documentElement.className+=" js"</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<!--
+WHERE THE NUMBERS ON THIS PAGE COME FROM
+  101.6 mm, 5 mm, 3 mm hole ... gen/shapes.py (design constants) and the STL bounding boxes (gen/qa_mesh.py reads them back).
+  Layers, color changes, grams, purge, time ... files/slicer.json, written by gen/bambu_slice.py from the BambuStudio CLI. Nothing typed by hand.
+  Triangles, volumes, watertight ... files/manifest.json and gen/qa_mesh.json.
+  PLA 45 C and PETG 60 C ... "temperature_vitrification" in the BambuStudio filament profiles named in the text.
+  Texas outline ... US Census boundary data via us-atlas, gen/texas-albers-px.json. Heart on Austin is a sample position.
+  No test print exists yet. No client, review or past-order claim appears anywhere.
+-->
+</head>
+<body class="proof">
+<div class="bar"></div>
+<a class="skip" href="#viewer">Skip to the 3D viewer</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="../../index.html" aria-label="Enes Eren Studio, home">Enes Eren<span>.</span></a>
+    <ul>
+      <li><a href="#viewer">Viewer</a></li>
+      <li><a href="#files">Files</a></li>
+      <li><a href="#print">Print notes</a></li>
+      <li><a href="#checks">Checks</a></li>
+      <li><a href="#price">Price</a></li>
+    </ul>
+    <a class="btn" href="#price">Price</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="top"><div class="wrap">
+  <p class="eyebrow">Draft proof for the mirror ornament brief</p>
+  <h1 class="display">Two ornaments,<span class="serif">already modeled.</span></h1>
+  <p class="lede">Real 3D models, built for your brief. A <strong>3 color retro car</strong> and a <strong>2 color state with a heart marker</strong>. Each is <strong>4 inches tall</strong>, 5 mm thick, with a flat back and no supports. Turn them, switch the colors, then download the print files.</p>
+  <ul class="facts">
+    <li class="chip">4 in (101.6 mm) tall</li>
+    <li class="chip">5 mm thick</li>
+    <li class="chip">3 mm cord hole in a reinforced loop</li>
+    <li class="chip">Flat back, no supports</li>
+    <li class="chip">PETG, AMS or manual swaps</li>
+  </ul>
+  <p class="sample-note">Sample designs. Your reference images replace them after award.</p>
+</div></section>
+
+<section class="s" id="viewer"><div class="wrap">
+  <p class="k">01 / Viewer</p>
+  <h2>Spin it. <em>Switch</em> the colors.</h2>
+  <p class="intro">The viewer loads the same STL files you can download below. Each color is its own body. Hide one to see how the layers stack. The orange ruler is a scale bar in inches.</p>
+
+  <div class="stage">
+    <div class="view" id="view">
+      <canvas id="gl" aria-label="3D model of the selected ornament. Drag to rotate, scroll to zoom."></canvas>
+      <div class="hud"><div><b id="hud-name">Loading</b><small id="dims">&nbsp;</small></div><span class="tag-sample">Sample draft</span></div>
+      <div class="hint">Drag to rotate. Scroll or pinch to zoom.</div>
+      <div id="status" role="status">Loading the STL files</div>
+      <noscript><div style="position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:#a9a094">The 3D viewer needs JavaScript. The files below still work.</div></noscript>
+    </div>
+    <div class="panel">
+      <div>
+        <h3>Ornament</h3>
+        <div class="tabs" aria-label="Choose an ornament">
+          <button type="button" data-tab="car" aria-pressed="true"><b>Retro car</b><span>3 colors</span></button>
+          <button type="button" data-tab="state" aria-pressed="false"><b>Texas</b><span>2 colors, heart</span></button>
+        </div>
+      </div>
+      <div>
+        <h3>Bodies, one per color</h3>
+        <ul id="bodies"></ul>
+      </div>
+      <div class="row">
+        <label class="sw"><input type="checkbox" id="wire"> Wireframe</label>
+      </div>
+      <div class="range">
+        <label for="explode"><span>Pull the layers apart</span></label>
+        <input type="range" id="explode" min="0" max="1" step="0.01" value="0">
+      </div>
+      <div>
+        <h3>View</h3>
+        <div class="views">
+          <button type="button" class="btn ghost" id="v-front">Front</button>
+          <button type="button" class="btn ghost" id="v-angle">3/4</button>
+          <button type="button" class="btn ghost" id="v-back">Flat back</button>
+        </div>
+      </div>
+      <p id="scale-readout">Scale bar: 0 to 4.00 in (101.6 mm).</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="s" id="files"><div class="wrap">
+  <p class="k">02 / Files</p>
+  <h2>Print files. <em>Both</em> ways.</h2>
+  <p class="intro">One <b>STL per color body</b>, and one <b>3MF per ornament</b>. Colors are separate bodies that meet on flat faces, so an AMS or a manual swap prints each one cleanly.</p>
+  <div class="dl">
+@@DOWNLOADS@@
+  </div>
+  <ol class="how">
+    <li><b>1</b><span><strong>STL route.</strong> Load all STLs of one ornament together and keep them as parts of one object. They already sit at the right heights.</span></li>
+    <li><b>2</b><span><strong>Give each part a filament.</strong> One spool per color. Print with the flat back on the plate.</span></li>
+    <li><b>3</b><span><strong>3MF route.</strong> Parts, colors, PETG settings and the sliced plate are inside. It targets a Bambu Lab P2S. On another printer, use the STL files.</span></li>
+  </ol>
+</div></section>
+
+<section class="s" id="print"><div class="wrap">
+  <p class="k">03 / Print notes</p>
+  <h2>PETG on a <em>Bambu</em> printer.</h2>
+  <p class="intro">Every figure below comes from a real BambuStudio slice of these exact files (@@SLICER_NAME@@, @@PRINTER@@). Flush volumes are the Studio defaults for the sample colors shown.</p>
+  <div class="pn">
+    <div class="card" style="padding:8px 20px 6px">
+      <dl class="spec">
+        <div><dt>Filament</dt><dd>PETG (Bambu PETG Basic profile)</dd></div>
+        <div><dt>Layer height</dt><dd>0.2 mm</dd></div>
+        <div><dt>Nozzle</dt><dd>250 C (first layer 245 C)</dd></div>
+        <div><dt>Bed</dt><dd>70 C, textured PEI plate</dd></div>
+        <div><dt>Walls</dt><dd>4</dd></div>
+        <div><dt>Infill</dt><dd>20 %</dd></div>
+        <div><dt>Supports</dt><dd>None. Flat back on the plate.</dd></div>
+        <div><dt>Colors</dt><dd>One body per color, changes on layer lines</dd></div>
+      </dl>
+    </div>
+    <div>
+@@PRINT_CARDS@@
+    </div>
+  </div>
+
+  <div class="why">
+    <div>
+      <h3>Why PETG, not PLA, on a hot dashboard</h3>
+      <ul>
+        <li><b>It keeps its shape in the heat.</b> A parked car in the sun heats the dashboard and the mirror. PLA goes soft first.</li>
+        <li><b>The slicer agrees.</b> BambuStudio's own filament profiles set the softening point at @@PLA_C@@ C for generic PLA and @@PETG_C@@ C for Bambu PETG Basic.</li>
+        <li><b>It flexes before it cracks.</b> An ornament swings and knocks the glass. PETG takes that better than brittle PLA.</li>
+        <li><b>Your brief asks for PETG.</b> The files and the print notes are set up for it.</li>
+      </ul>
+    </div>
+    <div class="vs" aria-label="Softening point in the BambuStudio profiles">
+      <div><span>Generic PLA</span><strong>@@PLA_C@@ C</strong><div class="bar2"><i style="width:@@PLA_W@@%"></i></div></div>
+      <div><span>Bambu PETG Basic</span><strong>@@PETG_C@@ C</strong><div class="bar2"><i style="width:@@PETG_W@@%"></i></div></div>
+      <small>Softening (vitrification) setting in the BambuStudio filament profiles for the P2S. It is a slicer setting, not a lab test of these prints.</small>
+    </div>
+  </div>
+</div></section>
+
+<section class="s" id="checks"><div class="wrap">
+  <p class="k">04 / Checks</p>
+  <h2>What I <em>checked</em>, file by file.</h2>
+  <p class="intro">Checked by script after the files were written, not by eye. The checker does not share code with the generator.</p>
+  <div class="tblw"><table class="tbl">
+    <thead><tr><th>File</th><th>Triangles</th><th>Volume</th><th>Closed surface</th><th>Overhang over 45 deg</th></tr></thead>
+    <tbody>
+@@CHECK_ROWS@@
+    </tbody>
+  </table></div>
+  <ul class="checks">
+    <li><b>Closed and clean.</b> Every STL is watertight with consistent winding and positive volume (trimesh). The parts inside each 3MF match the STLs.</li>
+    <li><b>No overhang.</b> Every wall is vertical. Each upper layer sits fully inside the layer below, so every face that points down is the plate or rests on another body.</li>
+    <li><b>Slicer agrees.</b> With automatic supports switched on, BambuStudio made @@SUP_CAR@@ support toolpaths for the car and @@SUP_STATE@@ for the state, and used the same filament as with supports off.</li>
+    <li><b>Same files as the viewer.</b> The 3D view above loads these STLs. It is not a render.</li>
+    <li><b>Made by code.</b> Shapes in <a href="gen/shapes.py">gen/shapes.py</a>, meshes and 3MF in <a href="gen/make.mjs">gen/make.mjs</a> (three.js 0.160), checks in <a href="gen/qa_mesh.py">gen/qa_mesh.py</a>. A change to a design is a rerun, not a redraw.</li>
+  </ul>
+
+  <div class="pend" style="margin-top:44px" id="testprint">
+    <b>Test print pending</b>
+    <p>I print on my own Bambu Lab P2S with AMS. No photo of a real print exists yet, so none is shown. Nothing above depends on one: the slicer output is real, the physical print is not done.</p>
+  </div>
+</div></section>
+
+<section class="s" id="price"><div class="wrap">
+  <p class="k">05 / Price</p>
+  <h2>Four ornaments. <em>One</em> price.</h2>
+  <div class="price">
+    <div class="big"><small>Fixed price</small>$160<span>for four, in 7 days</span></div>
+    <ul>
+      <li><b>Four designs from your reference images.</b> 3 to 5 inches tall, 2 to 4 colors, PETG ready.</li>
+      <li><b>Files for each design.</b> One STL per color body and one Bambu 3MF, like the two drafts above.</li>
+      <li><b>Your references replace the drafts.</b> The car and the state stay as samples of the method.</li>
+      <li><b>Questions go through the Freelancer thread.</b></li>
+    </ul>
+  </div>
+  <p class="endnote">The Texas outline is US Census boundary data (us-atlas), simplified for printing. The heart sits on Austin as a sample position. Colors are sample colors. No past ornament work is claimed on this page.</p>
+</div></section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>Enes Eren Studio. Istanbul, UTC+3.</span>
+    <a class="back" href="../../index.html">Back to the studio home</a>
+    <span>No tracking, no cookies.</span>
+  </div>
+</footer>
+
+<script type="application/json" id="data">@@DATA@@</script>
+<script src="../../assets/site.js"></script>
+<script type="module" src="viewer.js"></script>
+</body>
+</html>

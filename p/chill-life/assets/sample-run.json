@@ -1,0 +1,130 @@
+{
+ "model": "claude-sonnet-5-5",
+ "week_of": "2026-10-19",
+ "started_utc": "2026-10-19T23:55:05+00:00",
+ "voice_doc": "VOICE DOC (v0, written from the public post)\n\nIn her words:\n- \"a purpose-driven lifestyle brand\"\n- \"We believe happier people create healthier communities.\"\n- \"Our apparel, products, and initiatives promote positivity, mental fitness, and meaningful real-life connection.\"\n- \"Two key areas of our work are encouraging healthier youth sports culture and helping people take daily breaks from technology to be more present.\"\n- \"Preserving the authenticity of chill life’s message is essential. The system should support thoughtful storytelling, with my review and approval built into the process.\"\n\nWorking guardrails (draft, to be overwritten by Beth):\n- Write as chill life, in plain warm words. Brand name is lowercase: chill life.\n- Invite, never preach. No guilt about screens, phones, kids or parents.\n- No health, medical or research claims. No statistics, no prices, no discounts, no percentages.\n- Name no product unless it is on the product list. Use the token {{PRODUCT_LINK}} where a product link belongs.\n- Never invent a customer, quote, event, team, partner or result.\n- No em dashes. No emoji. At most four hashtags, only on social posts.\n\nPRODUCT LIST:\n(none supplied yet: the Shopify node fills this list at build time. Mention apparel only in general terms.)\n\nCONTENT PILLARS: positivity, mental fitness, healthier youth sports, tech-free breaks",
+ "topic": {
+  "system": "You are the weekly topic agent for chill life. Work only from the voice doc. Return JSON only.\n\nVOICE DOC (v0, written from the public post)\n\nIn her words:\n- \"a purpose-driven lifestyle brand\"\n- \"We believe happier people create healthier communities.\"\n- \"Our apparel, products, and initiatives promote positivity, mental fitness, and meaningful real-life connection.\"\n- \"Two key areas of our work are encouraging healthier youth sports culture and helping people take daily breaks from technology to be more present.\"\n- \"Preserving the authenticity of chill life’s message is essential. The system should support thoughtful storytelling, with my review and approval built into the process.\"\n\nWorking guardrails (draft, to be overwritten by Beth):\n- Write as chill life, in plain warm words. Brand name is lowercase: chill life.\n- Invite, never preach. No guilt about screens, phones, kids or parents.\n- No health, medical or research claims. No statistics, no prices, no discounts, no percentages.\n- Name no product unless it is on the product list. Use the token {{PRODUCT_LINK}} where a product link belongs.\n- Never invent a customer, quote, event, team, partner or result.\n- No em dashes. No emoji. At most four hashtags, only on social posts.\n\nPRODUCT LIST:\n(none supplied yet: the Shopify node fills this list at build time. Mention apparel only in general terms.)\n\nCONTENT PILLARS: positivity, mental fitness, healthier youth sports, tech-free breaks",
+  "user": "Week of 2026-10-19. Last week's topics: none (first run). Last week's performance: none (first run).\nPlan five slots, one per weekday, in this order: Monday Instagram post, Tuesday Reel script, Wednesday Instagram post, Thursday email, Friday Instagram post.\nCover all four pillars at least once. For each slot give: day, format (instagram_post | reel_script | email), pillar, angle (one plain sentence, no invented facts), needs_product_link (true or false).\nReturn {\"slots\":[...]} and nothing else.",
+  "raw": "{\"slots\":[{\"day\":\"Monday\",\"format\":\"instagram_post\",\"pillar\":\"positivity\",\"angle\":\"Start the week by inviting people to notice one small good thing and share it with someone nearby.\",\"needs_product_link\":false},{\"day\":\"Tuesday\",\"format\":\"reel_script\",\"pillar\":\"tech-free breaks\",\"angle\":\"Invite viewers to try a short phone-free pause today and notice what they see around them.\",\"needs_product_link\":false},{\"day\":\"Wednesday\",\"format\":\"instagram_post\",\"pillar\":\"healthier youth sports\",\"angle\":\"Celebrate the kind of sideline and team culture where effort, encouragement, and fun come first.\",\"needs_product_link\":false},{\"day\":\"Thursday\",\"format\":\"email\",\"pillar\":\"mental fitness\",\"angle\":\"Share a few simple, gentle habits for building mental fitness and invite readers to pick one to try this week.\",\"needs_product_link\":true},{\"day\":\"Friday\",\"format\":\"instagram_post\",\"pillar\":\"positivity\",\"angle\":\"Close the week by inviting people to plan a real-life hangout with a friend or family member this weekend.\",\"needs_product_link\":false}]}"
+ },
+ "drafts": [
+  {
+   "slot": {
+    "day": "Monday",
+    "format": "instagram_post",
+    "pillar": "positivity",
+    "angle": "Start the week by inviting people to notice one small good thing and share it with someone nearby.",
+    "needs_product_link": false
+   },
+   "user": "Slot: Monday. Format: instagram_post. Pillar: positivity. Angle: Start the week by inviting people to notice one small good thing and share it with someone nearby.. needs_product_link: false.\nWrite an Instagram caption: at most 80 words, plain and warm. Add \"visual_note\": one sentence telling Beth what photo or clip would carry it (a note, not an image). Add \"hashtags\": at most four. Return JSON: {\"caption\":...,\"visual_note\":...,\"hashtags\":[...]}",
+   "raw": "{\"caption\":\"Happy Monday from chill life. Before the week gets busy, try this: notice one small good thing today. Maybe it's the light through a window, a good cup of coffee, or a kind word from someone. Then tell a person nearby about it. Say it out loud, face to face if you can. Small moments tend to feel bigger when they're shared. What's yours? Tell us in the comments, or better yet, tell someone next to you.\",\"visual_note\":\"A simple, bright photo of two people (or one pair of hands passing a mug to another) in natural morning light, with no logos or products needed, so Beth can use a real moment from her own life or team.\",\"hashtags\":[\"#chilllife\",\"#MondayMindset\",\"#SmallGoodThings\",\"#BePresent\"]}",
+   "draft": {
+    "caption": "Happy Monday from chill life. Before the week gets busy, try this: notice one small good thing today. Maybe it's the light through a window, a good cup of coffee, or a kind word from someone. Then tell a person nearby about it. Say it out loud, face to face if you can. Small moments tend to feel bigger when they're shared. What's yours? Tell us in the comments, or better yet, tell someone next to you.",
+    "visual_note": "A simple, bright photo of two people (or one pair of hands passing a mug to another) in natural morning light, with no logos or products needed, so Beth can use a real moment from her own life or team.",
+    "hashtags": [
+     "#chilllife",
+     "#MondayMindset",
+     "#SmallGoodThings",
+     "#BePresent"
+    ]
+   }
+  },
+  {
+   "slot": {
+    "day": "Tuesday",
+    "format": "reel_script",
+    "pillar": "tech-free breaks",
+    "angle": "Invite viewers to try a short phone-free pause today and notice what they see around them.",
+    "needs_product_link": false
+   },
+   "user": "Slot: Tuesday. Format: reel_script. Pillar: tech-free breaks. Angle: Invite viewers to try a short phone-free pause today and notice what they see around them.. needs_product_link: false.\nWrite a Reel script for under 30 seconds: \"hook\" (one line, spoken), \"beats\" (exactly 4, each with \"on_screen\" and \"voiceover\"), \"closer\" (one line), \"caption\" (at most 30 words). Return JSON with those keys.",
+   "raw": "```json\n{\n  \"hook\": \"Try this for just two minutes today.\",\n  \"beats\": [\n    {\n      \"on_screen\": \"Phone down. Out of reach.\",\n      \"voiceover\": \"Set your phone down somewhere easy to leave alone.\"\n    },\n    {\n      \"on_screen\": \"Look up.\",\n      \"voiceover\": \"Now look up and take a slow look around you.\"\n    },\n    {\n      \"on_screen\": \"What do you notice?\",\n      \"voiceover\": \"A sound, a color, a face, something you might usually miss.\"\n    },\n    {\n      \"on_screen\": \"Two minutes. That's it.\",\n      \"voiceover\": \"Two minutes is plenty. Pick your phone back up whenever you like.\"\n    }\n  ],\n  \"closer\": \"A small pause, a bit more present. That's chill life.\",\n  \"caption\": \"Two minutes, phone down, eyes up. See what you notice around you today. We'd love to hear what you spot. #chilllife #presentmoment #phonefreepause\"\n}\n```",
+   "draft": {
+    "hook": "Try this for just two minutes today.",
+    "beats": [
+     {
+      "on_screen": "Phone down. Out of reach.",
+      "voiceover": "Set your phone down somewhere easy to leave alone."
+     },
+     {
+      "on_screen": "Look up.",
+      "voiceover": "Now look up and take a slow look around you."
+     },
+     {
+      "on_screen": "What do you notice?",
+      "voiceover": "A sound, a color, a face, something you might usually miss."
+     },
+     {
+      "on_screen": "Two minutes. That's it.",
+      "voiceover": "Two minutes is plenty. Pick your phone back up whenever you like."
+     }
+    ],
+    "closer": "A small pause, a bit more present. That's chill life.",
+    "caption": "Two minutes, phone down, eyes up. See what you notice around you today. We'd love to hear what you spot. #chilllife #presentmoment #phonefreepause"
+   }
+  },
+  {
+   "slot": {
+    "day": "Wednesday",
+    "format": "instagram_post",
+    "pillar": "healthier youth sports",
+    "angle": "Celebrate the kind of sideline and team culture where effort, encouragement, and fun come first.",
+    "needs_product_link": false
+   },
+   "user": "Slot: Wednesday. Format: instagram_post. Pillar: healthier youth sports. Angle: Celebrate the kind of sideline and team culture where effort, encouragement, and fun come first.. needs_product_link: false.\nWrite an Instagram caption: at most 80 words, plain and warm. Add \"visual_note\": one sentence telling Beth what photo or clip would carry it (a note, not an image). Add \"hashtags\": at most four. Return JSON: {\"caption\":...,\"visual_note\":...,\"hashtags\":[...]}",
+   "raw": "{\"caption\":\"The best sideline moments aren't about the scoreboard. They're the high fives after a missed shot, the kid cheering loudest for a teammate, the parent who just says \\\"love watching you play.\\\" We believe happier people create healthier communities, and it starts right here, where effort, encouragement, and fun come first. Who's the person who makes your sideline feel good? Tag them or tell us below.\",\"visual_note\":\"A candid photo or short clip of kids high-fiving or cheering each other on at a game or practice, ideally with real smiles and no visible scoreboard (Beth to use her own or properly released imagery).\",\"hashtags\":[\"#chilllife\",\"#youthsports\",\"#positivevibes\",\"#sportsculture\"]}",
+   "draft": {
+    "caption": "The best sideline moments aren't about the scoreboard. They're the high fives after a missed shot, the kid cheering loudest for a teammate, the parent who just says \"love watching you play.\" We believe happier people create healthier communities, and it starts right here, where effort, encouragement, and fun come first. Who's the person who makes your sideline feel good? Tag them or tell us below.",
+    "visual_note": "A candid photo or short clip of kids high-fiving or cheering each other on at a game or practice, ideally with real smiles and no visible scoreboard (Beth to use her own or properly released imagery).",
+    "hashtags": [
+     "#chilllife",
+     "#youthsports",
+     "#positivevibes",
+     "#sportsculture"
+    ]
+   }
+  },
+  {
+   "slot": {
+    "day": "Thursday",
+    "format": "email",
+    "pillar": "mental fitness",
+    "angle": "Share a few simple, gentle habits for building mental fitness and invite readers to pick one to try this week.",
+    "needs_product_link": true
+   },
+   "user": "Slot: Thursday. Format: email. Pillar: mental fitness. Angle: Share a few simple, gentle habits for building mental fitness and invite readers to pick one to try this week.. needs_product_link: true.\nWrite one email: \"subject\" (under 50 characters), \"preview_text\" (under 90 characters), \"body\" (at most 130 words, short paragraphs, plain text), \"cta_label\" (3 to 5 words, links to {{PRODUCT_LINK}} only if needs_product_link is true, otherwise write cta_label as a reply prompt). Return JSON with those keys.",
+   "raw": "```json\n{\n  \"subject\": \"One small habit to try this week\",\n  \"preview_text\": \"Gentle ways to build mental fitness, one small step at a time.\",\n  \"body\": \"Hi friends,\\n\\nThink of mental fitness as a practice, built with small, steady steps.\\n\\nHere are a few gentle ones:\\n\\n- Write down one good thing from your day.\\n- Take a short walk with no destination.\\n- Send a friend a quick hello.\\n- Pause for three slow breaths before your next task.\\n\\nPick just one to try this week. No pressure, no perfect streak.\\n\\nIf you'd like a little reminder along the way, our apparel is made to carry positivity with you: {{PRODUCT_LINK}}\\n\\nBe chill,\\nchill life\",\n  \"cta_label\": \"Find your reminder\"\n}\n```",
+   "draft": {
+    "subject": "One small habit to try this week",
+    "preview_text": "Gentle ways to build mental fitness, one small step at a time.",
+    "body": "Hi friends,\n\nThink of mental fitness as a practice, built with small, steady steps.\n\nHere are a few gentle ones:\n\n- Write down one good thing from your day.\n- Take a short walk with no destination.\n- Send a friend a quick hello.\n- Pause for three slow breaths before your next task.\n\nPick just one to try this week. No pressure, no perfect streak.\n\nIf you'd like a little reminder along the way, our apparel is made to carry positivity with you: {{PRODUCT_LINK}}\n\nBe chill,\nchill life",
+    "cta_label": "Find your reminder"
+   }
+  },
+  {
+   "slot": {
+    "day": "Friday",
+    "format": "instagram_post",
+    "pillar": "positivity",
+    "angle": "Close the week by inviting people to plan a real-life hangout with a friend or family member this weekend.",
+    "needs_product_link": false
+   },
+   "user": "Slot: Friday. Format: instagram_post. Pillar: positivity. Angle: Close the week by inviting people to plan a real-life hangout with a friend or family member this weekend.. needs_product_link: false.\nWrite an Instagram caption: at most 80 words, plain and warm. Add \"visual_note\": one sentence telling Beth what photo or clip would carry it (a note, not an image). Add \"hashtags\": at most four. Return JSON: {\"caption\":...,\"visual_note\":...,\"hashtags\":[...]}",
+   "raw": "{\"caption\":\"Friday's here. Before the weekend gets busy, here's a small invitation: pick one person and plan a real-life hangout. A walk, a card game, a slow breakfast, a backyard catch. Text them now and put it on the calendar. No big plans needed, just time together. Who's your someone this weekend? Tell us in the comments, or better yet, go tell them. Happier people create healthier communities, and it can start with one hello. chill life\",\"visual_note\":\"A warm, candid photo or short clip of two friends or family members laughing together outdoors, such as on a porch or walking, with no phones in sight and no staged branding.\",\"hashtags\":[\"#chilllife\",\"#positivity\",\"#realconnection\",\"#weekendplans\"]}",
+   "draft": {
+    "caption": "Friday's here. Before the weekend gets busy, here's a small invitation: pick one person and plan a real-life hangout. A walk, a card game, a slow breakfast, a backyard catch. Text them now and put it on the calendar. No big plans needed, just time together. Who's your someone this weekend? Tell us in the comments, or better yet, go tell them. Happier people create healthier communities, and it can start with one hello. chill life",
+    "visual_note": "A warm, candid photo or short clip of two friends or family members laughing together outdoors, such as on a porch or walking, with no phones in sight and no staged branding.",
+    "hashtags": [
+     "#chilllife",
+     "#positivity",
+     "#realconnection",
+     "#weekendplans"
+    ]
+   }
+  }
+ ],
+ "draft_system": "You are the drafting step for chill life. Work only from the voice doc. Every draft goes to Beth for approval, so write it to be edited, not published. Return JSON only.\n\nVOICE DOC (v0, written from the public post)\n\nIn her words:\n- \"a purpose-driven lifestyle brand\"\n- \"We believe happier people create healthier communities.\"\n- \"Our apparel, products, and initiatives promote positivity, mental fitness, and meaningful real-life connection.\"\n- \"Two key areas of our work are encouraging healthier youth sports culture and helping people take daily breaks from technology to be more present.\"\n- \"Preserving the authenticity of chill life’s message is essential. The system should support thoughtful storytelling, with my review and approval built into the process.\"\n\nWorking guardrails (draft, to be overwritten by Beth):\n- Write as chill life, in plain warm words. Brand name is lowercase: chill life.\n- Invite, never preach. No guilt about screens, phones, kids or parents.\n- No health, medical or research claims. No statistics, no prices, no discounts, no percentages.\n- Name no product unless it is on the product list. Use the token {{PRODUCT_LINK}} where a product link belongs.\n- Never invent a customer, quote, event, team, partner or result.\n- No em dashes. No emoji. At most four hashtags, only on social posts.\n\nPRODUCT LIST:\n(none supplied yet: the Shopify node fills this list at build time. Mention apparel only in general terms.)\n\nCONTENT PILLARS: positivity, mental fitness, healthier youth sports, tech-free breaks",
+ "finished_utc": "2026-10-19T23:55:33+00:00",
+ "finished_istanbul": "2026-10-20 02:55 (UTC+3)"
+}

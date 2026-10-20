@@ -1,0 +1,25 @@
+{
+  "_note": "SAMPLE profile. Fictional shop, fictional 555-01xx numbers. Replace with the client's real details.",
+  "shop": "Cold Creek Plumbing & Heating",
+  "service_area": "Phoenix metro: Phoenix, Tempe, Mesa, Scottsdale, Glendale",
+  "hours": "Mon to Fri 7:30 AM to 5:00 PM. Weekends closed except emergencies.",
+  "office_opens": "7:30 AM",
+  "demo_caller_number": "(602) 555-0173",
+  "services": [
+    "Water heater repair and replacement",
+    "Leak detection and repair",
+    "Drain cleaning",
+    "AC repair and tune-ups",
+    "Furnace and heat pump repair",
+    "Faucet, toilet and fixture installs"
+  ],
+  "emergency_rule": "Gas smell: leave the building and call 911 first, then our emergency line. Flooding, burst pipe or no heat: call our emergency line and an on-call tech answers.",
+  "emergency_line": "(480) 555-0199",
+  "slots": [
+    {"id": "tue-am",  "label": "Tomorrow (Tue) 8:00 to 10:00 AM",   "day": "tomorrow", "part": "morning"},
+    {"id": "tue-mid", "label": "Tomorrow (Tue) 10:30 AM to 12:30 PM", "day": "tomorrow", "part": "midday"},
+    {"id": "tue-pm",  "label": "Tomorrow (Tue) 2:00 to 4:00 PM",    "day": "tomorrow", "part": "afternoon"},
+    {"id": "wed-am",  "label": "Wed 8:00 to 10:00 AM",              "day": "wednesday", "part": "morning"},
+    {"id": "wed-pm",  "label": "Wed 1:00 to 3:00 PM",               "day": "wednesday", "part": "afternoon"}
+  ]
+}

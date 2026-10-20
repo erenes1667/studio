@@ -1,0 +1,29 @@
+[
+  {
+    "event": "init",
+    "model": "claude-sonnet-5-5",
+    "tools": [
+      "Read"
+    ]
+  },
+  {
+    "event": "tool_call",
+    "tool": "Read",
+    "input": {
+      "file_path": "<run folder>/brand-guide.md"
+    }
+  },
+  {
+    "event": "tool_result",
+    "chars": 1680
+  },
+  {
+    "event": "assistant_text",
+    "chars": 3384
+  },
+  {
+    "event": "result",
+    "duration_ms": 19851,
+    "is_error": false
+  }
+]

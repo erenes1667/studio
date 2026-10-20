@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ceibo House Flow Map | Enes Eren Studio</title>
+<meta name="description" content="Sample Klaviyo flows, campaigns, segments and a launch plan for a woven flag blanket store. Made by Enes Eren Studio.">
+<style>
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300 700;font-display:swap;src:url(fonts/fraunces-normal-300-700.woff2) format('woff2')}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:300 700;font-display:swap;src:url(fonts/fraunces-italic-300-700.woff2) format('woff2')}
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/schibsted-normal-400-700.woff2) format('woff2')}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/dmmono-normal-400.woff2) format('woff2')}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/dmmono-normal-500.woff2) format('woff2')}
+
+:root{
+  --bg:#0c0a08; --bg2:#120f0b; --panel:#1a150f; --panel2:#211a12; --line:#33291c;
+  --cream:#efe5cf; --mute:#a99c83; --dim:#7b705c;
+  --ochre:#e2a63c; --brick:#c8552d; --moss:#86a373; --teal:#4f8f8d;
+  --ink:#2a2118; --paper:#f4ecda;
+  --serif:'Fraunces',Georgia,serif; --sans:'Schibsted Grotesk',system-ui,sans-serif; --mono:'DM Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:none;text-size-adjust:none}
+body{margin:0;background:var(--bg);color:var(--cream);font:400 17px/1.6 var(--sans);overflow-x:hidden;
+  background-image:radial-gradient(1100px 600px at 80vw -120px,rgba(200,85,45,.16),transparent 70vh),radial-gradient(900px 500px at -10vw 40vh,rgba(226,166,60,.07),transparent 60vh)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.5;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(0,0,0,.12) 0 1px,transparent 1px 4px)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;font-variation-settings:'opsz' 48;margin:0;line-height:1.08;letter-spacing:-.01em}
+p{margin:0}
+.wrap{width:min(1200px,calc(100% - 32px));margin-inline:auto}
+.mono{font-family:var(--mono)}
+.kick{font:500 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+:focus-visible{outline:2px solid var(--ochre);outline-offset:3px}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:40;background:rgba(12,10,8,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:54px}
+.bar .home{font:500 13px/1 var(--mono);letter-spacing:.08em;text-decoration:none;text-transform:uppercase}
+.bar nav{display:none;gap:22px}
+.bar nav a{font:400 13px/1 var(--mono);color:var(--mute);text-decoration:none;letter-spacing:.06em}
+.bar nav a:hover{color:var(--ochre)}
+.bar .tag{font:400 11px/1 var(--mono);color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
+@media(min-width:960px){.bar nav{display:flex}.bar .tag{display:none}}
+
+/* hero */
+.hero-s{padding:56px 0 40px;position:relative}
+.hero-grid{display:grid;gap:44px;align-items:center}
+.hero-s h1{font-size:clamp(46px,11vw,112px);font-weight:450;line-height:.94;letter-spacing:-.025em;margin:18px 0 24px}
+.hero-s h1 em{font-style:italic;color:var(--ochre);font-weight:400}
+.lede{font-size:clamp(18px,2.4vw,21px);color:#d8ccb2;max-width:34em}
+.counts{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 22px}
+.counts span{font:500 12px/1 var(--mono);letter-spacing:.06em;border:1px solid var(--line);padding:9px 11px;color:var(--cream);background:rgba(26,21,15,.7)}
+.counts span b{color:var(--ochre);font-weight:500}
+.note{font:400 13px/1.55 var(--mono);color:var(--mute);border-left:2px solid var(--brick);padding:2px 0 2px 14px;max-width:46em}
+.rise{opacity:0;transform:translateY(18px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}.d4{animation-delay:.46s}
+@keyframes rise{to{opacity:1;transform:none}}
+.art{position:relative;justify-self:center;width:min(380px,66vw);margin-bottom:56px}
+.blanket{position:relative;aspect-ratio:4/5;transform:rotate(2.2deg);box-shadow:0 40px 80px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.04);
+  background:
+   repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 1px,transparent 1px 4px),
+   repeating-linear-gradient(90deg,rgba(0,0,0,.2) 0 1px,transparent 1px 5px),
+   repeating-linear-gradient(90deg,#9b3a1e 0 40px,#efe5cf 40px 48px,#e2a63c 48px 84px,#efe5cf 84px 90px,#2f4a3d 90px 142px,#efe5cf 142px 148px,#9b3a1e 148px 180px);
+  background-size:auto,auto,auto}
+.blanket::after{content:"";position:absolute;left:0;right:0;bottom:-26px;height:26px;
+  background:repeating-linear-gradient(90deg,#efe5cf 0 3px,transparent 3px 8px);
+  -webkit-mask-image:linear-gradient(#000,transparent);mask-image:linear-gradient(#000,transparent)}
+.blanket .sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 30px,rgba(255,255,255,.14) 80px,transparent 150px);background-size:600px 2000px;animation:sheen 7s linear infinite}
+@keyframes sheen{from{background-position:-300px 0}to{background-position:700px 0}}
+.art figcaption{position:absolute;left:-6px;bottom:-62px;font:400 11px/1.4 var(--mono);color:var(--dim);letter-spacing:.08em;text-transform:uppercase;max-width:260px}
+@media(min-width:960px){.hero-grid{grid-template-columns:1.25fr .75fr}.hero-s{padding:84px 0 56px}}
+
+/* sections */
+section.s{padding:76px 0 30px}
+.sh{display:grid;gap:14px;margin-bottom:38px}
+.sh .num{font:500 12px/1 var(--mono);color:var(--ochre);letter-spacing:.2em}
+.sh h2{font-size:clamp(34px,6vw,60px);font-weight:450}
+.sh h2 em{font-style:italic;color:var(--ochre)}
+.sh p{color:#cdbfa3;max-width:40em}
+@media(min-width:960px){.sh{grid-template-columns:1fr 1.1fr;align-items:end;gap:48px}}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin:-8px 0 26px;font:400 12px/1 var(--mono);color:var(--mute);letter-spacing:.06em}
+.legend i{display:inline-block;width:12px;height:12px;margin-right:8px;vertical-align:-1px;border:1.5px solid}
+.legend .lt{border-color:var(--ochre)}.legend .lw{border-color:var(--teal);border-radius:12px}.legend .lg{border-color:var(--brick);border-style:dashed}.legend .lm{background:var(--cream);border-color:var(--cream)}
+
+/* flow lanes */
+.flows{display:grid;gap:22px}
+@media(min-width:760px){.flows{grid-template-columns:1fr 1fr}}
+@media(min-width:1100px){.flows{grid-template-columns:repeat(3,1fr)}}
+.flow{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);padding:22px 18px 18px}
+.flow header{margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.flow h3{font-size:26px;font-weight:500}
+.lane{list-style:none;margin:0;padding:0 0 0 26px;position:relative}
+.lane::before{content:"";position:absolute;left:8px;top:14px;bottom:14px;width:0;border-left:2px dashed #4a3b27}
+.n{position:relative;margin:0 0 10px}
+.n::before{content:"";position:absolute;left:-23px;top:16px;width:10px;height:10px;background:var(--bg);border:2px solid var(--dim)}
+.n .box{display:block;text-decoration:none;padding:10px 12px;position:relative;color:var(--cream)}
+.n .k{display:block;font:500 10px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;margin-bottom:5px}
+.n b{font-family:var(--serif);font-weight:500;font-size:17px;line-height:1.2}
+.n small{display:block;font:400 12.5px/1.4 var(--sans);margin-top:3px}
+.trig .box{border:1.5px solid var(--ochre);background:rgba(226,166,60,.07)}
+.trig .k{color:var(--ochre)}.trig::before{border-color:var(--ochre);background:var(--ochre)}
+.trig small{color:var(--mute)}
+.wait{margin-left:6px}
+.wait .box{display:inline-flex;align-items:baseline;gap:9px;border:1.5px solid var(--teal);border-radius:20px;padding:6px 14px}
+.wait .k{color:var(--teal);margin:0}
+.wait b{font:500 14px/1 var(--mono)}
+.wait::before{border-color:var(--teal);border-radius:10px;width:8px;height:8px;left:-22px;top:15px}
+.gate .box{border:1.5px dashed var(--brick);background:rgba(200,85,45,.07);padding:9px 12px}
+.gate .k{color:var(--brick)}
+.gate b{font:400 14px/1.3 var(--sans)}
+.gate .yes{display:block;margin-top:5px;font:400 11.5px/1.3 var(--mono);color:#e6a58c}
+.gate::before{border-color:var(--brick);transform:rotate(45deg)}
+a.box:hover,a.box:focus-visible{border-color:var(--cream)}
+.cart a.box{cursor:pointer}
+.mail .box{background:var(--cream);color:var(--ink);border:1.5px solid var(--cream);transition:transform .2s,box-shadow .2s;padding:12px 14px}
+.mail .k{color:#8a4a22}
+.mail small{color:#5a4a36}
+.mail .open{position:absolute;right:12px;top:12px;font:500 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--brick)}
+.mail .box:hover,.mail .box:focus-visible{transform:translateX(4px);box-shadow:-6px 6px 0 var(--brick);border-color:var(--cream)}
+.mail::before{background:var(--cream);border-color:var(--cream)}
+.mail.on .box{box-shadow:-6px 6px 0 var(--ochre)}
+.rule{font:400 13px/1.55 var(--mono);color:var(--mute);border-top:1px solid var(--line);padding-top:14px;margin-top:8px}
+.rule b{display:block;color:var(--brick);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:10px;margin-bottom:4px}
+
+/* email gallery */
+.gal-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin:54px 0 24px;border-top:1px solid var(--line);padding-top:20px}
+.gal-h h3{font-size:30px}
+.gal-h p{font:400 13px/1.4 var(--mono);color:var(--mute)}
+.wrap.galw{width:min(1200px,calc(100% - 32px))}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,375px);justify-content:space-between;gap:56px 24px}
+@media(max-width:1000px){.gal{justify-content:center}}
+@media(max-width:420px){.wrap.galw{width:100%}.gal-h{padding-inline:16px}}
+.email{margin:0}
+.em{width:375px;background:var(--paper);color:var(--ink);border-radius:20px;overflow:hidden;
+  box-shadow:0 30px 60px -24px rgba(0,0,0,.9),0 0 0 1px #4a3b27;font-family:Georgia,'Times New Roman',serif}
+@media(max-width:374px){.em{width:auto}.gal{grid-template-columns:minmax(0,1fr)}}
+.inbox{background:#e6dbc2;border-bottom:1px solid #cdbf9e;padding:12px 16px 12px;font:400 13px/1.35 Helvetica,Arial,sans-serif;color:#3b3022}
+.inrow{display:flex;gap:10px;align-items:baseline;margin-bottom:5px}
+.inrow:last-child{margin:0}
+.inrow:first-child{justify-content:space-between;font-weight:700;color:#1f1810}
+.time{font-weight:400;color:#7b6a50;font-size:12px}
+.lab{flex:none;width:52px;font:500 9.5px/1.6 'DM Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:#8a4a22}
+.subj{font-weight:700;font-size:14px;color:#1f1810}
+.prev{color:#6b5b42;font-size:13px}
+.paper{padding:0 0 22px}
+.logoslot{margin:16px auto 14px;width:132px;height:30px;border:1px dashed #a89870;display:flex;align-items:center;justify-content:center;font:500 9.5px/1 'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#8a7a58}
+.hero{position:relative;height:190px;display:flex;flex-direction:column;justify-content:flex-end;padding:12px 14px;color:#fff}
+.hero.small{height:112px;padding:8px 9px}
+.slotlabel,.slotname{position:relative;z-index:1;align-self:flex-start;background:rgba(20,14,8,.78);font:500 9px/1 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;padding:5px 7px;color:#f4ecda}
+.slotname{margin-top:3px;text-transform:none;letter-spacing:.03em;font-weight:400;font-size:10px;line-height:1.3;max-width:290px;background:rgba(20,14,8,.65)}
+.p-a{background:
+  repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,rgba(0,0,0,.16) 0 1px,transparent 1px 5px),
+  repeating-linear-gradient(90deg,#9b3a1e 0 34px,#efe5cf 34px 40px,#e2a63c 40px 70px,#efe5cf 70px 75px,#2f4a3d 75px 118px,#efe5cf 118px 123px,#9b3a1e 123px 150px)}
+.p-b{background:
+  repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,rgba(0,0,0,.18) 0 1px,transparent 1px 5px),
+  repeating-linear-gradient(90deg,#2b2218 0 46px,#e2a63c 46px 52px,#c8552d 52px 98px,#efe5cf 98px 104px,#4f8f8d 104px 140px,#2b2218 140px 160px)}
+.p-c{background:
+  repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,rgba(0,0,0,.18) 0 1px,transparent 1px 5px),
+  repeating-linear-gradient(90deg,#2f4a3d 0 30px,#86a373 30px 36px,#efe5cf 36px 80px,#c8552d 80px 86px,#2f4a3d 86px 140px)}
+.p-cap{background:radial-gradient(circle at 50px 60px,transparent 0 48px,#2b2218 49px),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 6px),#1f1810;
+  background:radial-gradient(ellipse 120px 70px at 187px 92px,#3a2c1c 0 68px,transparent 69px),repeating-linear-gradient(135deg,rgba(226,166,60,.16) 0 2px,transparent 2px 9px),#1f1810}
+.p-cart{height:140px;background:linear-gradient(#cdbf9e,#cdbf9e) 22px 16px/72px 72px no-repeat,linear-gradient(#cdbf9e,#cdbf9e) 112px 22px/150px 10px no-repeat,linear-gradient(#d7c9a8,#d7c9a8) 112px 44px/110px 8px no-repeat,linear-gradient(#d7c9a8,#d7c9a8) 112px 62px/70px 8px no-repeat,#e6dbc2;color:#2a2118}
+.p-stars{background:radial-gradient(circle 14px at 94px 70px,#e2a63c 0 13px,transparent 14px),radial-gradient(circle 14px at 140px 70px,#e2a63c 0 13px,transparent 14px),radial-gradient(circle 14px at 187px 70px,#e2a63c 0 13px,transparent 14px),radial-gradient(circle 14px at 234px 70px,#e2a63c 0 13px,transparent 14px),radial-gradient(circle 14px at 280px 70px,#a89870 0 13px,transparent 14px),#e6dbc2}
+.hero.small.p-a,.hero.small.p-b{background-size:auto,auto,auto}
+.paper h3{font-size:25px;line-height:1.15;font-weight:700;color:#1f1810;margin:20px 22px 10px;letter-spacing:-.005em;font-family:Georgia,serif}
+.paper p{font:400 15.5px/1.55 Georgia,serif;color:#3b3022;margin:0 22px 11px}
+.paper p:empty{display:none}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 22px 14px}
+.pgrid .hero{height:112px}
+.care{margin:4px 22px 14px;padding:0 0 0 20px;font:400 14.5px/1.5 Georgia,serif;color:#3b3022}
+.care li{margin-bottom:5px}
+.banner{margin:4px 22px 14px;padding:10px 12px;border:1.5px solid #8a4a22;font:500 11px/1.4 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8a4a22;text-align:center}
+.cta{display:block;margin:12px 22px 6px;background:#b4491f;color:#fff7e6;text-align:center;font:700 14px/1 Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:16px 10px}
+.efoot{margin:20px 22px 0;padding-top:14px;border-top:1px solid #cdbf9e;font:400 11px/1.5 Helvetica,Arial,sans-serif;color:#7b6a50;text-align:center}
+.efoot p{font:inherit;color:inherit;margin:0 0 3px}
+.ul{text-decoration:underline}
+.vf{display:none}
+.email[data-variant="free"] .vs{display:none}
+.email[data-variant="free"] .vf{display:block}
+.email[data-variant="free"] span.vf{display:inline}
+.email figcaption{width:375px;padding:14px 4px 0}
+@media(max-width:420px){.email figcaption{padding-inline:16px}}
+@media(max-width:374px){.email figcaption{width:auto}}
+.goal{font:400 14px/1.5 var(--sans);color:#d8ccb2}
+.goal b{display:block;font:500 10px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);margin-bottom:5px}
+.vtoggle{display:flex;gap:0;margin-bottom:12px}
+.vtoggle button{flex:1;font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:10px 8px;background:transparent;color:var(--mute);border:1px solid var(--line);cursor:pointer}
+.vtoggle button[aria-pressed="true"]{background:var(--ochre);color:#1a1208;border-color:var(--ochre)}
+
+/* viewer dialog */
+dialog{border:1px solid #4a3b27;background:var(--bg2);color:var(--cream);padding:0;width:min(940px,100%);max-width:100%;max-height:100vh;max-height:100dvh;margin:auto}
+dialog::backdrop{background:rgba(6,4,2,.82);backdrop-filter:blur(4px)}
+.vwrap{display:grid;gap:22px;padding:18px 0 22px;max-height:100dvh;overflow:auto}
+.vmeta{padding:0 16px}
+.vmeta .kick{display:block;margin-bottom:8px}
+.vmeta h3{font-size:30px;margin-bottom:12px}
+.vmeta dl{margin:0;display:grid;gap:10px;font:400 13px/1.5 var(--mono);color:var(--mute)}
+.vmeta dt{color:var(--ochre);font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:2px}
+.vmeta dd{margin:0;color:#d8ccb2}
+.vbody{display:flex;justify-content:center}
+.vbody .email{margin:0}
+.vnav{display:flex;gap:8px;padding:0 16px;margin-top:18px}
+.vnav button,.vclose{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--cream);border:1px solid var(--line);padding:12px 14px;cursor:pointer}
+.vnav button:hover,.vclose:hover{border-color:var(--ochre);color:var(--ochre)}
+.vnav button:disabled{opacity:.35;cursor:default}
+.vclose{justify-self:end;margin-right:16px;grid-row:1}
+@media(min-width:900px){
+  .vwrap{grid-template-columns:375px 1fr;gap:32px;padding:26px 28px;align-items:start}
+  .vmeta{padding:0;grid-column:2;grid-row:1 / span 2;padding-top:44px}
+  .vbody{grid-column:1;grid-row:1 / span 2;justify-content:flex-start}
+  .vclose{position:absolute;right:20px;top:18px;margin:0}
+  .vnav{padding:0}
+}
+
+/* segments */
+.segs{display:grid;gap:18px}
+@media(min-width:760px){.segs{grid-template-columns:1fr 1fr}}
+@media(min-width:1100px){.segs{grid-template-columns:repeat(3,1fr)}}
+.seg{background:var(--panel);border:1px solid var(--line);padding:22px 18px}
+.seg h3{font-size:24px;margin-bottom:8px}
+.seg>p{font-size:14.5px;color:var(--mute);margin-bottom:16px}
+.code{font:400 12.5px/1.5 var(--mono);background:#0a0806;border:1px solid #2a2016;padding:12px 14px;margin-top:8px;color:#d8ccb2}
+.code .cond,.code .op,.code .clab{display:block}
+.code .op{color:var(--brick);font-weight:500;letter-spacing:.1em;margin:3px 0}
+.code .clab{color:var(--teal);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.code .cond{padding-left:12px;text-indent:-12px}
+.code .cond::before{content:"> ";color:var(--ochre)}
+
+/* audit */
+.audit{display:grid;gap:10px;list-style:none;margin:0;padding:0}
+@media(min-width:800px){.audit{grid-template-columns:1fr 1fr;gap:10px 18px}}
+.audit label{display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--panel);border:1px solid var(--line);cursor:pointer;transition:border-color .2s,background .2s}
+.audit label:hover{border-color:var(--ochre)}
+.audit input{position:absolute;opacity:0;pointer-events:none}
+.audit .box{flex:none;width:22px;height:22px;border:1.5px solid var(--dim);margin-top:2px;position:relative}
+.audit input:checked+.box{background:var(--ochre);border-color:var(--ochre)}
+.audit input:checked+.box::after{content:"";position:absolute;left:6px;top:1px;width:6px;height:12px;border:solid #1a1208;border-width:0 2.5px 2.5px 0;transform:rotate(40deg)}
+.audit input:focus-visible+.box{outline:2px solid var(--ochre);outline-offset:3px}
+.audit .t b{display:block;font:500 17px/1.25 var(--serif)}
+.audit .t small{display:block;margin-top:4px;color:var(--mute);font-size:14.5px;line-height:1.45}
+.audit li{counter-increment:a}
+.auditcount{font:500 12px/1 var(--mono);letter-spacing:.12em;color:var(--mute);margin:0 0 16px;text-transform:uppercase}
+.auditcount b{color:var(--ochre);font-weight:500}
+
+/* plan */
+.plan{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+@media(min-width:900px){.plan{grid-template-columns:1fr 1fr;column-gap:56px;grid-auto-flow:column;grid-template-rows:repeat(7,auto)}}
+.plan li{display:grid;grid-template-columns:78px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+.plan .d{font:500 12px/1.9 var(--mono);color:var(--ochre);letter-spacing:.14em;text-transform:uppercase}
+.plan b{font:500 20px/1.2 var(--serif);display:block;margin-bottom:5px}
+.plan p{font-size:15px;color:var(--mute);line-height:1.5}
+.weeklab{font:500 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:0 0 12px}
+.weeks{display:none}
+@media(min-width:900px){.weeks{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;margin-bottom:12px}}
+
+/* pricing */
+.price{display:grid;gap:18px}
+@media(min-width:800px){.price{grid-template-columns:1fr 1fr}}
+.pc{border:1px solid var(--line);background:linear-gradient(160deg,var(--panel2),var(--bg2));padding:30px 24px 26px;position:relative;overflow:hidden}
+.pc::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:repeating-linear-gradient(90deg,var(--brick) 0 28px,var(--cream) 28px 33px,var(--ochre) 33px 61px,var(--cream) 61px 66px,var(--moss) 66px 100px)}
+.pc h3{font-size:22px;color:var(--mute);font-weight:400;font-style:italic;margin-bottom:4px}
+.amt{font:450 clamp(54px,9vw,84px)/1 var(--serif);font-variation-settings:'opsz' 48;letter-spacing:-.03em;margin:4px 0 4px}
+.amt small{font:400 15px/1 var(--mono);letter-spacing:.06em;color:var(--mute);margin-left:8px}
+.pc ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}
+.pc li{padding-left:20px;position:relative;color:#d8ccb2;font-size:15.5px;line-height:1.45}
+.pc li::before{content:"";position:absolute;left:0;top:9px;width:9px;height:2px;background:var(--ochre)}
+.fine{margin-top:20px;font:400 13px/1.6 var(--mono);color:var(--mute);max-width:56em}
+
+/* footer */
+footer{margin-top:90px;border-top:1px solid var(--line);padding:34px 0 60px;background:var(--bg2)}
+footer .wrap{display:grid;gap:18px;font:400 13px/1.6 var(--mono);color:var(--mute)}
+footer a{color:var(--cream);text-decoration-color:var(--ochre);text-underline-offset:4px}
+footer .studio{font:500 24px/1 var(--serif);color:var(--cream)}
+@media(min-width:800px){footer .wrap{grid-template-columns:1fr 1fr;align-items:end}footer .r{text-align:right}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rise{opacity:1;transform:none;animation:none}
+  .blanket .sheen{animation:none}
+  .mail .box{transition:none}
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="home" href="../../index.html">Enes Eren Studio</a>
+    <span class="tag">Sample work</span>
+    <nav aria-label="Sections"><a href="#flows">Flows</a><a href="#emails">Emails</a><a href="#segments">Segments</a><a href="#audit">Audit</a><a href="#plan">Launch plan</a><a href="#pricing">Pricing</a></nav>
+  </div>
+</header>
+
+<main>
+<section class="hero-s">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kick rise d1">Sample work for Ceibo House</span>
+      <h1 class="rise d2">Email that feels like <em>home</em>.</h1>
+      <p class="lede rise d3">Three Klaviyo flows, three campaigns, six segments and a two-week launch plan for a store that sells woven flag blankets and embroidered caps. Built before the bid, so you can click through it.</p>
+      <div class="counts rise d3"><span><b>3</b> flows</span><span><b>12</b> emails</span><span><b>6</b> segments</span><span><b>12</b> audit checks</span><span><b>14</b> day plan</span></div>
+      <p class="note rise d4">Everything here is sample. Copy in [brackets] needs real facts from the store. No Ceibo logo, product photos or store data are used. Product images are labelled slots.</p>
+    </div>
+    <figure class="art rise d4" aria-hidden="true" style="margin:0">
+      <div class="blanket"><div class="sheen"></div></div>
+      <figcaption>Sample weave, drawn in CSS. Not a Ceibo product.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="s" id="flows">
+  <div class="wrap">
+    <div class="sh"><div><span class="num">01</span><h2>The flow map. <em>Click an email.</em></h2></div>
+    <p>Each lane starts with its trigger. Teal chips are waits, dashed red boxes are branches, cream cards are emails. Open any card to read the email at phone width.</p></div>
+    <div class="legend"><span><i class="lt"></i>Trigger</span><span><i class="lw"></i>Wait</span><span><i class="lg"></i>Branch</span><span><i class="lm"></i>Email, click to open</span></div>
+    <div class="flows"><article class="flow" id="flow-welcome"><header><h3>Welcome</h3></header><ol class="lane"><li class="n trig"><div class="box"><span class="k">Trigger</span><b>Pop-up signup</b><small>Profile joins the list from the site pop-up</small></div></li><li class="n mail"><a class="box" href="#em-w1" data-open="w1"><span class="k">Email 1 · 0h</span><b>Welcome in</b><small>Welcome in. Pull up a chair.</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>2d</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Placed order since signup?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-w2" data-open="w2"><span class="k">Email 2 · Day 2</span><b>The flags</b><small>Start with the flag you grew up under</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>3d</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Placed order since signup?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-w3" data-open="w3"><span class="k">Email 3 · Day 5</span><b>The easy first step</b><small>Not ready for a blanket? Start with a cap.</small><span class="open">Open email</span></a></li></ol><p class="rule"><b>Exit rule</b> Any placed order exits the flow, so buyers never get a &quot;come and buy&quot; email.</p></article><article class="flow" id="flow-abandoned"><header><h3>Abandoned checkout</h3></header><ol class="lane"><li class="n trig"><div class="box"><span class="k">Trigger</span><b>Started Checkout</b><small>Shopify checkout event reaches Klaviyo</small></div></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>1h</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Placed order since checkout?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-a1" data-open="a1"><span class="k">Email 1 · 1h</span><b>Cart reminder</b><small>You left something at the door</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>23h</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Placed order since checkout?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-a2" data-open="a2"><span class="k">Email 2 · 24h</span><b>Need a hand?</b><small>Any questions before you finish?</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>48h</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Placed order since checkout?</b><span class="yes">Yes: exit flow</span></div></li><li class="n gate cart"><a class="box" href="#em-a3" data-open="a3" data-variant="free"><span class="k">Branch</span><b>Cart over $100?</b><span class="yes">Yes: free-shipping version</span></a></li><li class="n mail"><a class="box" href="#em-a3" data-open="a3"><span class="k">Email 3 · 72h</span><b>Last reminder</b><small>Last note about your cart</small><span class="open">Open email</span></a></li></ol><p class="rule"><b>Exit rule</b> Order placed exits the flow. A cart over $100 gets the free-shipping version of email 3.</p></article><article class="flow" id="flow-post"><header><h3>Post-purchase</h3></header><ol class="lane"><li class="n trig"><div class="box"><span class="k">Trigger</span><b>Placed Order</b><small>Every paid Shopify order</small></div></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>1d</b></div></li><li class="n mail"><a class="box" href="#em-p1" data-open="p1"><span class="k">Email 1 · Day 1</span><b>Thank you and care guide</b><small>Thank you, and how to care for your blanket</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>9d</b></div></li><li class="n mail"><a class="box" href="#em-p2" data-open="p2"><span class="k">Email 2 · Day 10</span><b>Review ask</b><small>How does it feel at home?</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>20d</b></div></li><li class="n mail"><a class="box" href="#em-p3" data-open="p3"><span class="k">Email 3 · Day 30</span><b>Cap cross-sell</b><small>Something to wear with it</small><span class="open">Open email</span></a></li></ol><p class="rule"><b>Exit rule</b> No exit branch. Every buyer gets all three, spaced across the first month.</p></article></div>
+  </div>
+</section>
+
+<section class="s" id="emails">
+  <div class="wrap">
+    <div class="sh"><div><span class="num">02</span><h2>Every email, <em>as it lands.</em></h2></div>
+    <p>Twelve emails at 375 pixels, the width of a phone. Each shows its subject line, preview text, one button and a footer with unsubscribe, with the goal written under it. Dashed boxes are slots for the store's own logo and photos.</p></div>
+  </div>
+  <div class="wrap galw">
+    <div class="gal-h"><h3>Welcome flow</h3><p>3 emails · pop-up signup trigger</p></div>
+    <div class="gal"><figure class="email" id="em-w1" data-id="w1" data-flow="welcome" data-tag="Welcome" data-timing="0h after signup" data-name="Welcome in">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj">Welcome in. Pull up a chair.</b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev">A few words on what we make, and who for.</span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="hero p-a"><span class="slotlabel">Product slot</span><span class="slotname">flag blanket, folded over a sofa arm</span></div>
+      <h3>Glad you are here.</h3>
+      <p>We make woven flag blankets and embroidered caps for people who carry a place with them.</p><p>[Two lines of the founder story go here, from the client.]</p>
+      <span class="cta">Meet the blankets</span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><p class="goal"><b>Goal</b> Introduce the brand in one scroll and send the first click to the shop.</p></figcaption>
+</figure><figure class="email" id="em-w2" data-id="w2" data-flow="welcome" data-tag="Welcome" data-timing="Day 2" data-name="The flags">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj">Start with the flag you grew up under</b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev">Every blanket begins with a place.</span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="hero p-b"><span class="slotlabel">Product slot</span><span class="slotname">flag blanket, close crop of the weave</span></div>
+      <h3>Every blanket starts with a place.</h3>
+      <p>Pick the flag that means home to you, or the one you want to give. Two pieces below come straight from the catalog feed.</p><div class="pgrid"><div class="hero p-a small"><span class="slotlabel">Product slot</span><span class="slotname">best seller, from catalog feed</span></div><div class="hero p-b small"><span class="slotlabel">Product slot</span><span class="slotname">newest flag, from catalog feed</span></div></div>
+      <span class="cta">Browse the flags</span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><p class="goal"><b>Goal</b> Turn the story into product views with a catalog-fed block.</p></figcaption>
+</figure><figure class="email" id="em-w3" data-id="w3" data-flow="welcome" data-tag="Welcome" data-timing="Day 5" data-name="The easy first step">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj">Not ready for a blanket? Start with a cap.</b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev">A smaller piece of home.</span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="hero p-cap"><span class="slotlabel">Product slot</span><span class="slotname">embroidered cap, three-quarter view</span></div>
+      <h3>A smaller piece of home.</h3>
+      <p>If a blanket feels like a big first step, a cap is an easy one. Our embroidered caps carry the same sense of place, and they go where you go.</p>
+      <span class="cta">See the caps</span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><p class="goal"><b>Goal</b> Give hesitant subscribers a lower-commitment way in before the flow ends.</p></figcaption>
+</figure></div>
+    <div class="gal-h"><h3>Abandoned checkout flow</h3><p>3 emails · Started Checkout trigger · email 3 has a free-shipping version</p></div>
+    <div class="gal"><figure class="email" id="em-a1" data-id="a1" data-flow="abandoned" data-tag="Abandoned checkout" data-timing="1h after checkout starts" data-name="Cart reminder">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj">You left something at the door</b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev">Your cart is saved and waiting.</span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="hero p-cart"><span class="slotlabel">Product slot</span><span class="slotname">dynamic cart block: item image, name, size</span></div>
+      <h3>Your cart is still here.</h3>
+      <p>You were close. The pieces you picked are saved just as you left them.</p>
+      <span class="cta">Return to checkout</span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><p class="goal"><b>Goal</b> Bring the shopper back while the cart is still fresh in mind.</p></figcaption>
+</figure><figure class="email" id="em-a2" data-id="a2" data-flow="abandoned" data-tag="Abandoned checkout" data-timing="24h after checkout starts" data-name="Need a hand?">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj">Any questions before you finish?</b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev">Reply to this email and we will help.</span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="hero p-cart"><span class="slotlabel">Product slot</span><span class="slotname">dynamic cart block: item image, name, size</span></div>
+      <h3>Anything holding you back?</h3>
+      <p>Size, flag, shipping, how to care for it. If something stopped you, ask. Reply to this email and we will help.</p>
+      <span class="cta">Finish my order</span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><p class="goal"><b>Goal</b> Find and answer the doubt that stopped the order.</p></figcaption>
+</figure><figure class="email" id="em-a3" data-id="a3" data-flow="abandoned" data-tag="Abandoned checkout" data-timing="72h after checkout starts" data-name="Last reminder" data-variant="std">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj"><span class="vs">Last note about your cart</span><span class="vf">Your cart ships free</span></b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev"><span class="vs">After this, we will leave you to it.</span><span class="vf">Free shipping applies to this order.</span></span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="banner vf">Free shipping applies. [Threshold set by the client]</div><div class="hero p-cart"><span class="slotlabel">Product slot</span><span class="slotname">dynamic cart block: item image, name, size</span></div>
+      <h3><span class="vs">A last note about your cart.</span><span class="vf">Free shipping on this cart.</span></h3>
+      <p class="vs">We will not keep emailing. If now is not the time, no problem. If it is, your cart is one click away.</p><p class="vf">Your order is over the free-shipping line, so delivery costs nothing. Your cart is one click away.</p>
+      <span class="cta"><span class="vs">Back to my cart</span><span class="vf">Back to my cart</span></span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><div class="vtoggle" role="group" aria-label="Version"><button type="button" data-v="std" aria-pressed="true">Standard</button><button type="button" data-v="free" aria-pressed="false">Cart over $100</button></div><p class="goal"><b>Goal</b> <span class="vs">Make one final, low-pressure ask, then stop.</span><span class="vf">Use free shipping as the reason to finish on larger carts.</span></p></figcaption>
+</figure></div>
+    <div class="gal-h"><h3>Post-purchase flow</h3><p>3 emails · Placed Order trigger</p></div>
+    <div class="gal"><figure class="email" id="em-p1" data-id="p1" data-flow="post" data-tag="Post-purchase" data-timing="Day 1 after order" data-name="Thank you and care guide">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj">Thank you, and how to care for your blanket</b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev">Three small steps to keep it looking its best.</span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="hero p-cart"><span class="slotlabel">Product slot</span><span class="slotname">order summary block, dynamic</span></div>
+      <h3>Thank you.</h3>
+      <p>Your order is on its way to feeling like home. Here is a short guide so your piece stays that way.</p><ol class="care"><li>[Washing step, from the maker]</li><li>[Drying step, from the maker]</li><li>[Storing step, from the maker]</li></ol>
+      <span class="cta">Read the care guide</span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><p class="goal"><b>Goal</b> Thank the buyer, cut avoidable care questions and start the relationship.</p></figcaption>
+</figure><figure class="email" id="em-p2" data-id="p2" data-flow="post" data-tag="Post-purchase" data-timing="Day 10 after order" data-name="Review ask">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj">How does it feel at home?</b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev">One honest review helps the next person choose.</span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="hero p-stars"><span class="slotlabel">Product slot</span><span class="slotname">star rating block, from the review app</span></div>
+      <h3>Has it found its spot?</h3>
+      <p>By now your piece has settled in. Tell us how it looks and feels. It takes two minutes, and photos are welcome.</p>
+      <span class="cta">Write a review</span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><p class="goal"><b>Goal</b> Ask for a review once the buyer has had time to live with the product.</p></figcaption>
+</figure><figure class="email" id="em-p3" data-id="p3" data-flow="post" data-tag="Post-purchase" data-timing="Day 30 after order" data-name="Cap cross-sell">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj">Something to wear with it</b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev">A cap to go with your blanket.</span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="hero p-cap"><span class="slotlabel">Product slot</span><span class="slotname">embroidered cap, flat lay</span></div>
+      <h3>Take a little home with you.</h3>
+      <p>The blanket stays on the couch. A cap carries the feeling out the door.</p>
+      <span class="cta">Shop caps</span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><p class="goal"><b>Goal</b> Cross-sell a cap to blanket buyers, 30 days after the order.</p></figcaption>
+</figure></div>
+    <div class="gal-h"><h3>Three campaign examples</h3><p>Sent to segments, not triggered</p></div>
+    <div class="gal"><figure class="email" id="em-c1" data-id="c1" data-flow="campaign" data-tag="Campaign" data-timing="Launch day" data-name="Flags of home">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj">New: Flags of home</b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev">The new flag blankets have landed.</span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="hero p-a"><span class="slotlabel">Product slot</span><span class="slotname">new collection, hero flat lay</span></div>
+      <h3>Flags of home.</h3>
+      <p>A new run of woven flag blankets, each one a place you can wrap around your shoulders.</p><p>[Name each new flag and one detail per flag, from the client.]</p><div class="pgrid"><div class="hero p-a small"><span class="slotlabel">Product slot</span><span class="slotname">new flag one</span></div><div class="hero p-b small"><span class="slotlabel">Product slot</span><span class="slotname">new flag two</span></div></div>
+      <span class="cta">See the new flags</span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><p class="goal"><b>Goal</b> Launch day: send engaged readers to the new collection. Segment: Engaged 90.</p></figcaption>
+</figure><figure class="email" id="em-c2" data-id="c2" data-flow="campaign" data-tag="Campaign" data-timing="Late November" data-name="Gift a piece of home">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj">Give someone a piece of home</b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev">Gifts for people far from where they started.</span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="hero p-b"><span class="slotlabel">Product slot</span><span class="slotname">gift set, blanket and cap together</span></div>
+      <h3>Gift a piece of home.</h3>
+      <p>Some people carry a place with them. A woven flag blanket or an embroidered cap tells them you know it.</p><p>[Last order date for holiday delivery, from the client.]</p>
+      <span class="cta">Shop gifts</span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><p class="goal"><b>Goal</b> Reach gift buyers in late November, ahead of the delivery cut-off. Segments: Engaged 90 and past buyers.</p></figcaption>
+</figure><figure class="email" id="em-c3" data-id="c3" data-flow="campaign" data-tag="Campaign" data-timing="Launch eve" data-name="VIP early access">
+  <div class="em">
+    <div class="inbox">
+      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="lab">Subject</span><b class="subj">You get the first look</b></div>
+      <div class="inrow"><span class="lab">Preview</span><span class="prev">Early access, before everyone else.</span></div>
+    </div>
+    <div class="paper">
+      <div class="logoslot">Logo slot</div>
+      <div class="hero p-c"><span class="slotlabel">Product slot</span><span class="slotname">unreleased piece, teaser crop</span></div>
+      <h3>First look, for you.</h3>
+      <p>You have ordered from us more than once, so you see new pieces before anyone else. Early access opens now.</p><p>[Early-access window dates, from the client.]</p>
+      <span class="cta">Shop early access</span>
+      <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
+    </div>
+  </div>
+  <figcaption><p class="goal"><b>Goal</b> Reward repeat buyers and give a launch its first wave of orders. Segment: VIP.</p></figcaption>
+</figure></div>
+  </div>
+</section>
+
+<section class="s" id="segments">
+  <div class="wrap">
+    <div class="sh"><div><span class="num">03</span><h2>Six segments, <em>written out.</em></h2></div>
+    <p>Each one is a real Klaviyo condition, so it can be rebuilt in a minute. Engaged has three windows and buyers split into blankets and caps, so the cards below show eight conditions in six segments. Collection names such as "Blankets" are samples and get matched to the store's own.</p></div>
+    <div class="segs"><article class="seg"><h3>Engaged 30 / 90 / 180</h3><p>Campaign audiences. The window widens as the list gets older.</p><div class="code"><span class="clab">30 days</span><span class="cond">Opened Email at least once in the last 30 days</span><span class="op">OR</span><span class="cond">Clicked Email at least once in the last 30 days</span></div><div class="code"><span class="clab">90 days</span><span class="cond">Opened Email at least once in the last 90 days</span><span class="op">OR</span><span class="cond">Clicked Email at least once in the last 90 days</span></div><div class="code"><span class="clab">180 days</span><span class="cond">Opened Email at least once in the last 180 days</span><span class="op">OR</span><span class="cond">Clicked Email at least once in the last 180 days</span></div></article><article class="seg"><h3>Blanket buyers</h3><p>Cap cross-sell, care content, new-flag launches.</p><div class="code"><span class="cond">Placed Order at least once over all time</span><span class="op">AND</span><span class="cond">where Collections contains &quot;Blankets&quot;</span></div></article><article class="seg"><h3>Cap buyers</h3><p>Blanket cross-sell, new-cap launches.</p><div class="code"><span class="cond">Placed Order at least once over all time</span><span class="op">AND</span><span class="cond">where Collections contains &quot;Caps&quot;</span></div></article><article class="seg"><h3>VIP</h3><p>Early access campaign. Two or more orders.</p><div class="code"><span class="cond">Placed Order at least 2 times over all time</span></div></article><article class="seg"><h3>Sunset</h3><p>Last-chance email, then stop mailing. Protects sender reputation.</p><div class="code"><span class="cond">Opened Email zero times in the last 180 days</span><span class="op">AND</span><span class="cond">Clicked Email zero times in the last 180 days</span><span class="op">AND</span><span class="cond">Placed Order zero times in the last 365 days</span><span class="op">AND</span><span class="cond">Profile created more than 180 days ago</span></div></article><article class="seg"><h3>Checkout started without order</h3><p>Campaign and reporting view. The flow covers the first 72 hours.</p><div class="code"><span class="cond">Started Checkout at least once in the last 30 days</span><span class="op">AND</span><span class="cond">Placed Order zero times in the last 30 days</span></div></article></div>
+  </div>
+</section>
+
+<section class="s" id="audit">
+  <div class="wrap">
+    <div class="sh"><div><span class="num">04</span><h2>A 12-point audit <em>before anything sends.</em></h2></div>
+    <p>The first thing I do in a Klaviyo account on Shopify. Tick them off as you read.</p></div>
+    <p class="auditcount"><b id="ac">0</b> of 12 checked</p>
+    <ul class="audit"><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>List health</b><small>One master list, no duplicate profiles, consent source recorded on every profile.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Sunset policy</b><small>The Sunset segment exists and has a rule: last-chance email, then stop.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>DKIM and DMARC</b><small>DKIM signs mail from the sending domain. A DMARC record exists and is read.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Branded sending and tracking domain</b><small>Mail sends from the store domain, links track on a branded subdomain.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Form sync</b><small>The pop-up writes to the right list, with consent, and the welcome flow fires.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Catalog feed</b><small>Products sync from Shopify, images load, out-of-stock items stay out of blocks.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>UTM tagging</b><small>Every campaign and flow link carries consistent UTMs so orders trace back.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Flow filters</b><small>Each flow has its exit rule and no flow double-sends to the same person.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Smart Sending</b><small>Smart Sending is on for campaigns and set on purpose for each flow.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Review sync</b><small>The review app feeds Klaviyo, so the review ask and star blocks use real data.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Trigger metrics firing</b><small>Started Checkout and Placed Order show recent events, not stale ones.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Suppressions and consent</b><small>Unsubscribes, bounces and Shopify marketing consent all agree in Klaviyo.</small></span></label></li></ul>
+  </div>
+</section>
+
+<section class="s" id="plan">
+  <div class="wrap">
+    <div class="sh"><div><span class="num">05</span><h2>Two weeks, <em>day by day.</em></h2></div>
+    <p>Foundations first, then the three flows one at a time, then the first campaign. Client review happens before anything goes live.</p></div>
+    <div class="weeks"><span class="weeklab">Week one</span><span class="weeklab">Week two</span></div>
+    <ol class="plan"><li><span class="d">Day 1</span><div><b>Access and audit</b><p>Klaviyo, Shopify and DNS access. Run the 12-point audit and write down what is red.</p></div></li><li><span class="d">Day 2</span><div><b>Fix the foundations</b><p>DKIM, DMARC and the branded domain. Clean duplicates. Check form sync.</p></div></li><li><span class="d">Day 3</span><div><b>Build the segments</b><p>All six segments, checked against real profile counts.</p></div></li><li><span class="d">Day 4</span><div><b>Feed and tracking</b><p>Catalog feed, UTMs, Smart Sending and review sync set up and tested.</p></div></li><li><span class="d">Day 5</span><div><b>Welcome flow, build</b><p>Three emails in the template, flow filters and exit branch wired.</p></div></li><li><span class="d">Day 6</span><div><b>Welcome flow, QA</b><p>Phone-width review, link check, trigger check with a test profile.</p></div></li><li><span class="d">Day 7</span><div><b>Client review</b><p>Walk through the welcome flow together. Collect copy gaps: story, care steps.</p></div></li><li><span class="d">Day 8</span><div><b>Abandoned checkout, build</b><p>Three emails, the order exit, and the cart-over-$100 branch.</p></div></li><li><span class="d">Day 9</span><div><b>Abandoned checkout, QA</b><p>Checkout trigger test, free-shipping version, link and image check.</p></div></li><li><span class="d">Day 10</span><div><b>Post-purchase, build</b><p>Thank-you and care guide, review ask, cap cross-sell, with the review block.</p></div></li><li><span class="d">Day 11</span><div><b>Post-purchase, QA</b><p>Placed Order trigger test, timing check, care guide content added.</p></div></li><li><span class="d">Day 12</span><div><b>First campaign, build</b><p>Flags of home built from the template and checked at phone width.</p></div></li><li><span class="d">Day 13</span><div><b>Sign-off and go live</b><p>Client approves. Turn the three flows on, one at a time, trigger checked first.</p></div></li><li><span class="d">Day 14</span><div><b>Campaign scheduled, handover</b><p>First campaign scheduled for approval. Hand over the monthly calendar.</p></div></li></ol>
+  </div>
+</section>
+
+<section class="s" id="pricing">
+  <div class="wrap">
+    <div class="sh"><div><span class="num">06</span><h2>Two numbers. <em>Nothing hidden.</em></h2></div>
+    <p>The same pricing as in my bid.</p></div>
+    <div class="price">
+      <article class="pc"><h3>Setup, once</h3><div class="amt">$450</div>
+        <ul><li>Account and deliverability audit, all 12 checks</li><li>DKIM, DMARC and domain fixes</li><li>The six segments, built and checked</li><li>Welcome, abandoned checkout and post-purchase flows, built and tested at phone width</li><li>Email template in the brand's look</li></ul></article>
+      <article class="pc"><h3>Management, monthly</h3><div class="amt">$200<small>a month</small></div>
+        <ul><li>Two to three campaigns a month, written, built and scheduled for approval</li><li>Flow upkeep and small fixes</li><li>List hygiene and the sunset rule</li><li>A short plain-language note each month on what ran</li></ul></article>
+    </div>
+    <p class="fine">No results are promised here. Email results depend on the list, the offer and the products. The plan above is the work I commit to.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><div class="studio">Enes Eren Studio</div><p style="margin-top:8px">Klaviyo and Shopify email, built by hand. Istanbul.</p></div>
+    <div class="r"><a href="../../index.html">Back to the studio home</a><br><a href="https://github.com/erenes1667">github.com/erenes1667</a><br>erenes1667@gmail.com</div>
+  </div>
+</footer>
+
+<dialog id="viewer" aria-label="Email viewer">
+  <div class="vwrap">
+    <button type="button" class="vclose" id="vclose">Close</button>
+    <div class="vmeta"><span class="kick" id="vflow"></span><h3 id="vname"></h3>
+      <dl><div><dt>Step</dt><dd id="vstep"></dd></div><div><dt>Timing</dt><dd id="vtime"></dd></div></dl>
+      <div class="vnav"><button type="button" id="vprev">Previous</button><button type="button" id="vnext">Next</button></div></div>
+    <div class="vbody" id="vbody"></div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var dlg=document.getElementById('viewer'),body=document.getElementById('vbody'),cur=null;
+  var figs=[].slice.call(document.querySelectorAll('.gal .email'));
+  function byId(id){return document.getElementById('em-'+id)}
+  function open(id,variant){
+    var src=byId(id); if(!src) return;
+    cur=id;
+    var c=src.cloneNode(true); c.removeAttribute('id');
+    if(variant&&c.getAttribute('data-variant')) setV(c,variant);
+    body.textContent=''; body.appendChild(c);
+    var flow=figs.filter(function(f){return f.getAttribute('data-flow')===src.getAttribute('data-flow')});
+    var i=flow.indexOf(src);
+    document.getElementById('vflow').textContent=src.getAttribute('data-tag');
+    document.getElementById('vname').textContent=src.getAttribute('data-name');
+    document.getElementById('vstep').textContent='Email '+(i+1)+' of '+flow.length;
+    document.getElementById('vtime').textContent=src.getAttribute('data-timing');
+    var p=document.getElementById('vprev'),n=document.getElementById('vnext');
+    p.disabled=i<=0; n.disabled=i>=flow.length-1;
+    p.onclick=function(){open(flow[i-1].getAttribute('data-id'))};
+    n.onclick=function(){open(flow[i+1].getAttribute('data-id'))};
+    [].forEach.call(document.querySelectorAll('.n.mail'),function(li){li.classList.toggle('on',li.querySelector('a').getAttribute('data-open')===id)});
+    if(!dlg.open){ if(dlg.showModal) dlg.showModal(); else dlg.setAttribute('open',''); }
+    body.parentNode.scrollTop=0;
+  }
+  function setV(fig,v){
+    fig.setAttribute('data-variant',v);
+    [].forEach.call(fig.querySelectorAll('.vtoggle button'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-v')===v?'true':'false')});
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-open]');
+    if(a){e.preventDefault();open(a.getAttribute('data-open'),a.getAttribute('data-variant'));return}
+    var t=e.target.closest&&e.target.closest('.vtoggle button');
+    if(t){setV(t.closest('.email'),t.getAttribute('data-v'))}
+    if(e.target===dlg){dlg.close()}
+  });
+  document.getElementById('vclose').addEventListener('click',function(){dlg.close()});
+  var ac=document.getElementById('ac'),boxes=document.querySelectorAll('.audit input');
+  [].forEach.call(boxes,function(b){b.addEventListener('change',function(){ac.textContent=document.querySelectorAll('.audit input:checked').length})});
+})();
+</script>
+</body>
+</html>

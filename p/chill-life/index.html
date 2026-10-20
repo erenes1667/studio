@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>chill life: a marketing system that waits for your yes</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0908'/%3E%3Cpath d='M14 12h34v9H24v8h20v9H24v8h26v9H14z' fill='%23ff6b2c'/%3E%3C/svg%3E">
+<meta name="description" content="Proof page for Beth Levis: an n8n marketing system for chill life with a real sample week, two email flows and a launch plan.">
+<meta name="theme-color" content="#0c0b09">
+<link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+<noscript><style>.panel[hidden]{display:block!important;position:static!important;grid-column:2;margin-bottom:12px}.rv{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#map">Skip to the system map</a>
+<div class="bar"><div class="wrap"><b>ENES EREN STUDIO</b><nav aria-label="Sections"><a href="#map">Map</a><a href="#sample">Sample week</a><a href="#flows">Flows</a><a href="#sheet">Sheet</a><a href="#plan">Plan</a><a href="#price">Price</a></nav></div></div>
+<header class="hero"><div class="wrap">
+<p class="kicker">Proof page for Beth Levis, chill life</p>
+<div class="hero-grid"><div>
+<h1>A marketing system that waits for your <em>yes</em>.</h1>
+<p class="lede">Built from your public post only. A topic agent, drafts in your voice, one tap to approve, Shopify links, a weekly digest. Nothing publishes until you say so.</p>
+<div class="btns"><a class="btn main" href="#map">See the system map</a><a class="btn" href="#sample">Read a real sample week</a></div></div>
+<svg class="gate" viewBox="0 0 520 220" role="img" aria-label="Five drafts queue at a gate. Only the approved one passes through.">
+<line class="line" x1="10" y1="110" x2="510" y2="110"/>
+<g class="q q1"><circle class="d" cx="70" cy="110" r="14"/></g><g class="q q2"><circle class="d" cx="116" cy="110" r="14"/></g>
+<g class="q q3"><circle class="d" cx="162" cy="110" r="14"/></g><g class="q q4"><circle class="d" cx="208" cy="110" r="14"/></g>
+<g class="pass"><circle class="ok" cx="254" cy="110" r="14"/></g>
+<line class="bar2" x1="300" y1="50" x2="300" y2="170"/>
+<text x="300" y="38" text-anchor="middle">YOUR APPROVAL</text><text x="60" y="190">DRAFTS</text><text x="420" y="190" text-anchor="middle">SCHEDULED</text>
+</svg></div></div>
+<div class="band"><div class="wrap"><span><strong>No past-client numbers are shown here on purpose.</strong></span><span class="truth">Every draft below is a sample, marked sample, not approved.</span><span>Prepared 2026-10-19 by Enes Eren, Istanbul</span></div></div>
+</header>
+<main>
+<div class="wrap">
+
+<section class="s" id="map">
+<div class="sh rv"><span class="n">01</span><h2>The system, as eight steps</h2></div><p class="intro rv">Click a step. Each one shows the <b>n8n nodes</b> and the <b>prompt outline</b> behind it. Start with step four: it is the gate.</p>
+<ol class="map rv">
+<li><button class="st" type="button" data-node="voice" aria-expanded="false" aria-controls="panel-voice"><span class="dot">1</span><span>Brand voice and product list<small>The source of truth</small></span></button><div class="panel" id="panel-voice" role="region" aria-label="Brand voice and product list" hidden><span class="lab" style="margin-top:0">Step 1 of 8</span><h3>Brand voice and product list</h3><p class="what">One doc holds Beth&#x27;s own words, a short list of guardrails, and the live product list. Every prompt in the system starts by reading it. Only Beth edits her words.</p><span class="lab">n8n nodes</span><ul class="chips"><li>Schedule Trigger (nightly)</li><li>Google Docs (Get)</li><li>Shopify (Product: Get Many)</li><li>Edit Fields</li><li>Google Sheets (Update Row)</li></ul><span class="lab">Prompt outline</span><pre class="pr">Block A  Her words, verbatim, with the source line.
+Block B  Guardrails: no claims, no stats, no discounts, no invented products or people.
+Block C  Product list: name, handle, one-line description, link. Synced from Shopify, never typed by a model.
+Block D  Pillars: positivity, mental fitness, healthier youth sports, tech-free breaks.</pre><div class="guard">The model cannot edit this doc. A change to Block A goes through the same approval step as a post.</div></div></li>
+<li><button class="st" type="button" data-node="topic" aria-expanded="false" aria-controls="panel-topic"><span class="dot">2</span><span>Weekly topic agent<small>Monday morning</small></span></button><div class="panel" id="panel-topic" role="region" aria-label="Weekly topic agent" hidden><span class="lab" style="margin-top:0">Step 2 of 8</span><h3>Weekly topic agent</h3><p class="what">Reads last week&#x27;s topics and last week&#x27;s numbers, then plans five slots for the week. It rotates the four pillars so nothing repeats.</p><span class="lab">n8n nodes</span><ul class="chips"><li>Schedule Trigger (Mon 07:00)</li><li>Google Sheets (Get Rows)</li><li>AI Agent</li><li>Anthropic Chat Model</li><li>Structured Output Parser</li><li>Split Out</li></ul><span class="lab">Prompt outline</span><pre class="pr">System  Voice doc (blocks A to D).
+User    Week date. Last four weeks of topics. Last week&#x27;s results rows, or &quot;none&quot;.
+Task    Plan five slots: day, format, pillar, angle, needs_product_link.
+Rules   Cover all four pillars. Do not repeat an angle from the last four weeks. One plain sentence per angle. No invented facts.
+Return  JSON only, checked by the parser.</pre><div class="guard">First run has no results to learn from, so the agent is told that in plain words instead of guessing.</div></div></li>
+<li><button class="st" type="button" data-node="drafts" aria-expanded="false" aria-controls="panel-drafts"><span class="dot">3</span><span>Drafts: posts, Reel scripts, emails<small>One call per slot</small></span></button><div class="panel" id="panel-drafts" role="region" aria-label="Drafts: posts, Reel scripts, emails" hidden><span class="lab" style="margin-top:0">Step 3 of 8</span><h3>Drafts: posts, Reel scripts, emails</h3><p class="what">Each slot gets its own call with a format prompt. A Code node then checks the draft against the guardrails before anyone sees it.</p><span class="lab">n8n nodes</span><ul class="chips"><li>Loop Over Items</li><li>Switch (by format)</li><li>Basic LLM Chain x3</li><li>Anthropic Chat Model</li><li>Code (guardrail check)</li><li>Google Sheets (Append Row)</li></ul><span class="lab">Prompt outline</span><pre class="pr">System  Voice doc. &quot;Write it to be edited, not published.&quot;
+Post    Caption, at most 80 words, a visual note for Beth, at most four hashtags.
+Reel    Hook, four beats (on-screen text plus voiceover), closer, short caption.
+Email   Subject, preview text, body, one call to action.
+Check   Code node rejects percent signs, dollar signs, em dashes, unknown product names, missing link token. Failed drafts rerun once, then go to Beth marked &quot;needs a human&quot;.</pre><div class="guard">A draft that breaks a guardrail never reaches the approval step as if it were fine.</div></div></li>
+<li><button class="st gatest" type="button" data-node="approval" aria-expanded="false" aria-controls="panel-approval"><span class="dot">4</span><span>Approval step<small>Beth&#x27;s gate</small></span></button><div class="panel" id="panel-approval" role="region" aria-label="Approval step" hidden><span class="lab" style="margin-top:0">Step 4 of 8</span><h3>Approval step</h3><p class="what">Each draft lands in Telegram or in her inbox with three choices: Approve, Edit, Hold. One tap. Nothing moves past this step without it.</p><span class="lab">n8n nodes</span><ul class="chips"><li>Telegram (Send and Wait for Response)</li><li>Gmail (Send and Wait for Response)</li><li>IF</li><li>Wait</li><li>Basic LLM Chain (apply edit)</li><li>Google Sheets (Update Row)</li></ul><span class="lab">Prompt outline</span><pre class="pr">Message  Draft text, visual note, where it would post, link preview. Marked: sample or real.
+Approve  Status becomes approved, draft goes on.
+Edit     Beth types one line. An LLM call changes only what she asked and sends the full draft back to her for a second look.
+Hold     Status becomes held. It stays in the sheet.
+Silence  Waits. After 48 hours it sends one reminder. It never approves on its own.
+Edit prompt  &quot;Apply this instruction to the draft. Change nothing else. Return the full draft.&quot;</pre><div class="guard">No timeout path leads to publishing. Silence means hold.</div></div></li>
+<li><button class="st" type="button" data-node="links" aria-expanded="false" aria-controls="panel-links"><span class="dot">5</span><span>Shopify product links<small>Code, not a model</small></span></button><div class="panel" id="panel-links" role="region" aria-label="Shopify product links" hidden><span class="lab" style="margin-top:0">Step 5 of 8</span><h3>Shopify product links</h3><p class="what">A Code node swaps the link token for the real product URL and adds tracking tags. The model never writes a URL.</p><span class="lab">n8n nodes</span><ul class="chips"><li>Shopify (Product: Get Many)</li><li>Code (build URL and UTM)</li><li>Edit Fields</li><li>IF (token missing)</li></ul><span class="lab">Prompt outline</span><pre class="pr">No prompt. Code only.
+Token    {{PRODUCT_LINK}} in the approved draft.
+Build    Product URL from the Shopify handle, plus utm_source, utm_medium, utm_campaign (week), utm_content (draft id).
+Check    If the product is archived or out of stock, the draft returns to Beth instead of linking to it.</pre><div class="guard">A model cannot invent a link, because it never gets to write one.</div></div></li>
+<li><button class="st" type="button" data-node="sched" aria-expanded="false" aria-controls="panel-sched"><span class="dot">6</span><span>Scheduler<small>Approved items only</small></span></button><div class="panel" id="panel-sched" role="region" aria-label="Scheduler" hidden><span class="lab" style="margin-top:0">Step 6 of 8</span><h3>Scheduler</h3><p class="what">Approved posts go to her scheduling tool at the time on the calendar. Emails are created as drafts in her email platform. Beth sends them.</p><span class="lab">n8n nodes</span><ul class="chips"><li>Wait (until publish time)</li><li>Switch (by channel)</li><li>HTTP Request (scheduling tool or Meta Graph API)</li><li>HTTP Request (email platform draft)</li><li>Error Trigger</li><li>Telegram</li></ul><span class="lab">Prompt outline</span><pre class="pr">No prompt. Code and API calls.
+Rule     Only rows with status approved and a link filled in can enter this step.
+Posts    Sent to the scheduling tool Beth already uses.
+Emails   Created as drafts. A human presses send.
+Errors   Error Trigger tells me, the builder, in Telegram. Beth gets no alarm noise.</pre><div class="guard">Open question for Beth: which scheduling tool and which email platform she uses today. The step is built around her answer.</div></div></li>
+<li><button class="st" type="button" data-node="perf" aria-expanded="false" aria-controls="panel-perf"><span class="dot">7</span><span>Performance pull<small>Sunday evening</small></span></button><div class="panel" id="panel-perf" role="region" aria-label="Performance pull" hidden><span class="lab" style="margin-top:0">Step 7 of 8</span><h3>Performance pull</h3><p class="what">Pulls orders carrying our tracking tags from Shopify, plus post and email stats, and writes them into one sheet row per draft.</p><span class="lab">n8n nodes</span><ul class="chips"><li>Schedule Trigger (Sun 18:00)</li><li>Shopify (Order: Get Many)</li><li>HTTP Request x2</li><li>Merge</li><li>Code (join on utm_content)</li><li>Google Sheets (Update Row)</li></ul><span class="lab">Prompt outline</span><pre class="pr">No prompt. Numbers go from each platform into the sheet as reported. No model rounds, estimates or fills gaps.
+Join     utm_content equals draft id.
+Gap      If a platform returns nothing, the cell says &quot;no data&quot;, not zero.</pre><div class="guard">Empty is not zero. A silent platform shows as no data.</div></div></li>
+<li><button class="st" type="button" data-node="digest" aria-expanded="false" aria-controls="panel-digest"><span class="dot">8</span><span>Weekly digest to Beth<small>Sunday night</small></span></button><div class="panel" id="panel-digest" role="region" aria-label="Weekly digest to Beth" hidden><span class="lab" style="margin-top:0">Step 8 of 8</span><h3>Weekly digest to Beth</h3><p class="what">One short message: what went out, what got clicks or sales, what Beth changed most, one idea for next week. It also feeds step 2.</p><span class="lab">n8n nodes</span><ul class="chips"><li>Google Sheets (Get Rows)</li><li>Aggregate</li><li>AI Agent</li><li>Anthropic Chat Model</li><li>Gmail (Send)</li><li>Telegram</li></ul><span class="lab">Prompt outline</span><pre class="pr">System  Voice doc.
+User    This week&#x27;s rows from the sheet, including Beth&#x27;s edit notes.
+Task    Under 150 words. List what went out. Copy numbers exactly from the sheet. Name the edit Beth made most often. Suggest one change to the voice doc or one idea for next week.
+Rules   Never write a number that is not in the sheet. A voice doc change is only a suggestion and goes through approval.</pre><div class="guard">The loop closes here: her edits and the numbers shape next Monday&#x27;s topics.</div></div></li>
+</ol>
+</section>
+
+<section class="s" id="sample">
+<div class="sh rv"><span class="n">02</span><h2>A real sample week</h2></div>
+<p class="intro rv">This is not a mockup. I wrote a voice doc from your public post, ran the prompts from steps two and three, and kept the output exactly as it came out. Where I disagree with a draft, I say so under it. Nothing below is edited.</p>
+<dl class="meta rv" style="margin-top:30px">
+<div><dt>Run started</dt><dd>2026-10-19 23:55:05 UTC</dd></div>
+<div><dt>Run finished</dt><dd>2026-10-19 23:55:33 UTC (2026-10-20 02:55 (UTC+3))</dd></div>
+<div><dt>Model</dt><dd>claude-sonnet-5-5</dd></div>
+<div><dt>Calls</dt><dd>1 topic call, 5 draft calls</dd></div>
+<div><dt>Edited by a human</dt><dd>No</dd></div>
+<div><dt>Raw output</dt><dd><a href="assets/sample-run.json">assets/sample-run.json</a></dd></div>
+</dl>
+<div class="two rv">
+<div class="box"><h3>Voice doc, her words</h3><blockquote>a purpose-driven lifestyle brand</blockquote><blockquote>We believe happier people create healthier communities.</blockquote><blockquote>Our apparel, products, and initiatives promote positivity, mental fitness, and meaningful real-life connection.</blockquote><blockquote>Two key areas of our work are encouraging healthier youth sports culture and helping people take daily breaks from technology to be more present.</blockquote><blockquote>Preserving the authenticity of chill life’s message is essential. The system should support thoughtful storytelling, with my review and approval built into the process.</blockquote><p class="note">Every quote is a line from your public post. Nothing else is claimed as yours. No product list was supplied, so drafts use a link token instead of product names.</p></div>
+<div class="box"><h3>Guardrails, my draft</h3><ul><li>Write as chill life, in plain warm words. Brand name is lowercase: chill life.</li><li>Invite, never preach. No guilt about screens, phones, kids or parents.</li><li>No health, medical or research claims. No statistics, no prices, no discounts, no percentages.</li><li>Name no product unless it is on the product list. Use the token {{PRODUCT_LINK}} where a product link belongs.</li><li>Never invent a customer, quote, event, team, partner or result.</li><li>No em dashes. No emoji. At most four hashtags, only on social posts.</li></ul><p class="note" style="margin-top:14px">These are mine, not yours. You overwrite them.</p></div>
+</div>
+<details class="d rv"><summary>The topic prompt, as sent</summary><div class="in"><span class="lab">System</span><pre class="pr">You are the weekly topic agent for chill life. Work only from the voice doc. Return JSON only.
+
+VOICE DOC (v0, written from the public post)
+
+In her words:
+- &quot;a purpose-driven lifestyle brand&quot;
+- &quot;We believe happier people create healthier communities.&quot;
+- &quot;Our apparel, products, and initiatives promote positivity, mental fitness, and meaningful real-life connection.&quot;
+- &quot;Two key areas of our work are encouraging healthier youth sports culture and helping people take daily breaks from technology to be more present.&quot;
+- &quot;Preserving the authenticity of chill life’s message is essential. The system should support thoughtful storytelling, with my review and approval built into the process.&quot;
+
+Working guardrails (draft, to be overwritten by Beth):
+- Write as chill life, in plain warm words. Brand name is lowercase: chill life.
+- Invite, never preach. No guilt about screens, phones, kids or parents.
+- No health, medical or research claims. No statistics, no prices, no discounts, no percentages.
+- Name no product unless it is on the product list. Use the token {{PRODUCT_LINK}} where a product link belongs.
+- Never invent a customer, quote, event, team, partner or result.
+- No em dashes. No emoji. At most four hashtags, only on social posts.
+
+PRODUCT LIST:
+(none supplied yet: the Shopify node fills this list at build time. Mention apparel only in general terms.)
+
+CONTENT PILLARS: positivity, mental fitness, healthier youth sports, tech-free breaks</pre><span class="lab">User</span><pre class="pr">Week of 2026-10-19. Last week&#x27;s topics: none (first run). Last week&#x27;s performance: none (first run).
+Plan five slots, one per weekday, in this order: Monday Instagram post, Tuesday Reel script, Wednesday Instagram post, Thursday email, Friday Instagram post.
+Cover all four pillars at least once. For each slot give: day, format (instagram_post | reel_script | email), pillar, angle (one plain sentence, no invented facts), needs_product_link (true or false).
+Return {&quot;slots&quot;:[...]} and nothing else.</pre></div></details>
+<details class="d rv"><summary>The draft prompt, as sent (one call per slot)</summary><div class="in"><span class="lab">System</span><pre class="pr">You are the drafting step for chill life. Work only from the voice doc. Every draft goes to Beth for approval, so write it to be edited, not published. Return JSON only.
+
+VOICE DOC (v0, written from the public post)
+
+In her words:
+- &quot;a purpose-driven lifestyle brand&quot;
+- &quot;We believe happier people create healthier communities.&quot;
+- &quot;Our apparel, products, and initiatives promote positivity, mental fitness, and meaningful real-life connection.&quot;
+- &quot;Two key areas of our work are encouraging healthier youth sports culture and helping people take daily breaks from technology to be more present.&quot;
+- &quot;Preserving the authenticity of chill life’s message is essential. The system should support thoughtful storytelling, with my review and approval built into the process.&quot;
+
+Working guardrails (draft, to be overwritten by Beth):
+- Write as chill life, in plain warm words. Brand name is lowercase: chill life.
+- Invite, never preach. No guilt about screens, phones, kids or parents.
+- No health, medical or research claims. No statistics, no prices, no discounts, no percentages.
+- Name no product unless it is on the product list. Use the token {{PRODUCT_LINK}} where a product link belongs.
+- Never invent a customer, quote, event, team, partner or result.
+- No em dashes. No emoji. At most four hashtags, only on social posts.
+
+PRODUCT LIST:
+(none supplied yet: the Shopify node fills this list at build time. Mention apparel only in general terms.)
+
+CONTENT PILLARS: positivity, mental fitness, healthier youth sports, tech-free breaks</pre><span class="lab">User, Monday slot</span><pre class="pr">Slot: Monday. Format: instagram_post. Pillar: positivity. Angle: Start the week by inviting people to notice one small good thing and share it with someone nearby.. needs_product_link: false.
+Write an Instagram caption: at most 80 words, plain and warm. Add &quot;visual_note&quot;: one sentence telling Beth what photo or clip would carry it (a note, not an image). Add &quot;hashtags&quot;: at most four. Return JSON: {&quot;caption&quot;:...,&quot;visual_note&quot;:...,&quot;hashtags&quot;:[...]}</pre><span class="lab">User, Thursday email slot</span><pre class="pr">Slot: Thursday. Format: email. Pillar: mental fitness. Angle: Share a few simple, gentle habits for building mental fitness and invite readers to pick one to try this week.. needs_product_link: true.
+Write one email: &quot;subject&quot; (under 50 characters), &quot;preview_text&quot; (under 90 characters), &quot;body&quot; (at most 130 words, short paragraphs, plain text), &quot;cta_label&quot; (3 to 5 words, links to {{PRODUCT_LINK}} only if needs_product_link is true, otherwise write cta_label as a reply prompt). Return JSON with those keys.</pre></div></details>
+<div class="drafts">
+<article class="draft rv"><header><div class="tag"><b>Draft 1 of 5</b> &middot; Monday &middot; Instagram post<br>Pillar: positivity</div><span class="stamp">sample, not approved</span></header><div class="body">Happy Monday from chill life. Before the week gets busy, try this: notice one small good thing today. Maybe it&#x27;s the light through a window, a good cup of coffee, or a kind word from someone. Then tell a person nearby about it. Say it out loud, face to face if you can. Small moments tend to feel bigger when they&#x27;re shared. What&#x27;s yours? Tell us in the comments, or better yet, tell someone next to you.</div><div class="sub">Visual note for Beth</div><div class="vis">A simple, bright photo of two people (or one pair of hands passing a mug to another) in natural morning light, with no logos or products needed, so Beth can use a real moment from her own life or team.</div><div class="hash">#chilllife #MondayMindset #SmallGoodThings #BePresent</div><div class="read"><b>My read</b>Close to her tone. &quot;#MondayMindset&quot; is generic and I would drop it. Beth supplies the real photo.</div></article>
+<article class="draft rv"><header><div class="tag"><b>Draft 2 of 5</b> &middot; Tuesday &middot; Reel script<br>Pillar: tech-free breaks</div><span class="stamp">sample, not approved</span></header><div class="sub">Hook</div><div class="body">Try this for just two minutes today.</div><ul class="beats"><li><span class="os">On screen: Phone down. Out of reach.</span><span style="grid-column:1/-1">Voiceover: Set your phone down somewhere easy to leave alone.</span></li><li><span class="os">On screen: Look up.</span><span style="grid-column:1/-1">Voiceover: Now look up and take a slow look around you.</span></li><li><span class="os">On screen: What do you notice?</span><span style="grid-column:1/-1">Voiceover: A sound, a color, a face, something you might usually miss.</span></li><li><span class="os">On screen: Two minutes. That&#x27;s it.</span><span style="grid-column:1/-1">Voiceover: Two minutes is plenty. Pick your phone back up whenever you like.</span></li></ul><div class="sub">Closer</div><div class="body">A small pause, a bit more present. That&#x27;s chill life.</div><div class="sub">Caption</div><div class="vis">Two minutes, phone down, eyes up. See what you notice around you today. We&#x27;d love to hear what you spot. #chilllife #presentmoment #phonefreepause</div><div class="read"><b>My read</b>&quot;Two minutes&quot; is the model&#x27;s number, not a claim from her. Beth can change it. Pacing fits a short Reel.</div></article>
+<article class="draft rv"><header><div class="tag"><b>Draft 3 of 5</b> &middot; Wednesday &middot; Instagram post<br>Pillar: healthier youth sports</div><span class="stamp">sample, not approved</span></header><div class="body">The best sideline moments aren&#x27;t about the scoreboard. They&#x27;re the high fives after a missed shot, the kid cheering loudest for a teammate, the parent who just says &quot;love watching you play.&quot; We believe happier people create healthier communities, and it starts right here, where effort, encouragement, and fun come first. Who&#x27;s the person who makes your sideline feel good? Tag them or tell us below.</div><div class="sub">Visual note for Beth</div><div class="vis">A candid photo or short clip of kids high-fiving or cheering each other on at a game or practice, ideally with real smiles and no visible scoreboard (Beth to use her own or properly released imagery).</div><div class="hash">#chilllife #youthsports #positivevibes #sportsculture</div><div class="read"><b>My read</b>Quotes her own line from the post word for word. It also asks people to tag someone, so Beth should check that against how she handles photos of kids.</div></article>
+<article class="draft rv"><header><div class="tag"><b>Draft 4 of 5</b> &middot; Thursday &middot; Email<br>Pillar: mental fitness</div><span class="stamp">sample, not approved</span></header><div class="sub">Subject</div><div class="body"><b>One small habit to try this week</b></div><div class="sub">Preview text</div><div class="vis">Gentle ways to build mental fitness, one small step at a time.</div><div class="sub">Body</div><div class="body">Hi friends,
+
+Think of mental fitness as a practice, built with small, steady steps.
+
+Here are a few gentle ones:
+
+- Write down one good thing from your day.
+- Take a short walk with no destination.
+- Send a friend a quick hello.
+- Pause for three slow breaths before your next task.
+
+Pick just one to try this week. No pressure, no perfect streak.
+
+If you&#x27;d like a little reminder along the way, our apparel is made to carry positivity with you: {{PRODUCT_LINK}}
+
+Be chill,
+chill life</div><div class="sub">Button</div><div class="vis">Find your reminder, links to {{PRODUCT_LINK}}</div><div class="read"><b>My read</b>&quot;Our apparel is made to carry positivity with you&quot; is a product claim her voice doc never gave. I would cut it. &quot;Be chill&quot; is a sign-off the model invented. This is what the approval step exists to catch.</div></article>
+<article class="draft rv"><header><div class="tag"><b>Draft 5 of 5</b> &middot; Friday &middot; Instagram post<br>Pillar: positivity</div><span class="stamp">sample, not approved</span></header><div class="body">Friday&#x27;s here. Before the weekend gets busy, here&#x27;s a small invitation: pick one person and plan a real-life hangout. A walk, a card game, a slow breakfast, a backyard catch. Text them now and put it on the calendar. No big plans needed, just time together. Who&#x27;s your someone this weekend? Tell us in the comments, or better yet, go tell them. Happier people create healthier communities, and it can start with one hello. chill life</div><div class="sub">Visual note for Beth</div><div class="vis">A warm, candid photo or short clip of two friends or family members laughing together outdoors, such as on a porch or walking, with no phones in sight and no staged branding.</div><div class="hash">#chilllife #positivity #realconnection #weekendplans</div><div class="read"><b>My read</b>Ends with a bare &quot;chill life&quot; stuck to the caption. Remove it. The hangout idea is on brand.</div></article>
+</div>
+<h3 class="rv" style="margin:56px 0 0;font-size:clamp(26px,3.4vw,40px)">The approval message, as it came out</h3>
+<p class="intro rv" style="margin-top:10px">A Code node builds this from the drafts above. Tap Approve and the status changes. Tap Hold and nothing moves.</p>
+<div class="tg rv"><div class="phone" aria-label="Mock of the Telegram approval message"><div class="who">chill life approvals (mock)</div><div class="bub"><div class="m">chill life | week of 2026-10-19
+5 drafts ready | SAMPLE, NOT APPROVED
+
+Mon  Instagram post  positivity
+Tue  Reel script     tech-free breaks
+Wed  Instagram post  healthier youth sports
+Thu  Email           mental fitness
+Fri  Instagram post  positivity
+
+Tap a draft below to approve, edit or hold.</div></div></div><div class="phone"><div class="who">chill life approvals (mock)</div><div class="bub">Draft 1 of 5 | Mon | Instagram post | positivity
+SAMPLE, NOT APPROVED
+
+Happy Monday from chill life. Before the week gets busy, try this: notice one small good thing today. Maybe it&#x27;s the light through a window, a good cup of coffee, or a kind word from someone. Then tell a person nearby about it. Say it out loud, face to face if you can. Small moments tend to feel bigger when they&#x27;re shared. What&#x27;s yours? Tell us in the comments, or better yet, tell someone next to you.
+
+Visual note: A simple, bright photo of two people (or one pair of hands passing a mug to another) in natural morning light, with no logos or products needed, so Beth can use a real moment from her own life or team.
+Links: none
+Posts: Mon, if approved</div><div class="kb" aria-hidden="true"><span class="ap">Approve</span><span>Edit</span><span>Hold</span></div><div class="mockn">Buttons are a mock. In n8n: Telegram, Send and Wait for Response.</div></div></div>
+</section>
+
+<section class="s" id="flows">
+<div class="sh rv"><span class="n">03</span><h2>Two email flows, rendered at phone width</h2></div><p class="intro rv">Written for Klaviyo, and they work in any Shopify email tool. Built as drafts, off until you say go. Each email is 375 pixels wide, with subject, preview text and goal beside it. Dashed boxes are things only you can supply. No logo and no site images are used.</p><div class="flow rv"><h3>Welcome flow</h3><p class="sub2">Three emails after someone joins the list.</p><ol class="chain" aria-label="Welcome flow flow map"><li><button class="cn" type="button" data-note="Trigger. Fires when a person is added to the signup list. Built as a draft flow, off until Beth says go."><b>Trigger</b><span>Joins the list</span></button></li><li><button class="cn mail" type="button" data-target="welcome-1" data-note="Email 1: Why chill life exists. Goal: Say what chill life stands for, in her words, in about a minute of reading."><b>Email 1</b><span>Why we exist</span></button></li><li><button class="cn" type="button" data-note="Wait step. proposed: 2 days later. Timing is proposed and set with Beth."><b>Wait</b></button></li><li><button class="cn mail" type="button" data-target="welcome-2" data-note="Email 2: The tech-free break idea. Goal: Give the reader one small action that shows the idea in practice. Replies are welcome."><b>Email 2</b><span>Tech-free break</span></button></li><li><button class="cn" type="button" data-note="Wait step. proposed: 4 days after signup. Timing is proposed and set with Beth."><b>Wait</b></button></li><li><button class="cn mail" type="button" data-target="welcome-3" data-note="Email 3: First product. Goal: One product, one button. First purchase prompt."><b>Email 3</b><span>First product</span></button></li><li><button class="cn exit" type="button" data-note="Exit. The flow ends after the last email. Anyone who unsubscribes leaves at once."><b>Exit</b></button></li></ol><p class="fnote" aria-live="polite">Click a step. Email steps jump to the email.</p><div class="rail"><div class="mailcard" id="welcome-1"><div class="mh">Email 1 &middot; sent right after signup</div><dl><div><dt>Subject</dt><dd class="subj">Why chill life exists</dd></div><div><dt>Preview text</dt><dd>Happier people, healthier communities. Here is the short version.</dd></div><div><dt>Goal</dt><dd>Say what chill life stands for, in her words, in about a minute of reading.</dd></div><div><dt>Build note</dt><dd>Beth adds two lines of her own story in the dashed box.</dd></div></dl><div class="dev"><iframe src="emails/welcome-1.html" title="Why chill life exists" width="375" height="760" sandbox="allow-same-origin"></iframe></div><a class="open" href="emails/welcome-1.html">Open the email HTML</a></div><div class="mailcard" id="welcome-2"><div class="mh">Email 2 &middot; proposed: 2 days later</div><dl><div><dt>Subject</dt><dd class="subj">The tech-free break idea</dd></div><div><dt>Preview text</dt><dd>No rules. Put it down and look up.</dd></div><div><dt>Goal</dt><dd>Give the reader one small action that shows the idea in practice. Replies are welcome.</dd></div><div><dt>Build note</dt><dd>Reply-to points at a mailbox Beth chooses.</dd></div></dl><div class="dev"><iframe src="emails/welcome-2.html" title="The tech-free break idea" width="375" height="760" sandbox="allow-same-origin"></iframe></div><a class="open" href="emails/welcome-2.html">Open the email HTML</a></div><div class="mailcard" id="welcome-3"><div class="mh">Email 3 &middot; proposed: 4 days after signup</div><dl><div><dt>Subject</dt><dd class="subj">First product</dd></div><div><dt>Preview text</dt><dd>One piece from chill life, for your next break.</dd></div><div><dt>Goal</dt><dd>One product, one button. First purchase prompt.</dd></div><div><dt>Build note</dt><dd>Flow filter skips anyone who already placed an order. Product name, photo and link come from Shopify.</dd></div></dl><div class="dev"><iframe src="emails/welcome-3.html" title="First product" width="375" height="760" sandbox="allow-same-origin"></iframe></div><a class="open" href="emails/welcome-3.html">Open the email HTML</a></div></div></div><div class="flow rv"><h3>Post-purchase flow</h3><p class="sub2">Three emails after someone orders.</p><ol class="chain" aria-label="Post-purchase flow flow map"><li><button class="cn" type="button" data-note="Trigger. Fires on the Shopify Placed Order event. Built as a draft flow, off until Beth says go."><b>Trigger</b><span>Places an order</span></button></li><li><button class="cn mail" type="button" data-target="post-1" data-note="Email 1: Thank you, and wear it. Goal: Make the buyer feel seen and tie the product to the idea."><b>Email 1</b><span>Thank you</span></button></li><li><button class="cn" type="button" data-note="Wait step. proposed: 1 week later. Timing is proposed and set with Beth."><b>Wait</b></button></li><li><button class="cn mail" type="button" data-target="post-2" data-note="Email 2: A youth sports story. Goal: Collect real stories, with permission, for future posts and emails."><b>Email 2</b><span>Youth sports story</span></button></li><li><button class="cn" type="button" data-note="Wait step. proposed: 2 weeks after the order. Timing is proposed and set with Beth."><b>Wait</b></button></li><li><button class="cn mail" type="button" data-target="post-3" data-note="Email 3: Review and share. Goal: Get one review and one shared photo from happy buyers."><b>Email 3</b><span>Review and share</span></button></li><li><button class="cn exit" type="button" data-note="Exit. The flow ends after the last email. Anyone who unsubscribes leaves at once."><b>Exit</b></button></li></ol><p class="fnote" aria-live="polite">Click a step. Email steps jump to the email.</p><div class="rail"><div class="mailcard" id="post-1"><div class="mh">Email 1 &middot; proposed: 3 days after the order ships</div><dl><div><dt>Subject</dt><dd class="subj">Thank you, and wear it</dd></div><div><dt>Preview text</dt><dd>Your order means a lot to us. Here is how to wear it.</dd></div><div><dt>Goal</dt><dd>Make the buyer feel seen and tie the product to the idea.</dd></div><div><dt>Build note</dt><dd>Timing is set from her real carrier times once we see them.</dd></div></dl><div class="dev"><iframe src="emails/post-1.html" title="Thank you, and wear it" width="375" height="760" sandbox="allow-same-origin"></iframe></div><a class="open" href="emails/post-1.html">Open the email HTML</a></div><div class="mailcard" id="post-2"><div class="mh">Email 2 &middot; proposed: 1 week later</div><dl><div><dt>Subject</dt><dd class="subj">A youth sports story</dd></div><div><dt>Preview text</dt><dd>A moment that made the game better. We would love to hear it.</dd></div><div><dt>Goal</dt><dd>Collect real stories, with permission, for future posts and emails.</dd></div><div><dt>Build note</dt><dd>Beth decides who reads replies and how a story is shared.</dd></div></dl><div class="dev"><iframe src="emails/post-2.html" title="A youth sports story" width="375" height="760" sandbox="allow-same-origin"></iframe></div><a class="open" href="emails/post-2.html">Open the email HTML</a></div><div class="mailcard" id="post-3"><div class="mh">Email 3 &middot; proposed: 2 weeks after the order</div><dl><div><dt>Subject</dt><dd class="subj">Review and share</dd></div><div><dt>Preview text</dt><dd>A short review and one photo help other people find chill life.</dd></div><div><dt>Goal</dt><dd>Get one review and one shared photo from happy buyers.</dd></div><div><dt>Build note</dt><dd>Review link comes from whatever review app she uses.</dd></div></dl><div class="dev"><iframe src="emails/post-3.html" title="Review and share" width="375" height="760" sandbox="allow-same-origin"></iframe></div><a class="open" href="emails/post-3.html">Open the email HTML</a></div></div></div>
+</section>
+
+<section class="s" id="sheet">
+<div class="sh rv"><span class="n">04</span><h2>The weekly tracking sheet</h2></div><p class="intro rv">Columns only. The numbers arrive from your platforms each Sunday, exactly as they report them. I do not fill a single cell by hand.</p><div class="rv" style="margin-top:28px"><div class="sheet-wrap" tabindex="0" role="region" aria-label="Weekly tracking sheet mock, scrolls sideways"><table class="sheet"><thead><tr class="letters"><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th><th>I</th><th>J</th><th>K</th><th>L</th><th>M</th><th>N</th><th>O</th><th>P</th><th>Q</th><th>R</th><th>S</th><th>T</th><th>U</th><th>V</th></tr><tr class="grp"><th></th><th class="g1" colspan="7">Plan</th><th class="g2" colspan="4">Approval</th><th class="g3" colspan="3">Publish</th><th class="g4" colspan="6">Results</th><th class="g5" colspan="2">Learning</th></tr><tr class="names"><th>Row</th><th>Week of</th><th>Day</th><th>Channel</th><th>Format</th><th>Pillar</th><th>Topic</th><th>Draft link</th><th>Status</th><th>Approved by</th><th>Approved at</th><th>Beth&#x27;s edit note</th><th>Scheduled for</th><th>Live link</th><th>UTM campaign</th><th>Reach</th><th>Clicks to store</th><th>Orders with our tags</th><th>Email sends</th><th>Email clicks</th><th>New subscribers</th><th>What worked</th><th>Change for next week</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div><div class="legend"><span>Status: draft, approved, edited, held</span><span>Empty cell: no data yet</span><span>Scrolls sideways</span></div></div>
+</section>
+
+<section class="s" id="plan">
+<div class="sh rv"><span class="n">05</span><h2>Two weeks to launch</h2></div><div class="plan"><div class="wk rv"><h3>Week one</h3><div class="goal">Voice, topics, drafts, first sample.</div><ol><li><b>Mon</b><span>Kickoff call. Beth sends access: Shopify (read only), email platform, scheduling tool, a Telegram or email for approvals.</span></li><li><b>Tue</b><span>Voice doc v1 from her posts, site copy and answers. She edits it. Product list syncs from Shopify.</span></li><li><b>Wed</b><span>Weekly topic agent running in test. First plan for the week goes to her.</span></li><li><b>Thu</b><span>Draft prompts for posts, Reel scripts and emails. Guardrail check on every draft.</span></li><li><b>Fri</b><span>First sample week goes to Beth. Her edits go back into the voice doc.</span></li></ol></div><div class="wk rv"><h3>Week two</h3><div class="goal">Approval, links, scheduler, flows, tracking.</div><ol><li><b>Mon</b><span>Approval step live in Telegram or email. Edit and Hold paths tested.</span></li><li><b>Tue</b><span>Shopify links with tracking tags. Scheduler connected to her tool.</span></li><li><b>Wed</b><span>Welcome and post-purchase flows built as drafts in her email platform. She reviews them.</span></li><li><b>Thu</b><span>Performance pull, tracking sheet and weekly digest.</span></li><li><b>Fri</b><span>Dry run of a full week with nothing published. Handoff doc: how to edit the voice doc, pause the system, read the sheet.</span></li></ol></div></div><div class="wk3 rv"><h3>Week three</h3><p style="margin:0;color:var(--mute)">First real week, run live with Beth approving every item. I read her edits, fix the prompts, and hand her the first digest. Still inside the starter price.</p></div><div class="need rv box"><span class="lab" style="margin-top:0">What I need from Beth in week one</span><ul><li>Anything that carries her voice: posts she liked, past emails, about page.</li><li>Shopify access, read only.</li><li>Which email platform and which scheduling tool she uses today.</li><li>Where approvals should arrive: Telegram or email.</li><li>Who may see a draft besides her.</li><li>Words and topics that are off limits.</li></ul></div>
+</section>
+
+<section class="s" id="price">
+<div class="sh rv"><span class="n">06</span><h2>Price</h2></div>
+<div class="price-grid">
+<div class="pc hi rv"><span class="lbl">Starter, three weeks</span><div class="pv">$1,200</div>
+<ul><li>Voice doc, product sync, topic agent, draft prompts</li><li>Approval step in Telegram or email</li><li>Shopify links with tracking tags, scheduler hookup</li><li>Welcome and post-purchase flows, built as drafts</li><li>Tracking sheet, weekly digest, handoff doc</li><li>Week three live with you approving everything</li></ul></div>
+<div class="pc rv"><span class="lbl">After that</span><div class="pv">$700<small>a month</small></div>
+<ul><li>I keep the system running and fix what breaks</li><li>Prompt and voice doc updates from your edits</li><li>Monthly look at what the sheet shows, with changes to try</li><li>New flows or channels quoted before I start</li></ul></div>
+</div>
+<p class="truth-line rv">No past-client numbers are shown here on purpose. Your own sheet will hold the real ones.</p>
+<p class="fine rv">Tool subscriptions (n8n, the AI service, your email and scheduling tools) stay in your own accounts. I get paid by Payoneer or bank transfer, or through Upwork if you prefer. A longer partnership is a talk for after the starter, once we both see it working.</p>
+</section>
+
+<section class="about rv">
+<div><h2>Who builds it</h2></div>
+<div>
+<p>Enes Eren, Istanbul. Turkish native, fluent English. BA in Digital Game Design, then game studio project manager.</p>
+<ul><li>I build and run Klaviyo flows and campaigns for e-commerce stores on Shopify and BigCommerce.</li><li>I build n8n and GoHighLevel automations, landing pages and cold email setups.</li><li>I run multi-agent Claude Code systems on my own always-on server, including a Telegram assistant bot.</li><li>My own builds: CaseFoundry, Wispr Local, Rail.</li></ul>
+<p><a href="https://github.com/erenes1667">github.com/erenes1667</a> &middot; <a href="mailto:erenes1667@gmail.com">erenes1667@gmail.com</a></p>
+</div>
+</section>
+</div>
+</main>
+<footer><div class="wrap"><span>Enes Eren Studio &middot; <a href="../../index.html">Studio home</a></span><span>Private proof for one bid. Not indexed. Built from Beth Levis's public n8n forum post. No chill life logo or site images used.</span></div></footer>
+<script src="assets/app.js"></script>
+</body>
+</html>

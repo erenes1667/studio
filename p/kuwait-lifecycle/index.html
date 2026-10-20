@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Kuwait Lifecycle Flows | Enes Eren Studio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0908'/%3E%3Cpath d='M14 12h34v9H24v8h20v9H24v8h26v9H14z' fill='%23ff6b2c'/%3E%3C/svg%3E">
+<meta name="description" content="Sample plan: six Shopify lifecycle flows for a store in Kuwait, mixing email and WhatsApp. Flow maps, emails, WhatsApp templates, wiring, QA and handover.">
+<link rel="stylesheet" href="style.css">
+<noscript><style>[hidden]{display:block!important}</style></noscript>
+</head>
+<body>
+<nav class="nav" aria-label="Sections"><div class="wrap">
+ <a class="brand" href="../../index.html">Enes Eren <i>Studio</i></a>
+ <ul>
+  <li><a href="#flows">Flows</a></li><li><a href="#emails">Emails</a></li><li><a href="#whatsapp">WhatsApp</a></li><li><a href="#wiring">Wiring</a></li><li><a href="#qa">QA</a></li><li><a href="#handover">Handover</a></li><li><a href="#price">Price</a></li>
+ </ul>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+ <div class="rise">
+  <div class="kick">Proof of work <span class="tag">Sample plan</span><span class="tag">Store unnamed</span></div>
+  <h1>Six flows for a Kuwait store, <em>mapped</em> before you hire me.</h1>
+  <p class="lede"><b>Email and WhatsApp, step by step.</b> Every step shows its channel, its trigger or wait, its branch and the tag it writes. Every number and name on this page is a sample or a labelled slot.</p>
+  <div class="chips"><span class="chip price"><small>Fixed price</small>$900</span><span class="chip"><small>Delivery</small>14 days</span><span class="chip"><small>Platform</small>Shopify + Klaviyo + n8n</span></div>
+ </div>
+ <div class="lanes rise" aria-label="The six flows at a glance">
+  <header><span>Six lanes, in step order</span><span>Click a lane</span></header>
+  <a class="lane" href="#flow-winback" data-flow="winback"><span class="n">01</span><span class="nm">Win-back</span><span class="track" aria-hidden="true"><i class=email></i><i class=wa></i><i class=email></i><b></b></span><span class="ct">3 email<br>1 WhatsApp</span></a><a class="lane" href="#flow-cart" data-flow="cart"><span class="n">02</span><span class="nm">Abandoned cart</span><span class="track" aria-hidden="true"><i class=email></i><i class=wa></i><i class=email></i><i class=wa></i><b></b></span><span class="ct">3 email<br>2 WhatsApp</span></a><a class="lane" href="#flow-bis" data-flow="bis"><span class="n">03</span><span class="nm">Back in stock</span><span class="track" aria-hidden="true"><i class=wa></i><i class=email></i><b></b></span><span class="ct">1 email<br>1 WhatsApp</span></a><a class="lane" href="#flow-promo" data-flow="promo"><span class="n">04</span><span class="nm">Promo</span><span class="track" aria-hidden="true"><i class=email></i><i class=wa></i><b></b></span><span class="ct">2 email<br>1 WhatsApp</span></a><a class="lane" href="#flow-arrivals" data-flow="arrivals"><span class="n">05</span><span class="nm">New arrivals</span><span class="track" aria-hidden="true"><i class=email></i><i class=wa></i><b></b></span><span class="ct">2 email<br>1 WhatsApp</span></a><a class="lane" href="#flow-replen" data-flow="replen"><span class="n">06</span><span class="nm">Replenishment</span><span class="track" aria-hidden="true"><i class=wa></i><i class=email></i><b></b></span><span class="ct">1 email<br>1 WhatsApp</span></a>
+  <footer><span class="lg">Email</span><span class="lg wa">WhatsApp</span><span>Dots show message order, not time.</span></footer>
+ </div>
+</div></header>
+
+<main>
+<section class="sec" id="flows"><div class="wrap">
+ <div class="sh"><div class="k">01 / Flow maps</div><h2>Six flows, <em>every</em> step on the table.</h2><p>Pick a flow. Each card shows the channel, the trigger or wait, the branch and the tag. Click a card to open the detail and jump to its message.</p></div>
+ <div class="flow-shell">
+  <div class="tabs" role="tablist" aria-label="Flows"><button class="flow-tab" role="tab" id="tab-winback" data-flow="winback" aria-selected="true" aria-controls="flow-winback" tabindex="0"><span class="n">01</span><span class="t">Win-back</span><span class="m">3 email, 1 WhatsApp</span></button><button class="flow-tab" role="tab" id="tab-cart" data-flow="cart" aria-selected="false" aria-controls="flow-cart" tabindex="-1"><span class="n">02</span><span class="t">Abandoned cart</span><span class="m">3 email, 2 WhatsApp</span></button><button class="flow-tab" role="tab" id="tab-bis" data-flow="bis" aria-selected="false" aria-controls="flow-bis" tabindex="-1"><span class="n">03</span><span class="t">Back in stock</span><span class="m">1 email, 1 WhatsApp</span></button><button class="flow-tab" role="tab" id="tab-promo" data-flow="promo" aria-selected="false" aria-controls="flow-promo" tabindex="-1"><span class="n">04</span><span class="t">Promo</span><span class="m">2 email, 1 WhatsApp</span></button><button class="flow-tab" role="tab" id="tab-arrivals" data-flow="arrivals" aria-selected="false" aria-controls="flow-arrivals" tabindex="-1"><span class="n">05</span><span class="t">New arrivals</span><span class="m">2 email, 1 WhatsApp</span></button><button class="flow-tab" role="tab" id="tab-replen" data-flow="replen" aria-selected="false" aria-controls="flow-replen" tabindex="-1"><span class="n">06</span><span class="t">Replenishment</span><span class="m">1 email, 1 WhatsApp</span></button></div>
+  <div><div class="flow-panel" id="flow-winback" role="tabpanel" aria-labelledby="tab-winback">
+<div class="flow-head">
+ <h3><span>01</span>Win-back</h3>
+ <dl class="fh-grid">
+  <div><dt>Entry trigger</dt><dd>Profile has ordered before and has no order in 90 days.</dd></div>
+  <div><dt>Goal</dt><dd>Bring lapsed customers back. Give a discount only to those who ignored the first touch.</dd></div>
+  <div><dt>Exit rule</dt><dd>Placed Order at any step ends the flow. No order by day 7: tag final and suppress for 90 days.</dd></div>
+ </dl>
+ <div class="fh-tools"><div class="legend"><span class="lg">Email</span><span class="lg wa">WhatsApp</span><span class="lg logic">Logic</span><span class="lg exit">Exit</span></div><button type="button" class="linkbtn expand-all">Expand all steps</button></div>
+</div>
+<ol class="chain">
+<li class="node logic"><span class="when">Day 0</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card logic" id="c-winback-1">
+ <div class="hd"><span class="badge">Logic</span><span class="chip-m">Day 0</span><button type="button" aria-expanded="false" aria-controls="c-winback-1-more">Entry: no order in 90 days</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: profile joins segment &#x27;No order 90d&#x27; (at least one past order, last order over 90 days ago).</dd></div>
+  <div><dt>Branch</dt><dd>Not in win-back during the last 180 days (adjustable). Exit if Placed Order.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_wb_entered</code></dd></div>
+ </dl>
+ <div class="more" id="c-winback-1-more" hidden><p>The segment is built in Klaviyo from Shopify order history. It re-evaluates daily, so a customer enters the day the 90th day passes.</p></div>
+</article></div></li>
+<li class="node email"><span class="when">Day 0</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card email" id="c-winback-2">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">Day 0</span><button type="button" aria-expanded="false" aria-controls="c-winback-2-more">Email 1: what is new</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: none. Sends at entry.</dd></div>
+  <div><dt>Branch</dt><dd>Placed Order since entry: exit. No consent for email: skip.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_wb_e1_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-winback-2-more" hidden><p>Soft touch, no discount. Shows items the customer viewed and what arrived since their last order.</p><a href="#em-wb1">See the email at 375px</a></div>
+</article></div></li>
+<li class="node wa"><span class="when">Day 2</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card wa" id="c-winback-3">
+ <div class="hd"><span class="badge">WhatsApp</span><span class="chip-m">Day 2</span><button type="button" aria-expanded="false" aria-controls="c-winback-3-more">WhatsApp nudge</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: 2 days after email 1.</dd></div>
+  <div><dt>Branch</dt><dd>WhatsApp opt-in true: send. No opt-in: skip to the day 7 split.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_wb_w1_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-winback-3-more" hidden><p>Short template message with one link. Marketing category, so it needs a marketing opt-in on the profile.</p><a href="#wa-wb">See the WhatsApp message</a></div>
+</article></div></li>
+<li class="node logic"><span class="when">Day 7</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card logic" id="c-winback-4">
+ <div class="hd"><span class="badge">Logic</span><span class="chip-m">Day 7</span><button type="button" aria-expanded="false" aria-controls="c-winback-4-more">Split: clicked since day 0?</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: until day 7 from entry (5 days after the WhatsApp step).</dd></div>
+  <div><dt>Branch</dt><dd>Clicked any message since entry: no-discount email. No click: discount email.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_wb_split_checked</code></dd></div>
+ </dl>
+ <div class="more" id="c-winback-4-more" hidden><p>A conditional split on &#x27;clicked email&#x27; or &#x27;clicked WhatsApp link&#x27; since entry. The WhatsApp click is written back as a Klaviyo event by n8n.</p></div>
+</article></div></li>
+<li class="node fork"><span class="when">Day 7</span><span class="dot" aria-hidden="true"></span><div class="body"><div class="forks"><article class="card email" id="c-winback-5">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">Day 7</span><button type="button" aria-expanded="false" aria-controls="c-winback-5-more">Email 2: discount</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Branch: no click since day 0. Sends at once.</dd></div>
+  <div><dt>Branch</dt><dd>Single-use code per profile. Value and code come from the client.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_wb_e2_disc_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-winback-5-more" hidden><p>Offer email. The code rule is set by the client, so it stays a slot until then.</p><a href="#em-wb2d">See the email at 375px</a></div>
+</article><article class="card email" id="c-winback-6">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">Day 7</span><button type="button" aria-expanded="false" aria-controls="c-winback-6-more">Email 2: no discount</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Branch: clicked since day 0. Sends at once.</dd></div>
+  <div><dt>Branch</dt><dd>No code. Margin stays intact for customers who are already warming up.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_wb_e2_plain_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-winback-6-more" hidden><p>Same layout, new arrivals and best sellers, no offer.</p><a href="#em-wb2p">See the email at 375px</a></div>
+</article></div></div></li>
+<li class="node exit"><span class="when">Day 7+</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card exit" id="c-winback-7">
+ <div class="hd"><span class="badge">Exit</span><span class="chip-m">Day 7+</span><button type="button" aria-expanded="false" aria-controls="c-winback-7-more">Exit</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: Placed Order at any step, or the flow reaches the end.</dd></div>
+  <div><dt>Branch</dt><dd>Order placed: tag converted. No order: tag final and suppress from win-back for 90 days.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_wb_converted</code><code>lc_wb_final</code></dd></div>
+ </dl>
+ <div class="more" id="c-winback-7-more" hidden><p>The converted tag feeds reporting. The final tag stops a customer from being chased forever.</p></div>
+</article></div></li>
+</ol>
+</div><div class="flow-panel" id="flow-cart" role="tabpanel" aria-labelledby="tab-cart" hidden>
+<div class="flow-head">
+ <h3><span>02</span>Abandoned cart</h3>
+ <dl class="fh-grid">
+  <div><dt>Entry trigger</dt><dd>Shopify Started Checkout reaches Klaviyo with an email address.</dd></div>
+  <div><dt>Goal</dt><dd>Recover the checkout quickly with email, add WhatsApp only where the profile opted in.</dd></div>
+  <div><dt>Exit rule</dt><dd>Placed Order at any step ends the flow.</dd></div>
+ </dl>
+ <div class="fh-tools"><div class="legend"><span class="lg">Email</span><span class="lg wa">WhatsApp</span><span class="lg logic">Logic</span><span class="lg exit">Exit</span></div><button type="button" class="linkbtn expand-all">Expand all steps</button></div>
+</div>
+<ol class="chain">
+<li class="node logic"><span class="when">0</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card logic" id="c-cart-1">
+ <div class="hd"><span class="badge">Logic</span><span class="chip-m">0</span><button type="button" aria-expanded="false" aria-controls="c-cart-1-more">Entry: Started Checkout</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: Shopify Started Checkout event.</dd></div>
+  <div><dt>Branch</dt><dd>Needs an email address from checkout. Exit if Placed Order.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_ac_entered</code></dd></div>
+ </dl>
+ <div class="more" id="c-cart-1-more" hidden><p>The event carries cart items, cart value and the recovery link. Value is used for the 48 hour gate.</p></div>
+</article></div></li>
+<li class="node email"><span class="when">+1h</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card email" id="c-cart-2">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">+1h</span><button type="button" aria-expanded="false" aria-controls="c-cart-2-more">Email 1: cart saved</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: 1 hour.</dd></div>
+  <div><dt>Branch</dt><dd>Placed Order since entry: skip and exit.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_ac_e1_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-cart-2-more" hidden><p>Plain reminder with the cart lines and one button back to checkout.</p><a href="#em-ac1">See the email at 375px</a></div>
+</article></div></li>
+<li class="node wa"><span class="when">+4h</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card wa" id="c-cart-3">
+ <div class="hd"><span class="badge">WhatsApp</span><span class="chip-m">+4h</span><button type="button" aria-expanded="false" aria-controls="c-cart-3-more">WhatsApp reminder</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: 3 hours after email 1 (4 hours from checkout).</dd></div>
+  <div><dt>Branch</dt><dd>WhatsApp opt-in true: send. No opt-in: skip.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_ac_w1_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-cart-3-more" hidden><p>One template message with the recovery link as a URL button.</p><a href="#wa-ac1">See the WhatsApp message</a></div>
+</article></div></li>
+<li class="node logic"><span class="when">+24h</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card logic" id="c-cart-4">
+ <div class="hd"><span class="badge">Logic</span><span class="chip-m">+24h</span><button type="button" aria-expanded="false" aria-controls="c-cart-4-more">A/B split on the 24h subject</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: 20 hours after the WhatsApp step (24 hours from checkout).</dd></div>
+  <div><dt>Branch</dt><dd>50/50 split. Subject A against subject B. Winner by click rate.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_ac_split</code></dd></div>
+ </dl>
+ <div class="more" id="c-cart-4-more" hidden><p>Only the subject changes. Opens are unreliable with mail privacy features, so clicks decide the winner.</p></div>
+</article></div></li>
+<li class="node fork"><span class="when">+24h</span><span class="dot" aria-hidden="true"></span><div class="body"><div class="forks"><article class="card email" id="c-cart-5">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">+24h</span><button type="button" aria-expanded="false" aria-controls="c-cart-5-more">Email 2, subject A</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Branch A. Sends at once.</dd></div>
+  <div><dt>Branch</dt><dd>Placed Order since entry: skip.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_ac_e2_a_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-cart-5-more" hidden><p>Second recovery email with a different angle: answers, not pressure.</p><a href="#em-ac2">See the email at 375px</a></div>
+</article><article class="card email" id="c-cart-6">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">+24h</span><button type="button" aria-expanded="false" aria-controls="c-cart-6-more">Email 2, subject B</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Branch B. Sends at once.</dd></div>
+  <div><dt>Branch</dt><dd>Placed Order since entry: skip.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_ac_e2_b_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-cart-6-more" hidden><p>Same body as A. Only the subject line differs.</p><a href="#em-ac2">See the email at 375px</a></div>
+</article></div></div></li>
+<li class="node wa"><span class="when">+48h</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card wa" id="c-cart-7">
+ <div class="hd"><span class="badge">WhatsApp</span><span class="chip-m">+48h</span><button type="button" aria-expanded="false" aria-controls="c-cart-7-more">WhatsApp last reminder, high carts only</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: 24 hours after email 2 (48 hours from checkout).</dd></div>
+  <div><dt>Branch</dt><dd>Cart value above [threshold TBD by client, KWD] AND WhatsApp opt-in true: send. Otherwise skip.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_ac_w2_sent</code><code>lc_ac_w2_skipped</code></dd></div>
+ </dl>
+ <div class="more" id="c-cart-7-more" hidden><p>The gate keeps the extra message for carts worth chasing. The skipped tag makes the gate visible in QA.</p><a href="#wa-ac2">See the WhatsApp message</a></div>
+</article></div></li>
+<li class="node exit"><span class="when">+48h</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card exit" id="c-cart-8">
+ <div class="hd"><span class="badge">Exit</span><span class="chip-m">+48h</span><button type="button" aria-expanded="false" aria-controls="c-cart-8-more">Exit</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: Placed Order, or the 48 hour step is done.</dd></div>
+  <div><dt>Branch</dt><dd>Order placed: tag converted. No order: tag lost.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_ac_converted</code><code>lc_ac_lost</code></dd></div>
+ </dl>
+ <div class="more" id="c-cart-8-more" hidden><p>Profile can re-enter on the next Started Checkout after the flow ends.</p></div>
+</article></div></li>
+</ol>
+</div><div class="flow-panel" id="flow-bis" role="tabpanel" aria-labelledby="tab-bis" hidden>
+<div class="flow-head">
+ <h3><span>03</span>Back in stock</h3>
+ <dl class="fh-grid">
+  <div><dt>Entry trigger</dt><dd>Klaviyo Back in Stock event for a product the profile subscribed to.</dd></div>
+  <div><dt>Goal</dt><dd>Tell the person who asked, fast, on the channel they chose. Never repeat for the same product.</dd></div>
+  <div><dt>Exit rule</dt><dd>Cap: one alert per product per profile.</dd></div>
+ </dl>
+ <div class="fh-tools"><div class="legend"><span class="lg">Email</span><span class="lg wa">WhatsApp</span><span class="lg logic">Logic</span><span class="lg exit">Exit</span></div><button type="button" class="linkbtn expand-all">Expand all steps</button></div>
+</div>
+<ol class="chain">
+<li class="node logic"><span class="when">0</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card logic" id="c-bis-1">
+ <div class="hd"><span class="badge">Logic</span><span class="chip-m">0</span><button type="button" aria-expanded="false" aria-controls="c-bis-1-more">Entry: product is back</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: Back in Stock event for a subscribed product.</dd></div>
+  <div><dt>Branch</dt><dd>Cap: skip if the profile already has tag lc_bis_[product id].</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_bis_entered</code></dd></div>
+ </dl>
+ <div class="more" id="c-bis-1-more" hidden><p>The subscription comes from the back-in-stock form on the product page. The form asks which channel the customer wants.</p></div>
+</article></div></li>
+<li class="node wa"><span class="when">At once</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card wa" id="c-bis-2">
+ <div class="hd"><span class="badge">WhatsApp</span><span class="chip-m">At once</span><button type="button" aria-expanded="false" aria-controls="c-bis-2-more">WhatsApp alert</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: none.</dd></div>
+  <div><dt>Branch</dt><dd>WhatsApp opt-in true: send. No opt-in: go straight to the email.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_bis_w1_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-bis-2-more" hidden><p>Utility message: the customer asked for this exact alert, so it follows a request, not a promotion.</p><a href="#wa-bis">See the WhatsApp message</a></div>
+</article></div></li>
+<li class="node email"><span class="when">+1h</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card email" id="c-bis-3">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">+1h</span><button type="button" aria-expanded="false" aria-controls="c-bis-3-more">Email follow-up</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: 1 hour after the alert.</dd></div>
+  <div><dt>Branch</dt><dd>Product bought since the alert: skip.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_bis_e1_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-bis-3-more" hidden><p>Second chance with the product image and a buy button.</p><a href="#em-bis">See the email at 375px</a></div>
+</article></div></li>
+<li class="node exit"><span class="when">Done</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card exit" id="c-bis-4">
+ <div class="hd"><span class="badge">Exit</span><span class="chip-m">Done</span><button type="button" aria-expanded="false" aria-controls="c-bis-4-more">Exit and cap</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: email sent or skipped.</dd></div>
+  <div><dt>Branch</dt><dd>Write lc_bis_[product id] on the profile. A second restock of the same product does not alert again.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_bis_capped</code></dd></div>
+ </dl>
+ <div class="more" id="c-bis-4-more" hidden><p>The cap is a profile tag per product, so it survives flow edits.</p></div>
+</article></div></li>
+</ol>
+</div><div class="flow-panel" id="flow-promo" role="tabpanel" aria-labelledby="tab-promo" hidden>
+<div class="flow-head">
+ <h3><span>04</span>Promo</h3>
+ <dl class="fh-grid">
+  <div><dt>Entry trigger</dt><dd>Scheduled campaign, sent Sunday to Thursday in the evening, Kuwait time.</dd></div>
+  <div><dt>Goal</dt><dd>Sell a promotion to the people who care about that category, not to the whole list.</dd></div>
+  <div><dt>Exit rule</dt><dd>Recent buyers are excluded before the send. Flow ends 3 days after send.</dd></div>
+ </dl>
+ <div class="fh-tools"><div class="legend"><span class="lg">Email</span><span class="lg wa">WhatsApp</span><span class="lg logic">Logic</span><span class="lg exit">Exit</span></div><button type="button" class="linkbtn expand-all">Expand all steps</button></div>
+</div>
+<ol class="chain">
+<li class="node logic"><span class="when">Send day</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card logic" id="c-promo-1">
+ <div class="hd"><span class="badge">Logic</span><span class="chip-m">Send day</span><button type="button" aria-expanded="false" aria-controls="c-promo-1-more">Entry: category audience</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: scheduled send in the Asia/Kuwait time zone.</dd></div>
+  <div><dt>Branch</dt><dd>Include: viewed or bought in the category in the last 60 days (adjustable). Exclude: ordered in the last 7 days.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_promo_[category]_entered</code></dd></div>
+ </dl>
+ <div class="more" id="c-promo-1-more" hidden><p>Category interest comes from Viewed Product and order history. The exclusion keeps promo emails away from someone who just paid full price.</p></div>
+</article></div></li>
+<li class="node logic"><span class="when">Send day</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card logic" id="c-promo-2">
+ <div class="hd"><span class="badge">Logic</span><span class="chip-m">Send day</span><button type="button" aria-expanded="false" aria-controls="c-promo-2-more">A/B split</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: audience built.</dd></div>
+  <div><dt>Branch</dt><dd>50/50 on one variable only, the subject line. Winner by click rate.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_promo_split</code></dd></div>
+ </dl>
+ <div class="more" id="c-promo-2-more" hidden><p>One variable per test, so the result means something.</p></div>
+</article></div></li>
+<li class="node fork"><span class="when">Send day</span><span class="dot" aria-hidden="true"></span><div class="body"><div class="forks"><article class="card email" id="c-promo-3">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">Send day</span><button type="button" aria-expanded="false" aria-controls="c-promo-3-more">Promo email, subject A</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Branch A. Sends in the evening window.</dd></div>
+  <div><dt>Branch</dt><dd>Recent buyers already excluded.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_promo_a_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-promo-3-more" hidden><p>Offer headline and discount rule come from the client.</p><a href="#em-promo">See the email at 375px</a></div>
+</article><article class="card email" id="c-promo-4">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">Send day</span><button type="button" aria-expanded="false" aria-controls="c-promo-4-more">Promo email, subject B</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Branch B. Sends in the evening window.</dd></div>
+  <div><dt>Branch</dt><dd>Recent buyers already excluded.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_promo_b_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-promo-4-more" hidden><p>Same body as A.</p><a href="#em-promo">See the email at 375px</a></div>
+</article></div></div></li>
+<li class="node wa"><span class="when">+1 day</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card wa" id="c-promo-5">
+ <div class="hd"><span class="badge">WhatsApp</span><span class="chip-m">+1 day</span><button type="button" aria-expanded="false" aria-controls="c-promo-5-more">WhatsApp promo</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: 1 day after the email.</dd></div>
+  <div><dt>Branch</dt><dd>WhatsApp marketing opt-in true AND no click on the email AND no order since send. Others skip.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_promo_w1_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-promo-5-more" hidden><p>Recent-buyer check runs again here, because an order can land between the email and this step.</p><a href="#wa-promo">See the WhatsApp message</a></div>
+</article></div></li>
+<li class="node exit"><span class="when">+3 days</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card exit" id="c-promo-6">
+ <div class="hd"><span class="badge">Exit</span><span class="chip-m">+3 days</span><button type="button" aria-expanded="false" aria-controls="c-promo-6-more">Exit</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: 3 days after the send.</dd></div>
+  <div><dt>Branch</dt><dd>Tag done. The A/B winner is written to the campaign notes for the next send.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_promo_done</code></dd></div>
+ </dl>
+ <div class="more" id="c-promo-6-more" hidden><p>Nothing else is sent for this promo.</p></div>
+</article></div></li>
+</ol>
+</div><div class="flow-panel" id="flow-arrivals" role="tabpanel" aria-labelledby="tab-arrivals" hidden>
+<div class="flow-head">
+ <h3><span>05</span>New arrivals</h3>
+ <dl class="fh-grid">
+  <div><dt>Entry trigger</dt><dd>Weekly digest when the New arrivals collection has new products.</dd></div>
+  <div><dt>Goal</dt><dd>Show people what is new in the category they last looked at.</dd></div>
+  <div><dt>Exit rule</dt><dd>One digest per week. Profiles with no viewed category get the general digest.</dd></div>
+ </dl>
+ <div class="fh-tools"><div class="legend"><span class="lg">Email</span><span class="lg wa">WhatsApp</span><span class="lg logic">Logic</span><span class="lg exit">Exit</span></div><button type="button" class="linkbtn expand-all">Expand all steps</button></div>
+</div>
+<ol class="chain">
+<li class="node logic"><span class="when">Weekly</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card logic" id="c-arrivals-1">
+ <div class="hd"><span class="badge">Logic</span><span class="chip-m">Weekly</span><button type="button" aria-expanded="false" aria-controls="c-arrivals-1-more">Entry: weekly batch</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: weekly schedule, Sunday to Thursday evening Kuwait time, only if the collection has new products.</dd></div>
+  <div><dt>Branch</dt><dd>Segment by last viewed category (profile property last_viewed_category). No category: general digest.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_na_entered</code></dd></div>
+ </dl>
+ <div class="more" id="c-arrivals-1-more" hidden><p>The property is updated from Viewed Product events. A profile with no browsing history falls into the general digest.</p></div>
+</article></div></li>
+<li class="node fork"><span class="when">Weekly</span><span class="dot" aria-hidden="true"></span><div class="body"><div class="forks"><article class="card email" id="c-arrivals-2">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">Weekly</span><button type="button" aria-expanded="false" aria-controls="c-arrivals-2-more">Digest for their category</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Branch: last_viewed_category is set.</dd></div>
+  <div><dt>Branch</dt><dd>Content block filters to that category.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_na_cat_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-arrivals-2-more" hidden><p>Dynamic product block fed by the collection, filtered per category.</p><a href="#em-na">See the email at 375px</a></div>
+</article><article class="card email" id="c-arrivals-3">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">Weekly</span><button type="button" aria-expanded="false" aria-controls="c-arrivals-3-more">General digest</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Branch: last_viewed_category is empty.</dd></div>
+  <div><dt>Branch</dt><dd>Content block shows all new products.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_na_all_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-arrivals-3-more" hidden><p>Same template, unfiltered block.</p><a href="#em-na">See the email at 375px</a></div>
+</article></div></div></li>
+<li class="node wa"><span class="when">+1 day</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card wa" id="c-arrivals-4">
+ <div class="hd"><span class="badge">WhatsApp</span><span class="chip-m">+1 day</span><button type="button" aria-expanded="false" aria-controls="c-arrivals-4-more">WhatsApp teaser</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: 1 day after the email.</dd></div>
+  <div><dt>Branch</dt><dd>WhatsApp marketing opt-in true AND no click on the email. Others skip.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_na_w1_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-arrivals-4-more" hidden><p>One line and one link. The email carries the full catalog.</p><a href="#wa-na">See the WhatsApp message</a></div>
+</article></div></li>
+<li class="node exit"><span class="when">+1 day</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card exit" id="c-arrivals-5">
+ <div class="hd"><span class="badge">Exit</span><span class="chip-m">+1 day</span><button type="button" aria-expanded="false" aria-controls="c-arrivals-5-more">Exit</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: WhatsApp step done or skipped.</dd></div>
+  <div><dt>Branch</dt><dd>Nothing further. Next week is a new run.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_na_done</code></dd></div>
+ </dl>
+ <div class="more" id="c-arrivals-5-more" hidden><p>No long chain, because a digest is a habit, not a sequence.</p></div>
+</article></div></li>
+</ol>
+</div><div class="flow-panel" id="flow-replen" role="tabpanel" aria-labelledby="tab-replen" hidden>
+<div class="flow-head">
+ <h3><span>06</span>Replenishment</h3>
+ <dl class="fh-grid">
+  <div><dt>Entry trigger</dt><dd>Placed Order that contains a consumable product (Shopify product tag &#x27;consumable&#x27;).</dd></div>
+  <div><dt>Goal</dt><dd>Remind the customer just before the product runs out.</dd></div>
+  <div><dt>Exit rule</dt><dd>A reorder of the same product ends the flow and restarts the cycle.</dd></div>
+ </dl>
+ <div class="fh-tools"><div class="legend"><span class="lg">Email</span><span class="lg wa">WhatsApp</span><span class="lg logic">Logic</span><span class="lg exit">Exit</span></div><button type="button" class="linkbtn expand-all">Expand all steps</button></div>
+</div>
+<ol class="chain">
+<li class="node logic"><span class="when">Order day</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card logic" id="c-replen-1">
+ <div class="hd"><span class="badge">Logic</span><span class="chip-m">Order day</span><button type="button" aria-expanded="false" aria-controls="c-replen-1-more">Entry: consumable ordered</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: Placed Order with a product tagged &#x27;consumable&#x27;.</dd></div>
+  <div><dt>Branch</dt><dd>Cycle length read from the product metafield cycle_days (set per product by the client).</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_rp_entered</code></dd></div>
+ </dl>
+ <div class="more" id="c-replen-1-more" hidden><p>Each consumable gets its own cycle in days. Bundles use the shortest cycle in the order.</p></div>
+</article></div></li>
+<li class="node wa"><span class="when">Cycle - 5d</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card wa" id="c-replen-2">
+ <div class="hd"><span class="badge">WhatsApp</span><span class="chip-m">Cycle - 5d</span><button type="button" aria-expanded="false" aria-controls="c-replen-2-more">WhatsApp reorder reminder</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: cycle_days minus 5 days.</dd></div>
+  <div><dt>Branch</dt><dd>Same product reordered: exit. WhatsApp opt-in true: send. No opt-in: go to the email at once.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_rp_w1_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-replen-2-more" hidden><p>Reminder with a reorder link that pre-fills the product.</p><a href="#wa-rp">See the WhatsApp message</a></div>
+</article></div></li>
+<li class="node email"><span class="when">+3 days</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card email" id="c-replen-3">
+ <div class="hd"><span class="badge">Email</span><span class="chip-m">+3 days</span><button type="button" aria-expanded="false" aria-controls="c-replen-3-more">Email reorder reminder</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Wait: 3 days after the WhatsApp step.</dd></div>
+  <div><dt>Branch</dt><dd>Same product reordered: skip. Sends to everyone with email consent.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_rp_e1_sent</code></dd></div>
+ </dl>
+ <div class="more" id="c-replen-3-more" hidden><p>Gives the customer a second chance and a place to adjust quantity.</p><a href="#em-rp">See the email at 375px</a></div>
+</article></div></li>
+<li class="node exit"><span class="when">Cycle end</span><span class="dot" aria-hidden="true"></span><div class="body"><article class="card exit" id="c-replen-4">
+ <div class="hd"><span class="badge">Exit</span><span class="chip-m">Cycle end</span><button type="button" aria-expanded="false" aria-controls="c-replen-4-more">Exit</button></div>
+ <dl class="facts">
+  <div><dt>Trigger / wait</dt><dd>Trigger: reorder, or the email step is done.</dd></div>
+  <div><dt>Branch</dt><dd>Reorder: tag reordered and the cycle restarts for that product. No reorder: tag lapsed, the profile is handed to win-back at 90 days.</dd></div>
+  <div><dt>Tag</dt><dd><code>lc_rp_reordered</code><code>lc_rp_lapsed</code></dd></div>
+ </dl>
+ <div class="more" id="c-replen-4-more" hidden><p>The lapsed tag is a clean hand-off to the win-back flow.</p></div>
+</article></div></li>
+</ol>
+</div></div>
+ </div>
+</div></section>
+
+<section class="sec emails" id="emails"><div class="wrap">
+ <div class="sh"><div class="k">02 / Emails at 375px</div><h2>Nine emails, <em>mobile first</em>.</h2><p>Each email is drawn at 375px wide with subject, preview text and goal. Images and prices are labelled slots, not invented content.</p></div>
+ <div class="intro-row"><p>Switch to RTL to see the layout mirror. The copy slots then read: Arabic copy: client or native translator.</p><button type="button" class="rtl-toggle" aria-pressed="false">Layout: LTR (English)</button></div>
+ <div class="em-grid"><div class="em-item" id="em-wb1">
+ <div class="em-meta">
+  <div class="flowname">Win-back</div>
+  <h3>Email 1, day 0</h3>
+  <div class="inbox"><div class="s s-en"><span class="lbl">Subject</span>It has been a while. Here is what is new</div><div class="p p-en"><span class="lbl">Preview</span>Three picks based on what you looked at last.</div><div class="slot-note">Subject and preview: Arabic copy: client or native translator</div></div>
+  <p class="em-goal"><b>Goal</b>Bring the customer back to the store without a discount.</p>
+ </div>
+ <div class="mailf" dir="ltr">
+  <div class="em-top"><span class="em-logo">STORE NAME</span><span>Shop &nbsp; Account</span></div>
+  <div class="em-hero">Hero image slot</div>
+  <div class="em-body">
+   <h4 class="copy-en">Still looking for something?</h4><p class="slot">Arabic copy: client or native translator</p>
+   <p class="copy-en">It has been a while since your last order. Here is what you viewed and what has arrived since.</p><p class="slot">Arabic copy: client or native translator</p>
+   <div class="em-prods"><div class="em-prod"><div class="im"></div><p><b>Sample product 1</b>KWD [price]</p></div><div class="em-prod"><div class="im"></div><p><b>Sample product 2</b>KWD [price]</p></div></div>
+   <div class="em-cta has-slot"><span class="copy-en">Back to the store</span><span class="slot">Arabic copy: client or native translator</span></div>
+  </div>
+  <div class="em-foot">Unsubscribe &nbsp;|&nbsp; Manage preferences<br>[Store address slot]</div>
+ </div>
+</div><div class="em-item" id="em-wb2d">
+ <div class="em-meta">
+  <div class="flowname">Win-back</div>
+  <h3>Email 2, day 7, discount branch</h3>
+  <div class="inbox"><div class="s s-en"><span class="lbl">Subject</span>A little something for your next order</div><div class="p p-en"><span class="lbl">Preview</span>Your offer is inside.</div><div class="slot-note">Subject and preview: Arabic copy: client or native translator</div></div>
+  <p class="em-goal"><b>Goal</b>Convert a quiet lapsed customer with one single-use code. The client sets value and expiry.</p>
+ </div>
+ <div class="mailf" dir="ltr">
+  <div class="em-top"><span class="em-logo">STORE NAME</span><span>Shop &nbsp; Account</span></div>
+  <div class="em-hero">Hero image slot</div>
+  <div class="em-body">
+   <h4 class="copy-en">Here is [offer value TBD] for you</h4><p class="slot">Arabic copy: client or native translator</p>
+   <p class="copy-en">Use your single-use code at checkout. Valid until [expiry date TBD].</p><p class="slot">Arabic copy: client or native translator</p>
+   <div class="em-code">[CODE TBD BY CLIENT]</div>
+   <div class="em-cta has-slot"><span class="copy-en">Use my offer</span><span class="slot">Arabic copy: client or native translator</span></div>
+  </div>
+  <div class="em-foot">Unsubscribe &nbsp;|&nbsp; Manage preferences<br>[Store address slot]</div>
+ </div>
+</div><div class="em-item" id="em-wb2p">
+ <div class="em-meta">
+  <div class="flowname">Win-back</div>
+  <h3>Email 2, day 7, no-discount branch</h3>
+  <div class="inbox"><div class="s s-en"><span class="lbl">Subject</span>Something new since your last visit</div><div class="p p-en"><span class="lbl">Preview</span>No code needed, just a look.</div><div class="slot-note">Subject and preview: Arabic copy: client or native translator</div></div>
+  <p class="em-goal"><b>Goal</b>Keep a warming customer moving without giving margin away.</p>
+ </div>
+ <div class="mailf" dir="ltr">
+  <div class="em-top"><span class="em-logo">STORE NAME</span><span>Shop &nbsp; Account</span></div>
+  <div class="em-hero">Hero image slot</div>
+  <div class="em-body">
+   <h4 class="copy-en">New since you were last here</h4><p class="slot">Arabic copy: client or native translator</p>
+   <p class="copy-en">A short pick of new arrivals and best sellers in the categories you browse.</p><p class="slot">Arabic copy: client or native translator</p>
+   <div class="em-prods"><div class="em-prod"><div class="im"></div><p><b>Sample product 1</b>KWD [price]</p></div><div class="em-prod"><div class="im"></div><p><b>Sample product 2</b>KWD [price]</p></div></div>
+   <div class="em-cta has-slot"><span class="copy-en">See what is new</span><span class="slot">Arabic copy: client or native translator</span></div>
+  </div>
+  <div class="em-foot">Unsubscribe &nbsp;|&nbsp; Manage preferences<br>[Store address slot]</div>
+ </div>
+</div><div class="em-item" id="em-ac1">
+ <div class="em-meta">
+  <div class="flowname">Abandoned cart</div>
+  <h3>Email 1, 1 hour</h3>
+  <div class="inbox"><div class="s s-en"><span class="lbl">Subject</span>You left something in your cart</div><div class="p p-en"><span class="lbl">Preview</span>Your items are saved. Finish checkout in one tap.</div><div class="slot-note">Subject and preview: Arabic copy: client or native translator</div></div>
+  <p class="em-goal"><b>Goal</b>Recover the checkout while the intent is still fresh.</p>
+ </div>
+ <div class="mailf" dir="ltr">
+  <div class="em-top"><span class="em-logo">STORE NAME</span><span>Shop &nbsp; Account</span></div>
+  <div class="em-hero">Hero image slot</div>
+  <div class="em-body">
+   <h4 class="copy-en">Your cart is saved</h4><p class="slot">Arabic copy: client or native translator</p>
+   <p class="copy-en">You were close. The items below are waiting for you.</p><p class="slot">Arabic copy: client or native translator</p>
+   <div class="em-line"><div class="th"></div><p>Sample product A<br><em>Qty 1</em></p><em>KWD [price]</em></div><div class="em-line"><div class="th"></div><p>Sample product B<br><em>Qty 1</em></p><em>KWD [price]</em></div><div class="em-total"><span>Cart total</span><span>KWD [total]</span></div>
+   <div class="em-cta has-slot"><span class="copy-en">Back to checkout</span><span class="slot">Arabic copy: client or native translator</span></div>
+  </div>
+  <div class="em-foot">Unsubscribe &nbsp;|&nbsp; Manage preferences<br>[Store address slot]</div>
+ </div>
+</div><div class="em-item" id="em-ac2">
+ <div class="em-meta">
+  <div class="flowname">Abandoned cart</div>
+  <h3>Email 2, 24 hours, A/B subject</h3>
+  <div class="inbox"><div class="s s-en"><span class="lbl">Subject</span>A: Still thinking it over?</div><div class="s s-en"><span class="lbl">Subject</span>B: Your cart is saved for you</div><div class="p p-en"><span class="lbl">Preview</span>Your items are still saved. Pick up where you left off.</div><div class="slot-note">Subject and preview: Arabic copy: client or native translator</div></div>
+  <p class="em-goal"><b>Goal</b>Second recovery push. The test finds which subject earns more clicks.</p>
+ </div>
+ <div class="mailf" dir="ltr">
+  <div class="em-top"><span class="em-logo">STORE NAME</span><span>Shop &nbsp; Account</span></div>
+  <div class="em-hero">Hero image slot</div>
+  <div class="em-body">
+   <h4 class="copy-en">Still thinking it over?</h4><p class="slot">Arabic copy: client or native translator</p>
+   <p class="copy-en">Questions about delivery or returns? Reply to this email and a person will answer.</p><p class="slot">Arabic copy: client or native translator</p>
+   <div class="em-line"><div class="th"></div><p>Sample product A<br><em>Qty 1</em></p><em>KWD [price]</em></div><div class="em-line"><div class="th"></div><p>Sample product B<br><em>Qty 1</em></p><em>KWD [price]</em></div><div class="em-total"><span>Cart total</span><span>KWD [total]</span></div>
+   <div class="em-cta has-slot"><span class="copy-en">Return to my cart</span><span class="slot">Arabic copy: client or native translator</span></div>
+  </div>
+  <div class="em-foot">Unsubscribe &nbsp;|&nbsp; Manage preferences<br>[Store address slot]</div>
+ </div>
+</div><div class="em-item" id="em-bis">
+ <div class="em-meta">
+  <div class="flowname">Back in stock</div>
+  <h3>Email, 1 hour after the WhatsApp alert</h3>
+  <div class="inbox"><div class="s s-en"><span class="lbl">Subject</span>It is back: [Product name]</div><div class="p p-en"><span class="lbl">Preview</span>You asked us to tell you. It is in stock now.</div><div class="slot-note">Subject and preview: Arabic copy: client or native translator</div></div>
+  <p class="em-goal"><b>Goal</b>Turn the alert into an order before the product sells out again.</p>
+ </div>
+ <div class="mailf" dir="ltr">
+  <div class="em-top"><span class="em-logo">STORE NAME</span><span>Shop &nbsp; Account</span></div>
+  <div class="em-hero">Hero image slot</div>
+  <div class="em-body">
+   <h4 class="copy-en">[Product name] is back</h4><p class="slot">Arabic copy: client or native translator</p>
+   <p class="copy-en">You asked to be notified. It is in stock again.</p><p class="slot">Arabic copy: client or native translator</p>
+   <div class="em-prods single"><div class="em-prod"><div class="im"></div><p><b>[Product name]</b>KWD [price]</p></div></div>
+   <div class="em-cta has-slot"><span class="copy-en">Buy now</span><span class="slot">Arabic copy: client or native translator</span></div>
+  </div>
+  <div class="em-foot">Unsubscribe &nbsp;|&nbsp; Manage preferences<br>[Store address slot]</div>
+ </div>
+</div><div class="em-item" id="em-promo">
+ <div class="em-meta">
+  <div class="flowname">Promo</div>
+  <h3>Promo email, A/B subject</h3>
+  <div class="inbox"><div class="s s-en"><span class="lbl">Subject</span>A: [Category]: this week&#x27;s offer</div><div class="s s-en"><span class="lbl">Subject</span>B: Picked for you from [Category]</div><div class="p p-en"><span class="lbl">Preview</span>An offer on the [Category] items you have been looking at.</div><div class="slot-note">Subject and preview: Arabic copy: client or native translator</div></div>
+  <p class="em-goal"><b>Goal</b>Drive category-interested customers to the offer. Recent buyers are excluded.</p>
+ </div>
+ <div class="mailf" dir="ltr">
+  <div class="em-top"><span class="em-logo">STORE NAME</span><span>Shop &nbsp; Account</span></div>
+  <div class="em-hero">Hero image slot</div>
+  <div class="em-body">
+   <h4 class="copy-en">[Offer headline TBD by client]</h4><p class="slot">Arabic copy: client or native translator</p>
+   <p class="copy-en">[Offer details TBD by client]. Shown to people who viewed or bought in this category.</p><p class="slot">Arabic copy: client or native translator</p>
+   <div class="em-prods"><div class="em-prod"><div class="im"></div><p><b>Sample product 1</b>KWD [price]</p></div><div class="em-prod"><div class="im"></div><p><b>Sample product 2</b>KWD [price]</p></div></div>
+   <div class="em-cta has-slot"><span class="copy-en">Shop the offer</span><span class="slot">Arabic copy: client or native translator</span></div>
+  </div>
+  <div class="em-foot">Unsubscribe &nbsp;|&nbsp; Manage preferences<br>[Store address slot]</div>
+ </div>
+</div><div class="em-item" id="em-na">
+ <div class="em-meta">
+  <div class="flowname">New arrivals</div>
+  <h3>Weekly digest</h3>
+  <div class="inbox"><div class="s s-en"><span class="lbl">Subject</span>New in [Category]</div><div class="p p-en"><span class="lbl">Preview</span>Fresh arrivals, picked from what you browsed.</div><div class="slot-note">Subject and preview: Arabic copy: client or native translator</div></div>
+  <p class="em-goal"><b>Goal</b>Send engaged browsers back to the newest products in their category.</p>
+ </div>
+ <div class="mailf" dir="ltr">
+  <div class="em-top"><span class="em-logo">STORE NAME</span><span>Shop &nbsp; Account</span></div>
+  <div class="em-hero">Hero image slot</div>
+  <div class="em-body">
+   <h4 class="copy-en">New in [Category]</h4><p class="slot">Arabic copy: client or native translator</p>
+   <p class="copy-en">This week&#x27;s arrivals, picked from the category you looked at last.</p><p class="slot">Arabic copy: client or native translator</p>
+   <div class="em-prods"><div class="em-prod"><div class="im"></div><p><b>Sample product 1</b>KWD [price]</p></div><div class="em-prod"><div class="im"></div><p><b>Sample product 2</b>KWD [price]</p></div></div>
+   <div class="em-cta has-slot"><span class="copy-en">See all new arrivals</span><span class="slot">Arabic copy: client or native translator</span></div>
+  </div>
+  <div class="em-foot">Unsubscribe &nbsp;|&nbsp; Manage preferences<br>[Store address slot]</div>
+ </div>
+</div><div class="em-item" id="em-rp">
+ <div class="em-meta">
+  <div class="flowname">Replenishment</div>
+  <h3>Email, 3 days after the WhatsApp reminder</h3>
+  <div class="inbox"><div class="s s-en"><span class="lbl">Subject</span>Running low on [Product name]?</div><div class="p p-en"><span class="lbl">Preview</span>Reorder in one tap.</div><div class="slot-note">Subject and preview: Arabic copy: client or native translator</div></div>
+  <p class="em-goal"><b>Goal</b>Win the repeat purchase before the customer runs out.</p>
+ </div>
+ <div class="mailf" dir="ltr">
+  <div class="em-top"><span class="em-logo">STORE NAME</span><span>Shop &nbsp; Account</span></div>
+  <div class="em-hero">Hero image slot</div>
+  <div class="em-body">
+   <h4 class="copy-en">Time to reorder?</h4><p class="slot">Arabic copy: client or native translator</p>
+   <p class="copy-en">Based on how long [Product name] usually lasts, you may be running low.</p><p class="slot">Arabic copy: client or native translator</p>
+   <div class="em-prods single"><div class="em-prod"><div class="im"></div><p><b>[Product name]</b>KWD [price]</p></div></div>
+   <div class="em-cta has-slot"><span class="copy-en">Reorder</span><span class="slot">Arabic copy: client or native translator</span></div>
+  </div>
+  <div class="em-foot">Unsubscribe &nbsp;|&nbsp; Manage preferences<br>[Store address slot]</div>
+ </div>
+</div></div>
+</div></section>
+
+<section class="sec" id="whatsapp"><div class="wrap">
+ <div class="sh"><div class="k">03 / WhatsApp templates</div><h2>Seven messages, <em>approved first</em>.</h2><p>Meta approves every template before it can be sent. Each message below shows the template name, its category and the opt-in rule that guards it.</p></div>
+ <div class="intro-row" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:28px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)"><p style="margin:0;color:var(--muted);font-size:15px;max-width:70ch">Same toggle as above. In RTL the bubbles mirror and the copy slot reads: Arabic copy: client or native translator.</p><button type="button" class="rtl-toggle" aria-pressed="false">Layout: LTR (English)</button></div>
+ <div class="wa-grid">
+  <article class="wa-card" id="wa-wb">
+ <div class="phone" dir="ltr">
+  <div class="wa-head"><i></i><div><b>Store name (sample)</b><small>Business account</small></div></div>
+  <div class="wa-body"><div class="bubble"><span class="copy-en">Hi <span class="var">{{1}}</span>, there are new arrivals in <span class="var">{{2}}</span> since your last order. Take a look: <span class="var">{{3}}</span></span><p class="slot">Arabic copy: client or native translator</p><span class="ft">Reply STOP to opt out</span><span class="tm">sample</span></div><div class="wa-btn">View new arrivals</div></div>
+ </div>
+ <div class="wa-meta">
+  <span class="cat marketing">marketing template</span>
+  <h3>winback_nudge</h3>
+  <dl>
+   <div><dt>Flow and step</dt><dd>Win-back, Day 2</dd></div>
+   <div><dt>Opt-in rule</dt><dd>Marketing opt-in on the profile: wa_opt_in true, with source and timestamp. No opt-in, no send.</dd></div>
+   <div><dt>Meta approval</dt><dd>Submitted in English and in Arabic. No send until Meta marks it approved. Variables {{1}} onward are filled by n8n.</dd></div>
+  </dl>
+ </div>
+</article><article class="wa-card" id="wa-ac1">
+ <div class="phone" dir="ltr">
+  <div class="wa-head"><i></i><div><b>Store name (sample)</b><small>Business account</small></div></div>
+  <div class="wa-body"><div class="bubble"><span class="copy-en">Hi <span class="var">{{1}}</span>, you left items in your cart. They are saved here: <span class="var">{{2}}</span></span><p class="slot">Arabic copy: client or native translator</p><span class="ft">Reply STOP to opt out</span><span class="tm">sample</span></div><div class="wa-btn">Open my cart</div></div>
+ </div>
+ <div class="wa-meta">
+  <span class="cat marketing">marketing template</span>
+  <h3>cart_reminder</h3>
+  <dl>
+   <div><dt>Flow and step</dt><dd>Abandoned cart, +4h</dd></div>
+   <div><dt>Opt-in rule</dt><dd>Marketing opt-in on the profile. A checkout without consent gets the email only.</dd></div>
+   <div><dt>Meta approval</dt><dd>Submitted in English and in Arabic. No send until Meta marks it approved. Variables {{1}} onward are filled by n8n.</dd></div>
+  </dl>
+ </div>
+</article><article class="wa-card" id="wa-ac2">
+ <div class="phone" dir="ltr">
+  <div class="wa-head"><i></i><div><b>Store name (sample)</b><small>Business account</small></div></div>
+  <div class="wa-body"><div class="bubble"><span class="copy-en">Hi <span class="var">{{1}}</span>, your cart is still saved. Finish checkout here: <span class="var">{{2}}</span></span><p class="slot">Arabic copy: client or native translator</p><span class="ft">Reply STOP to opt out</span><span class="tm">sample</span></div><div class="wa-btn">Finish checkout</div></div>
+ </div>
+ <div class="wa-meta">
+  <span class="cat marketing">marketing template</span>
+  <h3>cart_final_reminder</h3>
+  <dl>
+   <div><dt>Flow and step</dt><dd>Abandoned cart, +48h, high carts only</dd></div>
+   <div><dt>Opt-in rule</dt><dd>Marketing opt-in on the profile AND cart value above [threshold TBD by client, KWD].</dd></div>
+   <div><dt>Meta approval</dt><dd>Submitted in English and in Arabic. No send until Meta marks it approved. Variables {{1}} onward are filled by n8n.</dd></div>
+  </dl>
+ </div>
+</article><article class="wa-card" id="wa-bis">
+ <div class="phone" dir="ltr">
+  <div class="wa-head"><i></i><div><b>Store name (sample)</b><small>Business account</small></div></div>
+  <div class="wa-body"><div class="bubble"><span class="copy-en">Hi <span class="var">{{1}}</span>, <span class="var">{{2}}</span> is back in stock, as you asked. Order here: <span class="var">{{3}}</span></span><p class="slot">Arabic copy: client or native translator</p><span class="tm">sample</span></div><div class="wa-btn">Order now</div></div>
+ </div>
+ <div class="wa-meta">
+  <span class="cat utility">utility template</span>
+  <h3>back_in_stock_alert</h3>
+  <dl>
+   <div><dt>Flow and step</dt><dd>Back in stock, At once</dd></div>
+   <div><dt>Opt-in rule</dt><dd>The customer&#x27;s own back-in-stock request, with WhatsApp ticked as the channel. Stored as wa_opt_in with source bis_form.</dd></div>
+   <div><dt>Meta approval</dt><dd>Submitted in English and in Arabic. No send until Meta marks it approved. Variables {{1}} onward are filled by n8n.</dd></div>
+  </dl>
+ </div>
+</article><article class="wa-card" id="wa-promo">
+ <div class="phone" dir="ltr">
+  <div class="wa-head"><i></i><div><b>Store name (sample)</b><small>Business account</small></div></div>
+  <div class="wa-body"><div class="bubble"><span class="copy-en">Hi <span class="var">{{1}}</span>, an offer on <span class="var">{{2}}</span> is live: <span class="var">{{3}}</span></span><p class="slot">Arabic copy: client or native translator</p><span class="ft">Reply STOP to opt out</span><span class="tm">sample</span></div><div class="wa-btn">See the offer</div></div>
+ </div>
+ <div class="wa-meta">
+  <span class="cat marketing">marketing template</span>
+  <h3>category_offer</h3>
+  <dl>
+   <div><dt>Flow and step</dt><dd>Promo, +1 day</dd></div>
+   <div><dt>Opt-in rule</dt><dd>Marketing opt-in on the profile, no click on the email, no order since the send.</dd></div>
+   <div><dt>Meta approval</dt><dd>Submitted in English and in Arabic. No send until Meta marks it approved. Variables {{1}} onward are filled by n8n.</dd></div>
+  </dl>
+ </div>
+</article><article class="wa-card" id="wa-na">
+ <div class="phone" dir="ltr">
+  <div class="wa-head"><i></i><div><b>Store name (sample)</b><small>Business account</small></div></div>
+  <div class="wa-body"><div class="bubble"><span class="copy-en">Hi <span class="var">{{1}}</span>, new in <span class="var">{{2}}</span> this week: <span class="var">{{3}}</span></span><p class="slot">Arabic copy: client or native translator</p><span class="ft">Reply STOP to opt out</span><span class="tm">sample</span></div><div class="wa-btn">See new arrivals</div></div>
+ </div>
+ <div class="wa-meta">
+  <span class="cat marketing">marketing template</span>
+  <h3>new_in_category</h3>
+  <dl>
+   <div><dt>Flow and step</dt><dd>New arrivals, +1 day</dd></div>
+   <div><dt>Opt-in rule</dt><dd>Marketing opt-in on the profile and no click on the email.</dd></div>
+   <div><dt>Meta approval</dt><dd>Submitted in English and in Arabic. No send until Meta marks it approved. Variables {{1}} onward are filled by n8n.</dd></div>
+  </dl>
+ </div>
+</article><article class="wa-card" id="wa-rp">
+ <div class="phone" dir="ltr">
+  <div class="wa-head"><i></i><div><b>Store name (sample)</b><small>Business account</small></div></div>
+  <div class="wa-body"><div class="bubble"><span class="copy-en">Hi <span class="var">{{1}}</span>, your <span class="var">{{2}}</span> may be running low. Reorder here: <span class="var">{{3}}</span></span><p class="slot">Arabic copy: client or native translator</p><span class="ft">Reply STOP to opt out</span><span class="tm">sample</span></div><div class="wa-btn">Reorder</div></div>
+ </div>
+ <div class="wa-meta">
+  <span class="cat marketing">marketing template</span>
+  <h3>reorder_reminder</h3>
+  <dl>
+   <div><dt>Flow and step</dt><dd>Replenishment, Cycle minus 5 days</dd></div>
+   <div><dt>Opt-in rule</dt><dd>Marketing opt-in on the profile. A reorder reminder promotes a purchase, so it is filed as marketing.</dd></div>
+   <div><dt>Meta approval</dt><dd>Submitted in English and in Arabic. No send until Meta marks it approved. Variables {{1}} onward are filled by n8n.</dd></div>
+  </dl>
+ </div>
+</article>
+  <article class="wa-card rules"><div>
+   <h3>How Meta approval shapes the plan</h3>
+   <ol>
+    <li><b>Template first.</b> Business-initiated messages outside the 24-hour customer window need an approved template.</li>
+    <li><b>Category at submission.</b> Utility or marketing is set when the template is submitted. Meta can reclassify it, and the provider shows the final category.</li>
+    <li><b>Opt-in before send.</b> A profile with no WhatsApp opt-in never receives a template.</li>
+    <li><b>Two languages.</b> English and Arabic are submitted as separate versions. The Arabic text comes from the client or a native translator.</li>
+    <li><b>Submitted early.</b> Templates go in on day 2 of the plan, so review time never blocks the build.</li>
+   </ol></div>
+  </article>
+ </div>
+</div></section>
+
+<section class="sec" id="wiring"><div class="wrap">
+ <div class="sh"><div class="k">04 / Wiring</div><h2>From a Shopify event to a <em>WhatsApp</em> message.</h2><p>Klaviyo decides who gets what and when. n8n carries the WhatsApp leg through an approved provider.</p></div>
+ <div class="wire-row">
+  <div class="wn"><span class="k">Source</span><h3>Shopify</h3><ul><li>Started Checkout</li><li>Placed Order</li><li>Viewed Product</li><li>Product created</li></ul></div>
+  <div class="edge"><span>1</span></div>
+  <div class="wn"><span class="k">Decides</span><h3>Klaviyo</h3><ul><li>Profiles and consent</li><li>Segments and flows</li><li>All email sends</li><li>Webhook action on WhatsApp steps</li></ul></div>
+  <div class="edge"><span>2</span></div>
+  <div class="wn"><span class="k">Carries</span><h3>n8n</h3><ul><li>Receives the webhook</li><li>Checks wa_opt_in</li><li>Maps flow step to template</li><li>Fills the variables</li></ul></div>
+  <div class="edge"><span>3</span></div>
+  <div class="wn m"><span class="k">Approved provider</span><h3>Provider</h3><ul><li>Holds the WhatsApp number</li><li>Template register</li><li>Sends through Meta</li></ul></div>
+  <div class="edge"><span>4</span></div>
+  <div class="wn m"><span class="k">Meta</span><h3>WhatsApp Cloud API</h3><ul><li>Delivers to the customer</li><li>Returns status events</li><li>Receives replies and STOP</li></ul></div>
+ </div>
+ <ol class="wire-legend">
+  <li><span>Shopify events reach Klaviyo through the Shopify integration. Order history and browsing build the segments.</span></li>
+  <li><span>A Klaviyo flow action calls an n8n webhook with the profile id, the step name and the template variables.</span></li>
+  <li><span>n8n re-checks consent, picks the approved template and calls the provider API.</span></li>
+  <li><span>The provider sends through the WhatsApp Cloud API. Status and replies come back the same way.</span></li>
+ </ol>
+ <div class="back"><b>Return path</b>Provider status webhooks go to n8n. n8n writes them to the Klaviyo profile as events: delivered, read, replied, STOP. STOP flips wa_opt_in to false at once. These events also power the 'clicked since day 0' split.</div>
+
+ <div class="optin">
+  <div class="opt"><span class="k">Capture 1</span><h4>Checkout</h4><p>A tick box, unticked by default, with plain text naming WhatsApp messages. Saved as a cart attribute on every plan, or as a checkout field where the plan allows it. Confirmed at kickoff.</p><p>Writes <code>wa_opt_in</code> <code>wa_opt_in_source=checkout</code> <code>wa_opt_in_at</code></p></div>
+  <div class="opt"><span class="k">Capture 2</span><h4>Pop-up</h4><p>A Klaviyo form with a phone field and a separate WhatsApp consent line. The email field and the WhatsApp consent are independent.</p><p>Writes <code>wa_opt_in</code> <code>wa_opt_in_source=popup</code> <code>wa_opt_in_at</code></p></div>
+  <div class="opt"><span class="k">Capture 3</span><h4>Keyword</h4><p>The customer sends JOIN to the store's WhatsApp number. The provider forwards the inbound message to n8n, which sets the opt-in and sends a confirmation.</p><p>Writes <code>wa_opt_in</code> <code>wa_opt_in_source=keyword</code> <code>wa_opt_in_at</code></p></div>
+ </div>
+ <div class="note"><b>One leg may disappear.</b> If Klaviyo's native WhatsApp is available for the account's region, it replaces the n8n leg and the provider hop. Flows, tags and opt-in rules stay the same. Availability is checked on day 1.</div>
+</div></section>
+
+<section class="sec" id="qa"><div class="wrap">
+ <div class="sh"><div class="k">05 / QA plan</div><h2>Nothing goes live <em>unchecked</em>.</h2><p>Three passes: staging, one live test per flow, and a tag check on every step. The checklist below is the live version of the third pass.</p></div>
+ <div class="qa-steps">
+  <div class="qs"><span class="k">Pass 1</span><h3>Staging</h3><ul><li>Shopify development store and a separate Klaviyo test list.</li><li>Flows built in draft. Waits cut to minutes.</li><li>n8n test workflow points at the provider sandbox or a test number.</li><li>Every wait restored to its real length, then checked off.</li></ul></div>
+  <div class="qs"><span class="k">Pass 2</span><h3>One live test per flow</h3><ul><li>One seed profile per flow on the real store.</li><li>Check the entry trigger, the first message and the exit.</li><li>Long waits (90 days, product cycle) are proven in staging.</li><li>Send windows checked against Kuwait time, Sunday to Thursday.</li></ul></div>
+  <div class="qs"><span class="k">Pass 3</span><h3>Tag check per step</h3><ul><li>Each step writes one named tag.</li><li>After each test run, open the profile and tick the tag.</li><li>A missing tag means the step did not run. That is a fail.</li><li>Results go into the handover doc.</li></ul></div>
+ </div>
+ <div class="tagcheck"><details open><summary>01 Win-back<span class="cnt"></span></summary><ul><li><label><input type="checkbox"><span class="nm">Entry: no order in 90 days <code>lc_wb_entered</code></span><small>Logic</small></label></li><li><label><input type="checkbox"><span class="nm">Email 1: what is new <code>lc_wb_e1_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">WhatsApp nudge <code>lc_wb_w1_sent</code></span><small>WhatsApp</small></label></li><li><label><input type="checkbox"><span class="nm">Split: clicked since day 0? <code>lc_wb_split_checked</code></span><small>Logic</small></label></li><li><label><input type="checkbox"><span class="nm">Email 2: discount <code>lc_wb_e2_disc_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">Email 2: no discount <code>lc_wb_e2_plain_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">Exit <code>lc_wb_converted</code><code>lc_wb_final</code></span><small>Exit</small></label></li></ul></details><details><summary>02 Abandoned cart<span class="cnt"></span></summary><ul><li><label><input type="checkbox"><span class="nm">Entry: Started Checkout <code>lc_ac_entered</code></span><small>Logic</small></label></li><li><label><input type="checkbox"><span class="nm">Email 1: cart saved <code>lc_ac_e1_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">WhatsApp reminder <code>lc_ac_w1_sent</code></span><small>WhatsApp</small></label></li><li><label><input type="checkbox"><span class="nm">A/B split on the 24h subject <code>lc_ac_split</code></span><small>Logic</small></label></li><li><label><input type="checkbox"><span class="nm">Email 2, subject A <code>lc_ac_e2_a_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">Email 2, subject B <code>lc_ac_e2_b_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">WhatsApp last reminder, high carts only <code>lc_ac_w2_sent</code><code>lc_ac_w2_skipped</code></span><small>WhatsApp</small></label></li><li><label><input type="checkbox"><span class="nm">Exit <code>lc_ac_converted</code><code>lc_ac_lost</code></span><small>Exit</small></label></li></ul></details><details><summary>03 Back in stock<span class="cnt"></span></summary><ul><li><label><input type="checkbox"><span class="nm">Entry: product is back <code>lc_bis_entered</code></span><small>Logic</small></label></li><li><label><input type="checkbox"><span class="nm">WhatsApp alert <code>lc_bis_w1_sent</code></span><small>WhatsApp</small></label></li><li><label><input type="checkbox"><span class="nm">Email follow-up <code>lc_bis_e1_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">Exit and cap <code>lc_bis_capped</code></span><small>Exit</small></label></li></ul></details><details><summary>04 Promo<span class="cnt"></span></summary><ul><li><label><input type="checkbox"><span class="nm">Entry: category audience <code>lc_promo_[category]_entered</code></span><small>Logic</small></label></li><li><label><input type="checkbox"><span class="nm">A/B split <code>lc_promo_split</code></span><small>Logic</small></label></li><li><label><input type="checkbox"><span class="nm">Promo email, subject A <code>lc_promo_a_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">Promo email, subject B <code>lc_promo_b_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">WhatsApp promo <code>lc_promo_w1_sent</code></span><small>WhatsApp</small></label></li><li><label><input type="checkbox"><span class="nm">Exit <code>lc_promo_done</code></span><small>Exit</small></label></li></ul></details><details><summary>05 New arrivals<span class="cnt"></span></summary><ul><li><label><input type="checkbox"><span class="nm">Entry: weekly batch <code>lc_na_entered</code></span><small>Logic</small></label></li><li><label><input type="checkbox"><span class="nm">Digest for their category <code>lc_na_cat_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">General digest <code>lc_na_all_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">WhatsApp teaser <code>lc_na_w1_sent</code></span><small>WhatsApp</small></label></li><li><label><input type="checkbox"><span class="nm">Exit <code>lc_na_done</code></span><small>Exit</small></label></li></ul></details><details><summary>06 Replenishment<span class="cnt"></span></summary><ul><li><label><input type="checkbox"><span class="nm">Entry: consumable ordered <code>lc_rp_entered</code></span><small>Logic</small></label></li><li><label><input type="checkbox"><span class="nm">WhatsApp reorder reminder <code>lc_rp_w1_sent</code></span><small>WhatsApp</small></label></li><li><label><input type="checkbox"><span class="nm">Email reorder reminder <code>lc_rp_e1_sent</code></span><small>Email</small></label></li><li><label><input type="checkbox"><span class="nm">Exit <code>lc_rp_reordered</code><code>lc_rp_lapsed</code></span><small>Exit</small></label></li></ul></details></div>
+</div></section>
+
+<section class="sec" id="handover"><div class="wrap">
+ <div class="sh"><div class="k">06 / Handover and plan</div><h2>You can run it <em>without me</em>.</h2><p>The handover doc is written as the build goes, not at the end. The plan fits 14 days from the day access is granted.</p></div>
+ <div class="ho">
+  <ol class="outline">
+   <li><span><b>System map</b>One page: events, Klaviyo, n8n, provider, Meta.</span></li>
+   <li><span><b>Flow specs</b>The six maps from this page, final values filled in.</span></li>
+   <li><span><b>Tag dictionary</b>Every tag, what writes it, what reads it.</span></li>
+   <li><span><b>Template register</b>Name, category, language, approval status.</span></li>
+   <li><span><b>Consent rules</b>Where opt-in is captured, what is stored, how STOP works.</span></li>
+   <li><span><b>Access list</b>Who owns each account. No passwords in the doc.</span></li>
+   <li><span><b>QA results</b>The tag check, signed off per flow.</span></li>
+   <li><span><b>Runbook</b>What breaks, how to see it, how to fix it.</span></li>
+   <li><span><b>Change guide</b>How to edit a wait, a branch or a template safely.</span></li>
+  </ol>
+  <div>
+   <div class="plan">
+    <div class="pw"><h3>Week 1</h3>
+     <div class="pd"><b>Day 1</b><span>Access, store and Klaviyo audit. Start WhatsApp provider and business verification. Check native WhatsApp availability.</span></div>
+     <div class="pd"><b>Day 2</b><span>Consent model. Submit the WhatsApp templates to Meta.</span></div>
+     <div class="pd"><b>Day 3 to 5</b><span>Build abandoned cart and win-back in draft, with the emails.</span></div>
+     <div class="pd"><b>Day 6 to 7</b><span>Build back in stock and replenishment.</span></div>
+    </div>
+    <div class="pw"><h3>Week 2</h3>
+     <div class="pd"><b>Day 8 to 9</b><span>Build promo and new arrivals. Wire n8n to the provider.</span></div>
+     <div class="pd"><b>Day 10</b><span>Opt-in capture: checkout, pop-up, keyword.</span></div>
+     <div class="pd"><b>Day 11 to 12</b><span>Staging pass. Fix and re-run.</span></div>
+     <div class="pd"><b>Day 13</b><span>One live test per flow. Tag check.</span></div>
+     <div class="pd"><b>Day 14</b><span>Go-live checklist, handover doc, walkthrough call.</span></div>
+    </div>
+   </div>
+   <div class="need"><h4>What I need from you</h4><ul><li>Shopify and Klaviyo access.</li><li>Meta Business Manager access, or a person who can verify the business.</li><li>The Arabic copy, from you or a native translator.</li><li>Discount rules, the cart value threshold and the product cycle days.</li></ul></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="sec" id="price"><div class="wrap">
+ <div class="sh"><div class="k">07 / Price</div><h2>One price, <em>one date</em>.</h2></div>
+ <div class="price-grid">
+  <div class="pbox">
+   <div class="big">$900</div>
+   <div class="days">14 days from access</div>
+   <ul><li>Six flows, built and tested</li><li>Nine email templates, mobile first, with RTL layout</li><li>Seven WhatsApp templates, submitted to Meta</li><li>Wiring, opt-in capture and the QA pass</li><li>Handover doc and a walkthrough call</li></ul>
+   <a class="btn" href="mailto:erenes1667@gmail.com?subject=Kuwait%20lifecycle%20flows">Start the 14 days</a>
+   <p class="paynote">Payment by Payoneer or bank transfer.</p>
+  </div>
+  <div class="cols2">
+   <div class="cbox"><h4>Not in the price</h4><ul><li>The Klaviyo plan and the WhatsApp provider fees</li><li>Meta message charges</li><li>Arabic translation</li><li>Discount budget</li></ul></div>
+   <div class="cbox"><h4>Who builds it</h4><p>Enes Eren, Istanbul. I build and run Klaviyo flows and campaigns for Shopify and BigCommerce stores, with n8n and GoHighLevel automations, landing pages and cold email setups. Code and projects: <a href="https://github.com/erenes1667" rel="noopener">github.com/erenes1667</a>.</p></div>
+  </div>
+ </div>
+</div></section>
+</main>
+
+<footer class="site"><div class="wrap"><span>Sample plan. No client data, no logos, every value is a sample or a slot.</span><a href="../../index.html">Enes Eren Studio</a></div></footer>
+<script src="app.js"></script>
+</body>
+</html>

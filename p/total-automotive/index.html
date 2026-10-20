@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Brand Social Brief Skill</title>
+<meta name="description" content="A Claude skill that turns a one-line social brief and a brand guide into a design spec, with a real run, a size matrix and a handover plan. Sample brand guide, no client branding.">
+<meta name="theme-color" content="#0a0908">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0908'/%3E%3Cpath d='M14 12h34v9H24v8h20v9H24v8h26v9H14z' fill='%23ff6b2c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@700&family=Open+Sans:wght@400&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>document.documentElement.className+=" js"</script>
+<!--
+WHERE EVERYTHING ON THIS PAGE COMES FROM
+  SKILL.md ........... skill/brand-social-brief/SKILL.md. The text in section 01 is that file, byte for byte.
+                       The headless run loaded the same file as its system prompt (build.py checks the match).
+  Brand guide ........ sample/brand-guide.md. Written by Enes for this page. Not Total Automotive's guide.
+  Spec ............... run/spec.json, extracted from the model reply of the real run (claude-sonnet-5-5, 2026-10-20).
+  Layout preview ..... drawn by build.py from spec.json regions. It is HTML, not a Canva export.
+  Sizes .............. the brief for this bid.
+  GBP 240, 7 days .... the offer for this bid.
+
+OPEN GAPS
+  TODO: Canva connector sign-in was not completed in the session that built this page. No design was created.
+        When it is signed in: run the spec through the connector, save the call log to run/canva-connector-log.txt,
+        save a screenshot of the editable design to run/canva-design.png, then replace the "not run" box in section 02
+        and the status line in the hero. Do not claim a Canva build before that.
+  TODO: Total Automotive's real brand guide, fonts and asset list. Nothing here uses their brand.
+-->
+<style>
+body.proof{--accent:#ff6b2c}
+.proof .nav .wrap{height:56px}
+.p-hero{padding:56px 0 64px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.p-hero::before{content:"";position:absolute;right:-12%;top:-20%;width:70vw;max-width:900px;aspect-ratio:1;background:radial-gradient(circle,rgba(255,107,44,.16),transparent 62%);pointer-events:none}
+.p-hero .wrap{position:relative}
+.p-hero h1{font-size:clamp(54px,12.5vw,150px);margin:0 0 22px}
+.p-hero h1 .o{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
+.p-hero .lede{max-width:52ch}
+.status{display:grid;gap:0;margin:38px 0 0;border:1px solid var(--line);border-radius:3px;background:rgba(239,233,225,.02)}
+.status div{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.status div:last-child{border-bottom:0}
+.status b{font:700 12px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;min-width:92px}
+.status .ok b{color:#9bd0a4}
+.status .no b{color:var(--accent)}
+.status span{color:var(--mute);font-size:15px;flex:1 1 220px}
+.status span em{font-style:normal;color:var(--ink)}
+@media (min-width:900px){.status{grid-template-columns:repeat(3,1fr)}.status div{border-bottom:0;border-right:1px solid var(--line);flex-direction:column;gap:10px}.status span{flex:none}.status div:last-child{border-right:0}}
+.sample-flag{display:inline-block;font:700 11px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);padding:6px 9px;border-radius:2px;vertical-align:middle;margin-left:8px}
+
+.sec{padding:80px 0;border-bottom:1px solid var(--line)}
+.sec h2{font-size:clamp(40px,7vw,88px);margin:0 0 18px}
+.sec .num{font:700 12px/1 var(--f-body);letter-spacing:.2em;color:var(--accent);display:block;margin-bottom:14px}
+.sec p{color:var(--mute);max-width:64ch}
+.sec p strong{color:var(--ink);font-weight:500}
+.sec h3{font:800 clamp(24px,3vw,32px)/1 var(--f-display);text-transform:uppercase;margin:44px 0 14px;letter-spacing:.01em}
+.mono,pre,code{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{margin:0;padding:18px;background:#070605;border:1px solid var(--line);border-radius:3px;font-size:12.5px;line-height:1.6;color:#d9d2c8;overflow:auto;max-height:520px;white-space:pre-wrap;word-break:break-word;tab-size:2}
+pre.tall{max-height:none}
+.files{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
+.two{display:grid;gap:22px}
+@media (min-width:980px){.two{grid-template-columns:1fr 1fr;align-items:start}.two.wide-left{grid-template-columns:1.15fr .85fr}}
+.box{padding:20px}
+.box h4{margin:0 0 10px;font:700 12px/1 var(--f-body);letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.box p,.box li{color:var(--mute);font-size:16px}
+.box ul{margin:0;padding-left:18px}
+.box li{margin:6px 0}
+.box li strong{color:var(--ink);font-weight:500}
+.pipe{display:grid;gap:10px;margin:28px 0 34px;padding:0;list-style:none;counter-reset:p}
+.pipe li{padding:16px 18px;border:1px solid var(--line);border-radius:3px;position:relative}
+.pipe li b{display:block;font:700 12px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.pipe li span{color:var(--mute);font-size:15px}
+.pipe li b .sample-flag{color:var(--accent-ink);display:inline-block;margin-left:6px}
+.pipe li.dead{border-style:dashed}
+.pipe li.dead b{color:var(--mute)}
+@media (min-width:900px){.pipe{grid-template-columns:repeat(4,1fr)}}
+
+/* spec view */
+.specview{display:grid;gap:26px}
+@media (min-width:980px){.specview{grid-template-columns:minmax(0,1fr) minmax(0,420px);align-items:start}}
+.kv{display:grid;gap:0;border:1px solid var(--line);border-radius:3px}
+.kv div{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:15px}
+.kv div:last-child{border-bottom:0}
+.kv dt,.kv .k{font:700 11px/1.6 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.kv dd,.kv .v{margin:0;color:var(--ink);overflow-wrap:anywhere}
+.sw{display:inline-flex;align-items:center;gap:8px;margin:2px 14px 2px 0;font:400 12px/1 "JetBrains Mono",monospace;color:var(--mute)}
+.sw i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(239,233,225,.35);display:inline-block}
+.prev{position:relative}
+.prev figcaption{font-size:13px;color:var(--mute);margin-top:12px;max-width:44ch}
+.prev figcaption b{color:var(--accent);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:11px;display:block;margin-bottom:4px}
+.canvas{container-type:inline-size;position:relative;width:100%;max-width:420px;aspect-ratio:1080/1350;background:#1F2A33;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.canvas .r{position:absolute;margin:0}
+.canvas .hl{font:700 7.1cqw/1.12 "Montserrat",Arial,sans-serif;color:#EDEAE4;letter-spacing:-.005em}
+.canvas ol{list-style:none;padding:0;margin:0;counter-reset:b;font:400 3.7cqw/1.38 "Open Sans",Arial,sans-serif;color:#EDEAE4;display:flex;flex-direction:column;gap:3.4cqw}
+.canvas ol li{counter-increment:b;display:grid;grid-template-columns:7cqw 1fr;gap:1.2cqw;color:#EDEAE4;font-size:inherit}
+.canvas ol li::before{content:counter(b) ".";color:#C8892B;font-weight:400}
+.canvas .cta{background:#C8892B;color:#1F2A33;font:700 3.1cqw/1 "Montserrat",Arial,sans-serif;display:flex;align-items:center;justify-content:center;border-radius:.5cqw}
+.canvas .ft{font:400 2.7cqw/1.3 "Open Sans",Arial,sans-serif;color:#B9C0C6;display:flex;align-items:center}
+.canvas .ic svg{width:100%;height:100%;display:block}
+.cvs-note{position:absolute;right:8px;top:8px;font:700 9px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;background:rgba(10,9,8,.8);color:var(--ink);padding:5px 7px;border:1px solid var(--line)}
+
+.nobox{border:1px dashed var(--accent);border-radius:3px;padding:22px;background:rgba(255,107,44,.05);margin:26px 0}
+.nobox h4{margin:0 0 10px;font:800 28px/1 var(--f-display);text-transform:uppercase}
+.nobox p{margin:0 0 12px;color:var(--ink);max-width:70ch}
+.nobox p.m{color:var(--mute)}
+.slots{display:grid;gap:14px;margin-top:18px}
+@media (min-width:760px){.slots{grid-template-columns:1fr 1fr}}
+.slot{border:1px dashed var(--line);padding:16px;border-radius:3px;min-height:96px}
+.slot b{display:block;font:700 11px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+.slot span{color:var(--mute);font-size:15px}
+
+/* matrix */
+.matrix{display:grid;gap:12px;margin:26px 0 0;padding:0;list-style:none}
+.matrix li{display:grid;grid-template-columns:96px 1fr;gap:6px 18px;padding:16px;border:1px solid var(--line);border-radius:3px;align-items:center}
+.matrix .sh{grid-row:span 3;display:flex;align-items:center;justify-content:center;height:96px}
+.matrix .sh i{display:block;border:1.5px solid var(--accent);background:rgba(255,107,44,.08);border-radius:2px}
+.matrix .nm{font:800 26px/1 var(--f-display);text-transform:uppercase}
+.matrix .sz{font:500 15px/1.3 "JetBrains Mono",monospace;color:var(--ink)}
+.matrix .tp{font-size:14px;color:var(--mute)}
+.matrix .tp b{color:var(--accent);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:11px}
+@media (min-width:900px){
+  .matrix{grid-template-columns:repeat(3,1fr)}
+}
+.tmpl{display:grid;gap:16px;margin-top:20px}
+@media (min-width:900px){.tmpl{grid-template-columns:repeat(3,1fr)}}
+.tmpl .box h4{margin:0 0 8px;font:800 30px/1 var(--f-display);text-transform:uppercase;letter-spacing:.01em;color:var(--ink)}
+.tmpl .sz{font:500 13px/1.5 "JetBrains Mono",monospace;color:var(--accent);margin:0 0 10px}
+
+.limits{border:1px solid var(--accent);border-radius:3px;padding:24px 22px;background:linear-gradient(180deg,rgba(255,107,44,.08),rgba(255,107,44,.02))}
+.limits ol{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:14px;counter-reset:l}
+.limits li{counter-increment:l;display:grid;grid-template-columns:34px 1fr;gap:10px;color:var(--ink);font-size:17px}
+.limits li::before{content:counter(l);font:800 22px/1 var(--f-display);color:var(--accent)}
+.limits li span{color:var(--mute)}
+
+.list{margin:0;padding:0;list-style:none;display:grid;gap:0;border-top:1px solid var(--line)}
+.list li{padding:14px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:34px 1fr;gap:10px;color:var(--ink)}
+.list li i{font:700 12px/1.7 var(--f-body);font-style:normal;color:var(--accent);letter-spacing:.1em}
+.list li span{color:var(--mute);display:block;font-size:15px}
+
+.price{display:grid;gap:22px}
+@media (min-width:900px){.price{grid-template-columns:1fr 1.2fr;align-items:start}}
+.price .big{padding:28px 24px;border:1px solid var(--accent);border-radius:3px;background:linear-gradient(180deg,rgba(255,107,44,.1),transparent)}
+.price .big .amt{font:900 clamp(84px,15vw,150px)/.9 var(--f-display);letter-spacing:.01em;margin:22px 0 10px}
+.price .big .amt small{font-size:.38em;margin-right:6px;color:var(--accent)}
+.price .big .days{font:800 34px/1 var(--f-display);text-transform:uppercase}
+.price .big p{margin:16px 0 0;font-size:15px}
+.price .big a.btn{margin-top:22px}
+.cal{display:grid;gap:0;margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.cal li{display:grid;grid-template-columns:70px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:16px}
+.cal li b{font:700 12px/1.7 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.cal li span{color:var(--mute)}
+.sec:last-of-type{border-bottom:0}
+.tree{font-size:12.5px;white-space:pre;overflow-x:auto}
+@media (max-width:420px){.tree{font-size:11.5px}}
+</style>
+</head>
+<body class="proof">
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav"><div class="wrap">
+  <a class="back" href="../../index.html">&larr; Enes Eren Studio</a>
+  <a class="btn" href="mailto:erenes1667@gmail.com?subject=Brand%20social%20brief%20skill">Email Enes</a>
+</div></nav>
+
+<main id="main">
+<header class="p-hero"><div class="wrap">
+  <p class="eyebrow">Proof for one bid. UK automotive claims management</p>
+  <h1 class="display">Brief in.<br><span class="o">Design spec</span><br>out.</h1>
+  <p class="lede"><strong>A Claude skill that reads your brand guide and a one-line brief, and returns a design spec</strong> your team can build from in Canva. This page shows the skill, a real run of it, and the one step that did not run: Canva.</p>
+  <div class="status reveal" role="list">
+    <div class="ok" role="listitem"><b>Ran</b><span><em>The skill.</em> Real run on 2026-10-20, spec below.</span></div>
+    <div class="no" role="listitem"><b>Not run</b><span><em>The Canva build.</em> The Canva connector asked for a sign-in that was not completed. No design was created.</span></div>
+    <div class="ok" role="listitem"><b>Sample</b><span><em>The brand guide.</em> I wrote it for this page. No Total Automotive logo, colors or images are used.</span></div>
+  </div>
+</div></header>
+
+<section class="sec" id="skill"><div class="wrap">
+  <span class="num">01</span>
+  <h2 class="display">The skill</h2>
+  <p>One file. <strong>Input:</strong> a one-line brief and a brand guide file. <strong>Output:</strong> one JSON design spec with platform, size, headline, body, CTA, layout, color roles and the asset to use. The size table and the length caps live in the file, so every post follows them.</p>
+  <p>This is the exact file the run below loaded as its instructions.</p>
+  <div class="files">
+    <a class="chip" href="skill/brand-social-brief/SKILL.md">SKILL.md (raw file)</a>
+  </div>
+  <div style="margin-top:22px"><pre class="tall" id="skill-md">---
+name: brand-social-brief
+description: Turn a one-line social post brief plus a brand guide file into one design spec (JSON) that a designer or Canva can build from. Use when asked for a social post, carousel, Reel cover, Facebook, LinkedIn or TikTok graphic for a brand that has a guide file.
+---
+
+# brand-social-brief
+
+Input: a one-line brief and a path to a brand guide file.
+Output: one JSON design spec. Nothing else. No prose before or after.
+
+## Steps
+
+1. Read the brand guide file in full. Use only colors, fonts, tone rules and asset names found there.
+2. Read the brief. Find the platform and format. If the brief names no platform, stop and return {&quot;error&quot;: &quot;platform missing&quot;}.
+3. Pick the size from the size table below. Never invent a size.
+4. Write the copy inside the length caps. Follow the tone rules and the banned list in the guide.
+5. Pick the layout, assign color roles from the guide, name one asset from the guide&#x27;s asset list.
+6. Return the JSON.
+
+## Size table
+
+| platform_format | size_px | template_type |
+|---|---|---|
+| instagram_post | 1080x1350 | feed |
+| instagram_carousel | 1080x1080 | feed |
+| reel_cover | 1080x1920 | vertical |
+| facebook_post | 1200x630 | landscape |
+| linkedin_post | 1200x627 | landscape |
+| tiktok_cover | 1080x1920 | vertical |
+
+## Length caps
+
+- headline: 8 words or fewer, 48 characters or fewer.
+- body: 3 numbered points for a list brief, each 12 words or fewer. Otherwise 25 words or fewer.
+- cta: 4 words or fewer.
+- Landscape: headline 6 words or fewer.
+
+## Layout rules
+
+- Margins: 64 px on every side.
+- Vertical templates: keep text out of the top 220 px and the bottom 300 px. Working default, tune per platform.
+- One focal element. One accent use. Text on a flat color block, never on a busy photo.
+- Carousel: spec the cover slide only and set &quot;slides&quot; to the planned slide count.
+
+## Output shape
+
+```json
+{
+  &quot;brief&quot;: &quot;&lt;the brief, copied word for word&gt;&quot;,
+  &quot;brand_guide&quot;: &quot;&lt;file name&gt;&quot;,
+  &quot;platform_format&quot;: &quot;&lt;key from the size table&gt;&quot;,
+  &quot;size_px&quot;: &quot;&lt;WxH&gt;&quot;,
+  &quot;template_type&quot;: &quot;feed | vertical | landscape&quot;,
+  &quot;headline&quot;: &quot;&quot;,
+  &quot;body&quot;: [&quot;&quot;],
+  &quot;cta&quot;: &quot;&quot;,
+  &quot;layout&quot;: {
+    &quot;structure&quot;: &quot;&lt;one sentence&gt;&quot;,
+    &quot;regions&quot;: [{&quot;name&quot;: &quot;&quot;, &quot;x&quot;: 0, &quot;y&quot;: 0, &quot;w&quot;: 0, &quot;h&quot;: 0, &quot;content&quot;: &quot;&quot;}]
+  },
+  &quot;color_roles&quot;: {&quot;background&quot;: &quot;&lt;hex from guide&gt;&quot;, &quot;headline&quot;: &quot;&lt;hex&gt;&quot;, &quot;body&quot;: &quot;&lt;hex&gt;&quot;, &quot;accent&quot;: &quot;&lt;hex&gt;&quot;, &quot;cta_fill&quot;: &quot;&lt;hex&gt;&quot;, &quot;cta_text&quot;: &quot;&lt;hex&gt;&quot;},
+  &quot;fonts&quot;: {&quot;headline&quot;: &quot;&lt;from guide&gt;&quot;, &quot;body&quot;: &quot;&lt;from guide&gt;&quot;},
+  &quot;asset&quot;: {&quot;file&quot;: &quot;&lt;name from guide asset list&gt;&quot;, &quot;use&quot;: &quot;&quot;},
+  &quot;alt_text&quot;: &quot;&quot;,
+  &quot;checks&quot;: [&quot;&lt;each rule from the guide you applied&gt;&quot;],
+  &quot;open_questions&quot;: [&quot;&lt;anything the guide did not answer&gt;&quot;]
+}
+```
+
+## Hard rules
+
+- Never state a result, a payout, a time limit or a &quot;no win no fee&quot; promise unless the guide gives the exact wording.
+- Never use a logo, a color or a font the guide does not list.
+- If the guide is silent on something, put it in open_questions. Do not guess.
+- Regions must fit inside the canvas and respect margins.
+</pre></div>
+</div></section>
+
+<section class="sec" id="run"><div class="wrap">
+  <span class="num">02</span>
+  <h2 class="display">A real run</h2>
+  <p>The sample brief went through the skill on 2026-10-20 (00:00 UTC) with model <span class="mono">claude-sonnet-5-5</span>, headless, with only the Read tool. The reply was valid JSON. I checked the headline length, the body caps and that every region sits inside the 64 px margins.</p>
+
+  <ol class="pipe">
+    <li><b>1 Brief</b><span class="mono" style="font-size:13px;color:var(--ink)">Instagram post: 3 things to do after a non-fault accident</span></li>
+    <li><b>2 Brand guide <span class="sample-flag">Sample</span></b><span>Written for this demo. Slate, stone, one amber accent. Not the client's guide.</span></li>
+    <li><b>3 Skill</b><span>Read the guide, picked 1080x1350, wrote copy inside the caps, returned the spec.</span></li>
+    <li class="dead"><b>4 Canva</b><span>Not run. See the box below.</span></li>
+  </ol>
+
+  <h3>The spec the skill returned</h3>
+  <div class="specview">
+    <div>
+      <dl class="kv">
+        <div><dt>Platform</dt><dd>instagram_post</dd></div>
+        <div><dt>Size</dt><dd>1080x1350 px. Template type: feed</dd></div>
+        <div><dt>Headline</dt><dd>3 things to do after a non-fault accident</dd></div>
+        <div><dt>Body</dt><dd>1. Check everyone is safe and call 999 if anyone is hurt.<br>2. Take photos and note names, plates and contact details.<br>3. Write down what happened while you still remember it clearly.</dd></div>
+        <div><dt>CTA</dt><dd>Talk to us</dd></div>
+        <div><dt>Layout</dt><dd>Single column on a flat slate background: small clipboard icon top left, large headline, three numbered points, an accent CTA button, then the guidance footer line.</dd></div>
+        <div><dt>Color roles</dt><dd><span class="sw"><i style="background:#1F2A33"></i>background #1F2A33</span><span class="sw"><i style="background:#EDEAE4"></i>headline #EDEAE4</span><span class="sw"><i style="background:#EDEAE4"></i>body #EDEAE4</span><span class="sw"><i style="background:#C8892B"></i>accent #C8892B</span><span class="sw"><i style="background:#C8892B"></i>cta_fill #C8892B</span><span class="sw"><i style="background:#1F2A33"></i>cta_text #1F2A33</span></dd></div>
+        <div><dt>Fonts</dt><dd>Montserrat Bold (headline), Open Sans Regular (body)</dd></div>
+        <div><dt>Asset</dt><dd>clipboard-flat.svg: Small flat icon at top left, a quiet cue for a checklist. The headline is the focal element.</dd></div>
+      </dl>
+    </div>
+    <figure class="prev" style="margin:0">
+      <div class="canvas" role="img" aria-label="Layout preview drawn from the spec: dark slate background, headline, three numbered points, amber Talk to us button, footer line.">
+        <div class="r ic" style="left:5.926%;top:4.741%;width:11.111%;height:8.889%"><svg viewBox="0 0 64 64" fill="none" stroke="#EDEAE4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="48" rx="4"/><rect x="22" y="5" width="20" height="10" rx="3"/><path d="M22 28h20M22 38h20M22 48h12"/></svg></div>
+        <h3 class="r hl" style="left:5.926%;top:16.296%;width:88.148%;height:19.259%;text-transform:none;letter-spacing:0;font-family:Montserrat,Arial,sans-serif;margin:0">3 things to do after a non-fault accident</h3>
+        <ol class="r" style="left:5.926%;top:38.519%;width:88.148%;height:38.519%"><li><span>Check everyone is safe and call 999 if anyone is hurt.</span></li><li><span>Take photos and note names, plates and contact details.</span></li><li><span>Write down what happened while you still remember it clearly.</span></li></ol>
+        <div class="r cta" style="left:5.926%;top:80.000%;width:33.333%;height:6.519%">Talk to us</div>
+        <div class="r ft" style="left:5.926%;top:89.630%;width:88.148%;height:5.630%">General guidance, not legal advice.</div>
+        <span class="cvs-note">Drawn from the spec</span>
+      </div>
+      <figcaption><b>Not a Canva export</b>I drew this preview in HTML from the region coordinates in spec.json so you can see what the spec asks for. The fonts are Montserrat and Open Sans from the sample guide. The clipboard icon is a simple line drawing I made for the sample asset list.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Rules the skill said it applied</h3>
+  <ul class="list">
+    <li><i>01</i><div>Colors used are only slate, stone and signal from the guide</div></li>
+    <li><i>02</i><div>Fonts are Montserrat Bold and Open Sans Regular from the guide</div></li>
+    <li><i>03</i><div>Signal accent used once, on the CTA fill</div></li>
+    <li><i>04</i><div>Text sits on a flat color block, not on a photo</div></li>
+    <li><i>05</i><div>Tone is calm, plain English, second person, short sentences, no jargon, no legal threats</div></li>
+    <li><i>06</i><div>No result, amount or time promised; no &#x27;no win no fee&#x27; or &#x27;guaranteed&#x27;</div></li>
+    <li><i>07</i><div>No competitor or insurer named</div></li>
+    <li><i>08</i><div>CTA wording &#x27;Talk to us&#x27; is from the guide&#x27;s allowed list</div></li>
+    <li><i>09</i><div>Footer line &#x27;General guidance, not legal advice.&#x27; included because this is a driver-advice post</div></li>
+    <li><i>10</i><div>No emoji, crashed-car stock photo, red warning triangle or exclamation mark</div></li>
+    <li><i>11</i><div>Headline is 8 words or fewer and 48 characters or fewer; each body point is 12 words or fewer</div></li>
+    <li><i>12</i><div>Margins are 64 px on every side; all regions are inside the canvas</div></li>
+  </ul>
+
+  <h3>Full spec.json</h3>
+  <pre id="spec-json">{
+  &quot;brief&quot;: &quot;Instagram post: 3 things to do after a non-fault accident&quot;,
+  &quot;brand_guide&quot;: &quot;brand-guide.md&quot;,
+  &quot;platform_format&quot;: &quot;instagram_post&quot;,
+  &quot;size_px&quot;: &quot;1080x1350&quot;,
+  &quot;template_type&quot;: &quot;feed&quot;,
+  &quot;headline&quot;: &quot;3 things to do after a non-fault accident&quot;,
+  &quot;body&quot;: [
+    &quot;Check everyone is safe and call 999 if anyone is hurt.&quot;,
+    &quot;Take photos and note names, plates and contact details.&quot;,
+    &quot;Write down what happened while you still remember it clearly.&quot;
+  ],
+  &quot;cta&quot;: &quot;Talk to us&quot;,
+  &quot;layout&quot;: {
+    &quot;structure&quot;: &quot;Single column on a flat slate background: small clipboard icon top left, large headline, three numbered points, an accent CTA button, then the guidance footer line.&quot;,
+    &quot;regions&quot;: [
+      {
+        &quot;name&quot;: &quot;icon&quot;,
+        &quot;x&quot;: 64,
+        &quot;y&quot;: 64,
+        &quot;w&quot;: 120,
+        &quot;h&quot;: 120,
+        &quot;content&quot;: &quot;clipboard-flat.svg&quot;
+      },
+      {
+        &quot;name&quot;: &quot;headline&quot;,
+        &quot;x&quot;: 64,
+        &quot;y&quot;: 220,
+        &quot;w&quot;: 952,
+        &quot;h&quot;: 260,
+        &quot;content&quot;: &quot;3 things to do after a non-fault accident&quot;
+      },
+      {
+        &quot;name&quot;: &quot;body&quot;,
+        &quot;x&quot;: 64,
+        &quot;y&quot;: 520,
+        &quot;w&quot;: 952,
+        &quot;h&quot;: 520,
+        &quot;content&quot;: &quot;Numbered list of the 3 body points, 40 px Open Sans Regular, generous spacing between points&quot;
+      },
+      {
+        &quot;name&quot;: &quot;cta&quot;,
+        &quot;x&quot;: 64,
+        &quot;y&quot;: 1080,
+        &quot;w&quot;: 360,
+        &quot;h&quot;: 88,
+        &quot;content&quot;: &quot;Talk to us&quot;
+      },
+      {
+        &quot;name&quot;: &quot;footer&quot;,
+        &quot;x&quot;: 64,
+        &quot;y&quot;: 1210,
+        &quot;w&quot;: 952,
+        &quot;h&quot;: 76,
+        &quot;content&quot;: &quot;General guidance, not legal advice.&quot;
+      }
+    ]
+  },
+  &quot;color_roles&quot;: {
+    &quot;background&quot;: &quot;#1F2A33&quot;,
+    &quot;headline&quot;: &quot;#EDEAE4&quot;,
+    &quot;body&quot;: &quot;#EDEAE4&quot;,
+    &quot;accent&quot;: &quot;#C8892B&quot;,
+    &quot;cta_fill&quot;: &quot;#C8892B&quot;,
+    &quot;cta_text&quot;: &quot;#1F2A33&quot;
+  },
+  &quot;fonts&quot;: {
+    &quot;headline&quot;: &quot;Montserrat Bold&quot;,
+    &quot;body&quot;: &quot;Open Sans Regular&quot;
+  },
+  &quot;asset&quot;: {
+    &quot;file&quot;: &quot;clipboard-flat.svg&quot;,
+    &quot;use&quot;: &quot;Small flat icon at top left, a quiet cue for a checklist. The headline is the focal element.&quot;
+  },
+  &quot;alt_text&quot;: &quot;Dark slate graphic with the heading &#x27;3 things to do after a non-fault accident&#x27;, a three-step numbered checklist, and a &#x27;Talk to us&#x27; button.&quot;,
+  &quot;checks&quot;: [
+    &quot;Colors used are only slate, stone and signal from the guide&quot;,
+    &quot;Fonts are Montserrat Bold and Open Sans Regular from the guide&quot;,
+    &quot;Signal accent used once, on the CTA fill&quot;,
+    &quot;Text sits on a flat color block, not on a photo&quot;,
+    &quot;Tone is calm, plain English, second person, short sentences, no jargon, no legal threats&quot;,
+    &quot;No result, amount or time promised; no &#x27;no win no fee&#x27; or &#x27;guaranteed&#x27;&quot;,
+    &quot;No competitor or insurer named&quot;,
+    &quot;CTA wording &#x27;Talk to us&#x27; is from the guide&#x27;s allowed list&quot;,
+    &quot;Footer line &#x27;General guidance, not legal advice.&#x27; included because this is a driver-advice post&quot;,
+    &quot;No emoji, crashed-car stock photo, red warning triangle or exclamation mark&quot;,
+    &quot;Headline is 8 words or fewer and 48 characters or fewer; each body point is 12 words or fewer&quot;,
+    &quot;Margins are 64 px on every side; all regions are inside the canvas&quot;
+  ],
+  &quot;open_questions&quot;: [
+    &quot;The guide is marked as a sample for a demo and is not the real client guide. Confirm the real colors, fonts and assets before publishing.&quot;,
+    &quot;The guide gives no emergency number guidance. Confirm that &#x27;999&#x27; in point 1 is approved wording.&quot;,
+    &quot;The guide gives no rule for recoloring clipboard-flat.svg on a dark background. Confirm whether it can be tinted stone.&quot;,
+    &quot;The guide gives no logo, so none is placed. Confirm whether a logo or handle is needed.&quot;,
+    &quot;The guide does not cover the Instagram caption, hashtags or link-in-bio wording.&quot;
+  ]
+}</pre>
+  <div class="files">
+    <a class="chip" href="run/spec.json">spec.json</a>
+    <a class="chip" href="sample/brand-guide.md">Sample brand guide</a>
+    <a class="chip" href="run/skill-run-log.json">Skill run log</a>
+  </div>
+
+  <div class="nobox">
+    <h4>The Canva step did not run</h4>
+    <p>The Canva connector was not signed in when I built this page, so <strong>no design was created in Canva</strong>. There is no connector call log and no Canva screenshot to show, and I will not draw one.</p>
+    <p class="m">What I did instead: ran the skill for real, checked the spec against its own rules, and drew the layout preview above from the spec. Once the connector is signed in, the next step is to send this spec to it, and to show you the call log and the editable design with its size. If the connector cannot set the exact size from the spec, I will say what it did instead, for example a design made from the prompt and then resized.</p>
+    <div class="slots">
+      <div class="slot"><b>Connector call log</b><span>Empty. Read the log as it stands: <a href="run/canva-connector-log.txt">canva-connector-log.txt</a></span></div>
+      <div class="slot"><b>Screenshot of the editable design</b><span>None yet. Nothing was built in Canva.</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="sizes"><div class="wrap">
+  <span class="num">03</span>
+  <h2 class="display">Size matrix</h2>
+  <p>Six sizes, three template types. The skill picks the size from the platform in the brief, so nobody types a size by hand.</p>
+  <ul class="matrix">
+    <li><div class="sh"><i style="width:48px;height:60px"></i></div><div class="nm">Instagram post</div><div class="sz">1080x1350 px</div><div class="tp"><b>Template</b> feed</div></li>
+    <li><div class="sh"><i style="width:60px;height:60px"></i></div><div class="nm">Carousel slide</div><div class="sz">1080x1080 px</div><div class="tp"><b>Template</b> feed</div></li>
+    <li><div class="sh"><i style="width:34px;height:60px"></i></div><div class="nm">Reel cover</div><div class="sz">1080x1920 px</div><div class="tp"><b>Template</b> vertical</div></li>
+    <li><div class="sh"><i style="width:60px;height:32px"></i></div><div class="nm">Facebook post</div><div class="sz">1200x630 px</div><div class="tp"><b>Template</b> landscape</div></li>
+    <li><div class="sh"><i style="width:60px;height:31px"></i></div><div class="nm">LinkedIn post</div><div class="sz">1200x627 px</div><div class="tp"><b>Template</b> landscape</div></li>
+    <li><div class="sh"><i style="width:34px;height:60px"></i></div><div class="nm">TikTok cover</div><div class="sz">1080x1920 px</div><div class="tp"><b>Template</b> vertical</div></li>
+  </ul>
+  <h3>Three template types</h3>
+  <div class="tmpl">
+    <div class="card box"><h4>Feed</h4><p class="sz">1080x1350 and 1080x1080</p><p>Instagram post and carousel slides. One headline block, one focal element, CTA bottom left.</p></div>
+    <div class="card box"><h4>Vertical</h4><p class="sz">1080x1920</p><p>Reel cover and TikTok cover. Text stays out of the top 220 px and the bottom 300 px. Working default, tuned per platform.</p></div>
+    <div class="card box"><h4>Landscape</h4><p class="sz">1200x630 and 1200x627</p><p>Facebook and LinkedIn. Shorter headline, 6 words or fewer. The sizes differ by 3 px in height, so one layout serves both.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="assets"><div class="wrap">
+  <span class="num">04</span>
+  <h2 class="display">Asset folders</h2>
+  <p>One folder tree, one naming rule. The skill can only name an asset that exists in the guide's asset list, so the list and the folders must match.</p>
+  <div class="two wide-left" style="margin-top:26px">
+    <pre class="tree tall">brand/
+  guide/     brand-guide.md
+  logos/     logo_{variant}_{colorway}.svg
+  photos/    photo_{subject}_{nn}.jpg
+  icons/     icon_{subject}_{style}.svg
+  textures/  texture_{name}.png
+templates/
+  feed/       tpl_feed_{purpose}_v{n}
+  vertical/   tpl_vertical_{purpose}_v{n}
+  landscape/  tpl_landscape_{purpose}_v{n}
+posts/
+  {yyyy-mm}/
+    {yyyy-mm-dd}_{platform}_{slug}/
+      spec.json
+      export_{size}.png</pre>
+    <div class="card box">
+      <h4>Naming rules</h4>
+      <ul>
+        <li><strong>Lowercase, hyphens inside a word, underscores between parts.</strong> No spaces.</li>
+        <li><strong>Dates as yyyy-mm-dd</strong> so folders sort by time.</li>
+        <li><strong>Version suffix v1, v2.</strong> Never "final" or "new".</li>
+        <li><strong>Size in the export name</strong>, as 1080x1350.</li>
+        <li><strong>The spec.json sits next to the export</strong> it produced.</li>
+        <li>The asset name in a spec must match a file in the guide's asset list.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="limits"><div class="wrap">
+  <span class="num">05</span>
+  <h2 class="display">Limits</h2>
+  <div class="limits">
+    <h4 style="margin:0;font:700 12px/1 var(--f-body);letter-spacing:.18em;text-transform:uppercase;color:var(--accent)">Read this before you buy</h4>
+    <ol>
+      <li><div>Brand Templates autofill needs the Canva plan that includes it.<span> Check your plan first. Without it, the spec is built by hand or by the connector, not filled into a template.</span></div></li>
+      <li><div>Fonts and templates must exist in Canva first.<span> The skill can name Montserrat Bold, but if your Canva account does not hold the font, Canva swaps it. Upload fonts and build the three templates before automation.</span></div></li>
+      <li><div>Claude proposes, Canva renders.<span> The skill writes the spec. Canva makes the pixels. A person approves every post before it goes out.</span></div></li>
+    </ol>
+  </div>
+</div></section>
+
+<section class="sec" id="docs"><div class="wrap">
+  <span class="num">06</span>
+  <h2 class="display">Docs and handover</h2>
+  <div class="two" style="margin-top:26px">
+    <div>
+      <h3 style="margin-top:0">Docs outline</h3>
+      <ul class="list">
+        <li><i>1</i><div>Brand guide intake sheet<span>What the skill needs from your guide: colors, fonts, tone, banned words, asset list, allowed CTAs.</span></div></li>
+        <li><i>2</i><div>How to write a brief<span>One line, platform first, with examples that work and examples that fail.</span></div></li>
+        <li><i>3</i><div>Size matrix and template map<span>Which size uses which template.</span></div></li>
+        <li><i>4</i><div>Asset folders and naming<span>The tree and the rules from section 04.</span></div></li>
+        <li><i>5</i><div>Review and approval<span>Who checks copy, who checks claims wording, who posts.</span></div></li>
+        <li><i>6</i><div>Limits and fixes<span>Plan limits, missing fonts, what to do when Canva and the spec disagree.</span></div></li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-top:0">Handover call agenda</h3>
+      <ul class="list">
+        <li><i>1</i><div>Walk one real brief through the skill, live<span>Your guide, your words.</span></div></li>
+        <li><i>2</i><div>Open the three templates in Canva<span>Check fonts, colors and the asset folders.</span></div></li>
+        <li><i>3</i><div>Run a brief for each size<span>Check each export against its spec.</span></div></li>
+        <li><i>4</i><div>Claims wording<span>Agree the exact CTA lines and the footer line your compliance person allows.</span></div></li>
+        <li><i>5</i><div>Who does what next week<span>Owners for briefs, review and posting.</span></div></li>
+        <li><i>6</i><div>Questions and open items<span>Anything the spec flagged under open_questions.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="price"><div class="wrap">
+  <span class="num">07</span>
+  <h2 class="display">Price</h2>
+  <div class="price" style="margin-top:26px">
+    <div class="big">
+      <p class="eyebrow" style="margin:0">Fixed price</p>
+      <div class="amt"><small>GBP</small>240</div>
+      <div class="days">7 days</div>
+      <a class="btn" href="mailto:erenes1667@gmail.com?subject=Brand%20social%20brief%20skill">Email Enes</a>
+    </div>
+    <div>
+      <p style="margin-top:0"><strong>What you get:</strong> the skill set up on your brand guide, the size matrix, three Canva template types, the asset folder tree with naming rules, the docs above, and the handover call.</p>
+      <ul class="cal">
+        <li><b>Day 1</b><span>Collect your brand guide, fonts and asset list.</span></li>
+        <li><b>Day 2-3</b><span>Adapt the skill to your guide. Test it on a set of your own briefs.</span></li>
+        <li><b>Day 4-5</b><span>Build the three templates in Canva. Connect the spec to Canva as far as your plan allows.</span></li>
+        <li><b>Day 6</b><span>Write the docs.</span></li>
+        <li><b>Day 7</b><span>Handover call.</span></li>
+      </ul>
+      <p style="font-size:14px">This schedule is the plan for the paid job. It is not a record of work already done.</p>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>Enes Eren Studio. Istanbul, UTC+3.</span>
+    <span><a href="../../index.html">Back to the studio home</a></span>
+    <span>Contact: erenes1667@gmail.com</span>
+  </div>
+</footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

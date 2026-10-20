@@ -1,0 +1,11 @@
+Canva connector log
+Date: 2026-10-20 (UTC)
+Connector: claude.ai Canva (MCP)
+
+Result: no design was created. No Canva tool call ran.
+
+The connector was listed in the session but not signed in. The only tools it offered
+were "authenticate" and "complete_authentication". The authenticate call answered:
+"This is a claude.ai MCP connector. Ask the user to run /mcp and select
+'claude.ai Canva' to authenticate."
+The sign-in was not completed, so there was no design, no design ID and no Canva screenshot.

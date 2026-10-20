@@ -1,0 +1,97 @@
+{
+  "brief": "Instagram post: 3 things to do after a non-fault accident",
+  "brand_guide": "brand-guide.md",
+  "platform_format": "instagram_post",
+  "size_px": "1080x1350",
+  "template_type": "feed",
+  "headline": "3 things to do after a non-fault accident",
+  "body": [
+    "Check everyone is safe and call 999 if anyone is hurt.",
+    "Take photos and note names, plates and contact details.",
+    "Write down what happened while you still remember it clearly."
+  ],
+  "cta": "Talk to us",
+  "layout": {
+    "structure": "Single column on a flat slate background: small clipboard icon top left, large headline, three numbered points, an accent CTA button, then the guidance footer line.",
+    "regions": [
+      {
+        "name": "icon",
+        "x": 64,
+        "y": 64,
+        "w": 120,
+        "h": 120,
+        "content": "clipboard-flat.svg"
+      },
+      {
+        "name": "headline",
+        "x": 64,
+        "y": 220,
+        "w": 952,
+        "h": 260,
+        "content": "3 things to do after a non-fault accident"
+      },
+      {
+        "name": "body",
+        "x": 64,
+        "y": 520,
+        "w": 952,
+        "h": 520,
+        "content": "Numbered list of the 3 body points, 40 px Open Sans Regular, generous spacing between points"
+      },
+      {
+        "name": "cta",
+        "x": 64,
+        "y": 1080,
+        "w": 360,
+        "h": 88,
+        "content": "Talk to us"
+      },
+      {
+        "name": "footer",
+        "x": 64,
+        "y": 1210,
+        "w": 952,
+        "h": 76,
+        "content": "General guidance, not legal advice."
+      }
+    ]
+  },
+  "color_roles": {
+    "background": "#1F2A33",
+    "headline": "#EDEAE4",
+    "body": "#EDEAE4",
+    "accent": "#C8892B",
+    "cta_fill": "#C8892B",
+    "cta_text": "#1F2A33"
+  },
+  "fonts": {
+    "headline": "Montserrat Bold",
+    "body": "Open Sans Regular"
+  },
+  "asset": {
+    "file": "clipboard-flat.svg",
+    "use": "Small flat icon at top left, a quiet cue for a checklist. The headline is the focal element."
+  },
+  "alt_text": "Dark slate graphic with the heading '3 things to do after a non-fault accident', a three-step numbered checklist, and a 'Talk to us' button.",
+  "checks": [
+    "Colors used are only slate, stone and signal from the guide",
+    "Fonts are Montserrat Bold and Open Sans Regular from the guide",
+    "Signal accent used once, on the CTA fill",
+    "Text sits on a flat color block, not on a photo",
+    "Tone is calm, plain English, second person, short sentences, no jargon, no legal threats",
+    "No result, amount or time promised; no 'no win no fee' or 'guaranteed'",
+    "No competitor or insurer named",
+    "CTA wording 'Talk to us' is from the guide's allowed list",
+    "Footer line 'General guidance, not legal advice.' included because this is a driver-advice post",
+    "No emoji, crashed-car stock photo, red warning triangle or exclamation mark",
+    "Headline is 8 words or fewer and 48 characters or fewer; each body point is 12 words or fewer",
+    "Margins are 64 px on every side; all regions are inside the canvas"
+  ],
+  "open_questions": [
+    "The guide is marked as a sample for a demo and is not the real client guide. Confirm the real colors, fonts and assets before publishing.",
+    "The guide gives no emergency number guidance. Confirm that '999' in point 1 is approved wording.",
+    "The guide gives no rule for recoloring clipboard-flat.svg on a dark background. Confirm whether it can be tinted stone.",
+    "The guide gives no logo, so none is placed. Confirm whether a logo or handle is needed.",
+    "The guide does not cover the Instagram caption, hashtags or link-in-bio wording."
+  ]
+}

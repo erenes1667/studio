@@ -1,0 +1,1 @@
+{ "name": "mirror-ornaments-gen", "private": true, "type": "module", "dependencies": { "three": "0.160.0" } }
