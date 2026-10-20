@@ -286,7 +286,7 @@ footer .studio{font:500 24px/1 var(--serif);color:var(--cream)}
 
 /* phone viewer: no side clip (UA dialog:modal max-width) */
 dialog:modal{max-width:100%}
-@media(max-width:420px){.vbody .em{width:100%;max-width:375px}}
+@media(max-width:420px){.vwrap{grid-template-columns:minmax(0,1fr)}.vbody{min-width:0}.vbody .email,.vbody .em,.vbody .email figcaption{width:auto;max-width:100%;min-width:0}.vbody .em img{max-width:100%;height:auto}}
 </style>
 </head>
 <body>
