@@ -248,7 +248,7 @@ dialog::backdrop{background:rgba(6,4,2,.82);backdrop-filter:blur(4px)}
 
 /* plan */
 .plan{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
-@media(min-width:900px){.plan{grid-template-columns:1fr 1fr;column-gap:56px;grid-auto-flow:column;grid-template-rows:repeat(7,auto)}}
+@media(min-width:900px){.plan{grid-template-columns:1fr 1fr;column-gap:56px;grid-auto-flow:column;grid-template-rows:repeat(5,auto)}}
 .plan li{display:grid;grid-template-columns:78px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
 .plan .d{font:500 12px/1.9 var(--mono);color:var(--ochre);letter-spacing:.14em;text-transform:uppercase}
 .plan b{font:500 20px/1.2 var(--serif);display:block;margin-bottom:5px}
@@ -300,9 +300,10 @@ footer .studio{font:500 24px/1 var(--serif);color:var(--cream)}
     <div>
       <span class="kick rise d1">Sample work for Ceibo House</span>
       <h1 class="rise d2">Email that feels like <em>home</em>.</h1>
-      <p class="lede rise d3">Three Klaviyo flows, three campaigns, six segments and a two-week launch plan for a store that sells woven flag blankets and embroidered caps. Built before the bid, so you can click through it.</p>
-      <div class="counts rise d3"><span><b>3</b> flows</span><span><b>12</b> emails</span><span><b>6</b> segments</span><span><b>12</b> audit checks</span><span><b>14</b> day plan</span></div>
+      <p class="lede rise d3">Three Klaviyo flows, three campaigns, six segments and a ten-day setup plan for a store that sells woven flag blankets and embroidered caps. Built before the bid, so you can click through it.</p>
+      <div class="counts rise d3"><span><b>3</b> flows</span><span><b>12</b> emails</span><span><b>6</b> segments</span><span><b>12</b> audit checks</span><span><b>10</b> day plan</span></div>
       <p class="note rise d4">Everything here is sample. Copy in [brackets] needs real facts from the store. No Ceibo logo, product photos or store data are used. Product images are labelled slots.</p>
+      <p class="note rise d4">You already run flows, so these are reference versions to compare against your own.</p>
     </div>
     <figure class="art rise d4" aria-hidden="true" style="margin:0">
       <div class="blanket"><div class="sheen"></div></div>
@@ -560,10 +561,10 @@ footer .studio{font:500 24px/1 var(--serif);color:var(--cream)}
 
 <section class="s" id="plan">
   <div class="wrap">
-    <div class="sh"><div><span class="num">05</span><h2>Two weeks, <em>day by day.</em></h2></div>
-    <p>Foundations first, then the three flows one at a time, then the first campaign. Client review happens before anything goes live.</p></div>
-    <div class="weeks"><span class="weeklab">Week one</span><span class="weeklab">Week two</span></div>
-    <ol class="plan"><li><span class="d">Day 1</span><div><b>Access and audit</b><p>Klaviyo, Shopify and DNS access. Run the 12-point audit and write down what is red.</p></div></li><li><span class="d">Day 2</span><div><b>Fix the foundations</b><p>DKIM, DMARC and the branded domain. Clean duplicates. Check form sync.</p></div></li><li><span class="d">Day 3</span><div><b>Build the segments</b><p>All six segments, checked against real profile counts.</p></div></li><li><span class="d">Day 4</span><div><b>Feed and tracking</b><p>Catalog feed, UTMs, Smart Sending and review sync set up and tested.</p></div></li><li><span class="d">Day 5</span><div><b>Welcome flow, build</b><p>Three emails in the template, flow filters and exit branch wired.</p></div></li><li><span class="d">Day 6</span><div><b>Welcome flow, QA</b><p>Phone-width review, link check, trigger check with a test profile.</p></div></li><li><span class="d">Day 7</span><div><b>Client review</b><p>Walk through the welcome flow together. Collect copy gaps: story, care steps.</p></div></li><li><span class="d">Day 8</span><div><b>Abandoned checkout, build</b><p>Three emails, the order exit, and the cart-over-$100 branch.</p></div></li><li><span class="d">Day 9</span><div><b>Abandoned checkout, QA</b><p>Checkout trigger test, free-shipping version, link and image check.</p></div></li><li><span class="d">Day 10</span><div><b>Post-purchase, build</b><p>Thank-you and care guide, review ask, cap cross-sell, with the review block.</p></div></li><li><span class="d">Day 11</span><div><b>Post-purchase, QA</b><p>Placed Order trigger test, timing check, care guide content added.</p></div></li><li><span class="d">Day 12</span><div><b>First campaign, build</b><p>Flags of home built from the template and checked at phone width.</p></div></li><li><span class="d">Day 13</span><div><b>Sign-off and go live</b><p>Client approves. Turn the three flows on, one at a time, trigger checked first.</p></div></li><li><span class="d">Day 14</span><div><b>Campaign scheduled, handover</b><p>First campaign scheduled for approval. Hand over the monthly calendar.</p></div></li></ol>
+    <div class="sh"><div><span class="num">05</span><h2>Ten days, <em>day by day.</em></h2></div>
+    <p>Foundations first, then a review of your existing flows with sample versions to compare, then the two templates. Client review happens before anything goes live.</p></div>
+    <div class="weeks"><span class="weeklab">Days 1 to 5</span><span class="weeklab">Days 6 to 10</span></div>
+    <ol class="plan"><li><span class="d">Day 1</span><div><b>Access and audit</b><p>Klaviyo, Shopify and DNS access. Run the 12-point audit and write down what is red.</p></div></li><li><span class="d">Day 2</span><div><b>Fix the foundations</b><p>DKIM, DMARC and the branded domain. Clean duplicates. Check form sync.</p></div></li><li><span class="d">Day 3</span><div><b>Build the segments</b><p>All six segments, checked against real profile counts.</p></div></li><li><span class="d">Day 4</span><div><b>Feed and tracking</b><p>Catalog feed, UTMs, Smart Sending and review sync set up and tested.</p></div></li><li><span class="d">Day 5</span><div><b>Welcome flow, review and improve</b><p>Review your current welcome flow. Compare it with the sample version here, and fix gaps. Build it only if missing.</p></div></li><li><span class="d">Day 6</span><div><b>Abandoned checkout, review and improve</b><p>Review the current flow and the order exit. Compare the cart-over-$100 branch with the sample. Build it only if missing.</p></div></li><li><span class="d">Day 7</span><div><b>Post-purchase, review and improve</b><p>Review the current flow and timing. Compare with the thank-you, review ask and cap cross-sell samples. Build it only if missing.</p></div></li><li><span class="d">Day 8</span><div><b>Two templates</b><p>Two email templates in the brand's look, checked at phone width.</p></div></li><li><span class="d">Day 9</span><div><b>Client review</b><p>Walk through the audit, the flow fixes and the templates together. Collect copy gaps: story, care steps.</p></div></li><li><span class="d">Day 10</span><div><b>Sign-off and handover</b><p>Client approves. Flow fixes go live one at a time, trigger checked first. Hand over the monthly campaign calendar.</p></div></li></ol>
   </div>
 </section>
 
@@ -573,9 +574,9 @@ footer .studio{font:500 24px/1 var(--serif);color:var(--cream)}
     <p>The same pricing as in my bid.</p></div>
     <div class="price">
       <article class="pc"><h3>Setup, once</h3><div class="amt">$450</div>
-        <ul><li>Account and deliverability audit, all 12 checks</li><li>DKIM, DMARC and domain fixes</li><li>The six segments, built and checked</li><li>Welcome, abandoned checkout and post-purchase flows, built and tested at phone width</li><li>Email template in the brand's look</li></ul></article>
+        <ul><li>Account and deliverability audit, all 12 checks</li><li>DKIM, DMARC and domain fixes</li><li>The six segments, built and checked</li><li>Flow fixes: review of your existing flows, with sample versions of welcome, abandoned checkout and post-purchase to compare</li><li>2 templates in the brand's look</li></ul></article>
       <article class="pc"><h3>Management, monthly</h3><div class="amt">$200<small>a month</small></div>
-        <ul><li>Two to three campaigns a month, written, built and scheduled for approval</li><li>Flow upkeep and small fixes</li><li>List hygiene and the sunset rule</li><li>A short plain-language note each month on what ran</li></ul></article>
+        <ul><li>Up to 4 campaigns a month, written, built, tested and scheduled for approval</li><li>Flow upkeep and small fixes</li><li>List hygiene and the sunset rule</li><li>A short plain-language note each month on what ran</li><li>Extra campaign: $60</li><li>Not included: new flows, pop-ups</li></ul></article>
     </div>
     <p class="fine">No results are promised here. Email results depend on the list, the offer and the products. The plan above is the work I commit to.</p>
   </div>

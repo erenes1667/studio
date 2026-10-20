@@ -1,5 +1,7 @@
+# Only built files ship. Everything below stays local.
 .shots/
 .drafts/
+node_modules/
 __pycache__/
 *.pyc
-node_modules/
+p/field-service-agent/record.py

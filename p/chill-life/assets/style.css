@@ -140,7 +140,7 @@ details.d .in{padding:0 20px 20px}
 .phone{background:#0e1114;border:1px solid #232a31;border-radius:22px;padding:18px;display:grid;gap:10px;max-width:440px}
 .phone .who{font:600 13px var(--sans);color:#8fb4d6}
 .bub{background:#1a2229;border-radius:14px 14px 14px 4px;padding:12px 14px;font:400 14px/1.5 var(--sans);color:#e6ecf1;white-space:pre-line;overflow-wrap:anywhere}
-.bub{overflow-x:auto}.bub .m{font:400 12.5px/1.55 var(--mono);color:#cbd6df;white-space:pre}
+.bub{overflow-x:auto}.bub .m{font:400 12.5px/1.55 var(--mono);color:#cbd6df;white-space:pre-wrap;overflow-wrap:anywhere}
 .kb{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .kb span{background:#1f2a33;border-radius:8px;text-align:center;padding:10px 4px;font:600 13px var(--sans);color:#9cc5e8}
 .kb span.ap{color:var(--sage)}
@@ -166,6 +166,8 @@ details.d .in{padding:0 20px 20px}
 .mailcard dl{margin:0;display:grid;gap:8px;font-size:14.5px;align-content:start;min-height:236px}
 .mailcard dt{font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
 .mailcard dd{margin:0;color:var(--text)}
+.mailcard .meta{overflow:visible}
+.mailcard dd{min-width:0;overflow-wrap:anywhere}
 .mailcard dd.subj{font:600 16px/1.35 var(--sans)}
 .mailcard.pulse .dev{box-shadow:0 0 0 2px var(--ember),0 30px 80px -30px rgba(255,138,61,.5)}
 .dev{width:375px;border-radius:18px;overflow:hidden;background:#f3ede1;box-shadow:0 30px 80px -40px #000;border:1px solid var(--line2);transition:box-shadow .3s}
@@ -239,6 +241,7 @@ footer a{color:var(--mute)}
   .bar b{display:none}
   .bar nav{margin-left:0}
   .rail{margin-inline:calc(var(--gut) * -1);padding-inline:8px;scroll-padding-inline:8px;gap:14px}
+  .mailcard dl{padding-right:24px}
   .chain{flex-wrap:nowrap;overflow-x:auto;padding-bottom:10px;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut)}
   .chain .cn{white-space:nowrap}
 }
