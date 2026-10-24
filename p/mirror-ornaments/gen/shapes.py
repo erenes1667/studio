@@ -1,7 +1,7 @@
 """2D layer shapes for the two draft ornaments. Output: shapes.json (mm, y up, one polygon set per body).
 Run: python3 shapes.py   (needs shapely). Then: node make.mjs   (needs three@0.160.0).
 
-Both ornaments are 101.6 mm (4 in) tall including the cord loop and 5.0 mm thick at the thickest point.
+The car is 101.6 mm (4 in) long and the state is 101.6 mm (4 in) tall including the cord loop. Both are 5.0 mm thick at the thickest point.
 Layers are stacked, each upper layer sits fully inside the layer below it, so every overhang is zero
 and the back is one flat face on the bed.
 """
@@ -52,42 +52,61 @@ def polys(g):
     return out
 
 
-# ---------------------------------------------------------------- 1. retro car, front view, 3 colours
-# bodies stacked: A charcoal 0 to 2.0 (outline + tyres), B red 2.0 to 3.6 (body), C cream 3.6 to 5.0 (glass, lamps, bumper)
-hood = superellipse(0, 32, 44, 22, 3.2)
-cabin = superellipse(0, 60, 30, 28, 2.4)
-fenders = sym(superellipse(35, 38, 11, 15, 2.4))
-tyres = sym(rrect(28.5, -2.0, 42.5, 14.0, 4.5))
-body = unary_union([hood, cabin, fenders])
-outline = unary_union([body, tyres]).buffer(1.8, quad_segs=16)
-y_shift = -outline.bounds[1]                     # A rests on y = 0
-sh = lambda g: affinity.translate(g, 0, y_shift)
-body, tyres, outline = sh(body), sh(tyres), sh(outline)
-car_top = outline.bounds[3]
-pad_c = (0.0, H - PAD_R)                         # loop centre, top of the pad is exactly 101.6
+# ---------------------------------------------------------------- 1. retro car, side profile, 3 colours
+# The car is 101.6 mm (4 in) long, nose to the left. Bodies stacked: A charcoal 0 to 2.0 (outline + tires),
+# B red 2.0 to 3.6 (body, wheel rims), C cream 3.6 to 5.0 (windows, lamps, bumpers, chrome strip, hub caps).
+# The loop pad sits over the centre of mass of the three layers, so the ornament hangs level on the mirror.
+TIRE_R, RIM_R, HUB_R, ARCH_R = 11.5, 6.8, 3.2, 13.0
+WX = 28.0                                        # tire centres at x = -WX and +WX, both tires touch y = 0
+cab = superellipse(2, 37, 28, 27, 2.4).intersection(box(-60, 36, 60, 120))   # roofline, top at y = 64
+slab = rrect(-50, 14, 50, 40, 5)                 # hood and trunk line
+fenders = unary_union([superellipse(x, 36, 16, 9, 2.5) for x in (-WX, WX)])
+body = unary_union([slab, cab, fenders]).buffer(1.5, quad_segs=12).buffer(-1.5, quad_segs=12)
+body = body.difference(unary_union([disc(x, TIRE_R, ARCH_R) for x in (-WX, WX)]))          # wheel arches
+tires = unary_union([disc(x, TIRE_R, TIRE_R) for x in (-WX, WX)])
+rims = unary_union([disc(x, TIRE_R, RIM_R) for x in (-WX, WX)])
+hubs = unary_union([disc(x, TIRE_R, HUB_R) for x in (-WX, WX)])
+glass = cab.buffer(-3.6, quad_segs=12).intersection(box(-60, 43, 60, 120))
+cream = [glass.intersection(box(-60, 0, 0.2, 120)),              # windshield and front door glass
+         glass.intersection(box(3.8, 0, 60, 120)),               # rear door glass and back window
+         disc(-44.2, 30.0, 3.6),                                 # headlamp
+         rrect(44.6, 27.0, 48.0, 34.0, 1.0),                     # tail lamp
+         rrect(-47.4, 17.6, -41.0, 20.4, 1.2),                   # front bumper
+         rrect(41.0, 17.6, 47.4, 20.4, 1.2),                     # rear bumper
+         rrect(-38.0, 36.4, 38.0, 37.9, 0.6).difference(cab.buffer(-1.0)),   # chrome strip on hood and trunk
+         hubs]
+base = unary_union([body, tires])
+k = (H - 2 * 1.8) / (base.bounds[2] - base.bounds[0])           # the 1.8 mm outline brings the length to exactly 4 in
+cx, y0 = (base.bounds[0] + base.bounds[2]) / 2 * k, base.bounds[1] * k - 1.8
+fix = lambda g: affinity.translate(affinity.scale(g, k, k, origin=(0, 0)), -cx, -y0)   # scale, centre on x, rest on y = 0
+body, tires, rims = fix(body), fix(tires), fix(rims)
+outline = unary_union([body, tires]).buffer(1.8, quad_segs=16)
+Cparts = unary_union([fix(g) for g in cream])
+m = outline.area * 2.0 + unary_union([body, rims]).area * 1.6 + Cparts.area * 1.4           # mass per layer, same density
+pad_x = (outline.centroid.x * outline.area * 2.0 + unary_union([body, rims]).centroid.x * unary_union([body, rims]).area * 1.6
+         + Cparts.centroid.x * Cparts.area * 1.4) / m
+roof_top = body.bounds[3]
+pad_c = (round(pad_x, 2), roof_top + PAD_R - 1.0)
+neck = rrect(pad_c[0] - 5.5, roof_top - 5, pad_c[0] + 5.5, pad_c[1], 1.0)
 hole = disc(*pad_c, HOLE_R, 48)
-
-pane = superellipse(0, 62, 23.5, 18, 2.6).intersection(box(-40, 47, 40, 100))
-pane = sh(pane.difference(box(-1.6, 0, 1.6, 100)))
-lamp = sym(disc(33, 40, 6.2).difference(disc(33, 40, 2.6)))
-lamp = sh(lamp)
-bumper = sh(rrect(-34.0, 15.5, 34.0, 20.5, 2.4))
-plate = sh(rrect(-9, 26, 9, 34, 1.6))
 grommet = disc(*pad_c, 5.0, 64).difference(hole)
 
-A = unary_union([outline, disc(*pad_c, PAD_R)]).difference(hole)
-B = unary_union([body, disc(*pad_c, 6.6)]).difference(hole)
-C = unary_union([pane, lamp, bumper, plate, grommet])
+A = unary_union([outline, disc(*pad_c, PAD_R), neck]).difference(hole)
+B = unary_union([body, rims, disc(*pad_c, 6.6)]).difference(hole)
+C = unary_union([Cparts, grommet])
+assert abs((A.bounds[2] - A.bounds[0]) - H) < 0.05, "car is not 4 in long"
 
 # nesting guard: every upper layer must sit inside the one below, with margin
 assert B.difference(A).area < 1e-6, "B leaves A"
 assert C.difference(B).area < 1e-6, "C leaves B"
+for i, g in enumerate(list(Cparts.geoms if hasattr(Cparts, "geoms") else [Cparts])):
+    assert g.buffer(0.8).difference(B).area < 1e-6, f"cream part {i} within 0.8 mm of a red edge at {g.centroid.coords[0]}"
 car = {
-    "slug": "car", "name": "Retro car, front view", "colors": 3,
+    "slug": "car", "name": "Retro car, side profile", "colors": 3,
     "bodies": [
-        {"id": "car-1-charcoal", "name": "Outline and tyres", "color": "#26262b", "z0": 0.0, "z1": 2.0, "polys": polys(A)},
-        {"id": "car-2-red", "name": "Body", "color": "#c9402a", "z0": 2.0, "z1": 3.6, "polys": polys(B)},
-        {"id": "car-3-cream", "name": "Glass, lamps, bumper", "color": "#efe4cb", "z0": 3.6, "z1": 5.0, "polys": polys(C)},
+        {"id": "car-1-charcoal", "name": "Outline and tires", "color": "#26262b", "z0": 0.0, "z1": 2.0, "polys": polys(A)},
+        {"id": "car-2-red", "name": "Body and rims", "color": "#c9402a", "z0": 2.0, "z1": 3.6, "polys": polys(B)},
+        {"id": "car-3-cream", "name": "Glass, lamps, bumpers", "color": "#efe4cb", "z0": 3.6, "z1": 5.0, "polys": polys(C)},
     ],
 }
 

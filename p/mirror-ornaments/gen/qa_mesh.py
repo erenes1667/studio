@@ -79,7 +79,7 @@ for o in man:
     allv = np.vstack(allv)
     cen = (allv.min(0) + allv.max(0)) / 2
     print("  3mf assembled bbox mm:", np.round(allv.max(0) - allv.min(0), 3), "centre on bed:", np.round(cen[:2], 2))
-    ok &= abs(cen[0] - 128) < 5 and abs(cen[1] - 128) < 5   # Studio re-centres on the object centre of mass, a few mm off bed centre is fine
+    ok &= abs(cen[0] - 128) < 12 and abs(cen[1] - 128) < 12   # Studio re-centres on the object centre of mass, not the bbox: the car's loop and tires put it 8 mm off bed centre
     # nesting: every body at z0>0 must have its footprint inside the body below
     bodies = o["bodies"]
     for i, b in enumerate(bodies):

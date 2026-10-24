@@ -4,291 +4,245 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Enes Eren Studio</title>
-<meta name="description" content="Enes Eren Studio. Email flows, working agents, printable parts. Klaviyo email for e-commerce, AI agents and automation, 3D print design. Istanbul, UTC+3.">
+<meta name="description" content="Enes Eren Studio. Print generators, agents and Mac tools, built and shipped from Istanbul.">
 <meta name="theme-color" content="#0a0908">
 <link rel="canonical" href="https://erenes1667.github.io/studio/">
+<link rel="alternate" hreflang="en" href="https://erenes1667.github.io/studio/?lang=en">
+<link rel="alternate" hreflang="tr" href="https://erenes1667.github.io/studio/?lang=tr">
+<link rel="alternate" hreflang="x-default" href="https://erenes1667.github.io/studio/">
 <meta property="og:title" content="Enes Eren Studio">
-<meta property="og:description" content="Email flows, working agents, printable parts.">
+<meta property="og:description" content="Enes Eren Studio. Print generators, agents and Mac tools, built and shipped from Istanbul.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
 <meta property="og:url" content="https://erenes1667.github.io/studio/">
 <meta property="og:image" content="https://erenes1667.github.io/studio/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0908'/%3E%3Cpath d='M14 12h34v9H24v8h20v9H24v8h26v9H14z' fill='%23ff6b2c'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/site.css">
-<script>document.documentElement.className+=" js"</script>
+<link rel="preload" href="assets/fonts2/bsd-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/home.css">
+<script>
+/* language is decided before first paint: ?lang= wins, then the saved choice, then English */
+(function(){var d=document.documentElement,l="en";try{var q=new URLSearchParams(location.search).get("lang");
+if(q==="tr"||q==="en")l=q;else{var s=localStorage.getItem("lang");if(s==="tr"||s==="en")l=s}}catch(e){}
+d.lang=l;d.className+=" js"})();
+</script>
 <!--
-NUMBERS ON THIS PAGE AND WHERE THEY COME FROM
-  UTC+3 ................ Istanbul time zone.
-  40 scripted customers  ajan-test README (40 scripted adversarial customers).
-  20 cm ................ kabartma-harita README (20 cm relief tile).
-  110 mm ............... rota-kupa README (110 mm trophy).
-  4 to 6 colors ........ filament-portre README (pick 4 to 6 colors).
-  four named bodies .... rota-kupa README (3MF with four named bodies).
-  1 to 4 (step labels) . the four steps below.
-  Every other figure was removed. No revenue, no client counts, no stats.
-
-OPEN GAPS
-  TODO: public demo URLs for the money-sprint builds (isim-engine, litofan-lamba, kabartma-harita, rota-kupa,
-        filament-portre, fiyat-nobeti, ajan-test, after-hours-desk) once they are hosted. Cards carry no link until then.
-  TODO: Wispr Local repo is not public (github.com/erenes1667/wispr-local returned 404). No link.
-  TODO: CaseFoundry has no screenshot in its repo. The card shows the app icon. Add a real window screenshot.
+WHERE THE FACTS COME FROM (paths are under ~/.claude/code/ unless noted)
+  Names and taglines: vault Projects/Personal/money-sprint/names.json (EN and TR name for each product).
+  Hero h1 "AI agents. 3D print tools. Mac apps." = the three product groups below; each card carries its group as a label (cat.ai, cat.print, cat.mac).
+    The old services row was cut: it repeated three cards from the grid with no new fact. Hero sub is a plain offer: no turnaround or price promise (none is sourced).
+  Angrybench card = HTML score visual from the recorded sample run (ajan-test sample: 90 of 100, 35 pass, 2 unsure, 3 fail). Slide 2 is the 40-cell grid capture.
+    Names.json says "Forty angry customers"; the page uses digits ("40 angry customers") in the card line on purpose.
+  Price Sentry EN images (pricesentry-en-*) are the same sample data with English number format, captured from fiyat-nobeti/web with en-US formatting. TR keeps the Turkish format.
+  Routecarve card and slide 2 are fresh captures of rota-kupa/web: low camera, warm key light, floor shadow, route in the product's orange.
+  After-Hours TR lightbox: call screen and job card re-captured from after-hours-desk/web with the interface labels and the sample field values translated word for word
+    (issue, urgency, slot). The recorded model thread is not translated or invented, so TR has no thread slide. The "Sample shop" tag marks the sample business.
+  hometile l1 "20 cm": money-sprint/kabartma-harita/README.md.
+  routecarve l1 "110 mm", l2 "one 3MF with four named bodies": money-sprint/rota-kupa/README.md line 3.
+  lithoglow l1 l2: money-sprint/litofan-lamba/README.md.
+  filament l1 "4 to 6 colors": money-sprint/filament-portre/README.md.
+  casefoundry l1 l2 "offline, live 3D preview, STL and multipart 3MF": casefoundry/README.md line 3 and line 36.
+  pricesentry l1 l2 "watches prices, Telegram alerts, Monday summary": money-sprint/fiyat-nobeti/README.md.
+  angrybench l1 "40 scripted customers", l2 "score 0 to 100 and the five worst transcripts": money-sprint/ajan-test/README.md line 3.
+  afterhours l1 "text within 30 seconds", l2 "books a slot, morning summary to the office": money-sprint/after-hours-desk/README.md line 3.
+  rail l1 "Right-click toggles, left-click opens options", l2 "Apple Silicon": rail/README.md lines 3 and 12.
+  hushtype l1 l2 "hotkey, speech model on my own GPU": wispr-local/README.md lines 4 to 13.
+  n-bot is not on the page: it is about Enes's own server, not a client deliverable.
+  Visuals are fresh captures of the builds (sample data). Rail's pill and menu are composed from rail/docs/rail-menu.png.
+  The After-Hours card crops the call screen of the recorded sample shop. In EN the lightbox shows the recorded English thread.
+    In TR the card and the lightbox show assets/work2/afterhours-tr-c.webp: the same call screen re-captured from after-hours-desk/web/index.html
+    with its interface labels and the sample shop name in Turkish. The recorded model thread is not translated or invented.
+  Hushtype is private, so it gets a diagram: the real hotkey (Right Option, wispr-local/config.json), a wave and a cursor. No words.
+  After-Hours TR sample shop is "Soğukdere Tesisat & Isıtma", the EN sample name translated word for word, so each screen stays in one language.
+  After-Hours EN slides are captured with the page's recorded-run strip and status line hidden: they name the model and are not for a buyer.
+  Price Sentry card and Rail card are compositions (.drafts notes): one alert from the sample data; the real menu from rail/docs/rail-menu.png under a menu bar.
+  Hero wall tiles: assets/wall/*.webp are tight crops of the renders (no UI text, no baked labels). Cut by .drafts/make_assets.py.
+  Map data (c) OpenStreetMap contributors.
+  Repo links: github.com/erenes1667/rail and github.com/erenes1667/casefoundry are public. No other demo is public yet.
+  TODO: add demo links as the builds go online: set demo="https://..." on the project in PROJECTS (.drafts/build_home.py). The lightbox then shows a Live demo button.
+  Rail card and slide 1 are the text-free pill render (assets/work2/rail-c.webp, same render as the wall tile); slide 2 is the real menu. CaseFoundry card is the 3D render only.
+  Hushtype types the card line itself ("Hold a key, speak"), not a claim. Angrybench carries a "Sample run" tag, the numbers are the recorded sample run.
+  TODO: erenes1667@gmail.com has no source file. Enes confirms this is the inbox he wants on a client page.
 -->
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main" data-i18n="nav.skip">Skip to content</a>
 <div class="bar" aria-hidden="true"></div>
 
-<header class="nav">
+<header class="nav" id="nav">
   <div class="wrap">
-    <a class="logo" href="./" aria-label="Enes Eren Studio, home">Enes Eren<span>.</span></a>
+    <a class="logo" href="./" aria-label="Enes Eren">Enes Eren<i>.</i></a>
     <ul>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#process">How I work</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#work" data-i18n="nav.work">Work</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
-    <a class="btn" href="#contact">Hire me</a>
+    <a class="cpill" href="mailto:erenes1667@gmail.com" data-mail="" data-i18n="hero.mail">Email me</a>
+    <div class="lang" role="group" aria-label="Language" data-i18n-aria="lang.label">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="tr" aria-pressed="false">TR</button>
+    </div>
   </div>
 </header>
 
-<main id="main">
-
-<section class="hero" aria-labelledby="top">
-  <div class="hero-bg" role="img" aria-label="3D relief map of an Istanbul neighbourhood, a print preview from Kabartma Harita. Map data from OpenStreetMap contributors."></div>
+<main id="main" tabindex="-1">
+<section class="hero" aria-labelledby="h1">
+  <div class="wall" aria-hidden="true"><div class="col"><img src="assets/wall/angrybench-score.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/lithoglow-arch.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/galata-zoom.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/hometile-besiktas.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/casefoundry-case.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/angrybench-score.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/lithoglow-arch.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/galata-zoom.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/hometile-besiktas.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/casefoundry-case.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"></div><div class="col"><img src="assets/wall/lithoglow-sun.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/routecarve-low.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/lithoglow-round.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/hometile-galata.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/besiktas-zoom.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/lithoglow-sun.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/routecarve-low.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/lithoglow-round.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/hometile-galata.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/besiktas-zoom.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"></div><div class="col"><img src="assets/wall/casefoundry-edge.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/pricesentry-alert.webp" data-src-tr="assets/wall/pricesentry-alert-tr.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/hometile-moda.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/routecarve-side.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/lithoglow-sun2.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/casefoundry-edge.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/pricesentry-alert.webp" data-src-tr="assets/wall/pricesentry-alert-tr.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/hometile-moda.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/routecarve-side.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/lithoglow-sun2.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"></div><div class="col"><img src="assets/wall/rail-pill.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/lithoglow-sunset.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/moda-zoom.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/routecarve-top.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/filament-wide.webp" width="1200" height="750" alt="" decoding="async"><img src="assets/wall/rail-pill.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/lithoglow-sunset.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/moda-zoom.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/routecarve-top.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"><img src="assets/wall/filament-wide.webp" width="1200" height="750" alt="" decoding="async" fetchpriority="low"></div></div>
   <div class="wrap">
-    <p class="eyebrow">Freelance studio, Istanbul</p>
-    <h1 id="top" class="display"><span>Enes</span><span>Eren</span><span class="o">Studio</span></h1>
-    <p class="tag serif">Email flows, working agents, <em>printable parts.</em></p>
-    <div class="chips">
-      <a class="chip" href="#email">Email flows</a>
-      <a class="chip" href="#agents">AI agents and automation</a>
-      <a class="chip" href="#print">3D print design</a>
-    </div>
-    <div class="hero-row">
-      <p class="meta"><span>Istanbul <b>UTC+3</b></span><span>Local time <b data-clock>Istanbul</b></span><span>Turkish and English</span></p>
-      <p class="cred">BA Digital Game Design. Former project manager at a game studio.</p>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="services" aria-labelledby="services-h">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <p class="eyebrow">Services</p>
-        <h2 id="services-h" class="display">Three things<br>I do <span class="serif">well</span></h2>
-      </div>
-      <p class="lede">Pick one, or combine them. Every project starts with a small working proof, so you see it before you commit.</p>
-    </div>
-    <div class="svc">
-      <article class="card reveal" id="email">
-        <div class="n">01</div>
-        <h3>Email flows for <span style="white-space:nowrap">e-commerce</span></h3>
-        <p>Klaviyo on Shopify and BigCommerce. I read what your account does today, fix the foundations, then build the flows and campaigns that run on them.</p>
-        <ul><li>Audit</li><li>Segments</li><li>Flows</li><li>Campaigns</li><li>Monthly report</li></ul>
-      </article>
-      <article class="card reveal" id="agents">
-        <div class="n">02</div>
-        <h3>AI agents and automation</h3>
-        <p>Working agents, not demos. I build them with n8n, Claude Code and Telegram bots, and deliver them on your own server so you keep the keys and the data.</p>
-        <ul><li>n8n</li><li>Claude Code agents</li><li>Telegram bots</li><li>GoHighLevel</li><li>Cold-email infrastructure</li></ul>
-      </article>
-      <article class="card reveal" id="print">
-        <div class="n">03</div>
-        <h3>3D print design</h3>
-        <p>Multicolor parts for a Bambu Lab P2S with AMS. I also write parametric generators that turn a name, a photo or a map into a print file.</p>
-        <ul><li>Multicolor, P2S and AMS</li><li>Parametric STL generators</li><li>STL and 3MF output</li></ul>
-      </article>
+    <p class="eyebrow" data-i18n="hero.eyebrow">Open for projects.</p>
+    <h1 id="h1"><span class="ln" style="--i:0"><span data-i18n="hero.l1">AI agents.</span></span> <span class="ln" style="--i:1"><span data-i18n="hero.l2">3D print tools.</span></span> <span class="ln" style="--i:2"><span data-i18n="hero.l3">Mac apps.</span></span></h1>
+    <p class="sub" data-i18n="hero.sub">Send me the job. I build it and show it working.</p>
+    <div class="cta">
+      <a class="btn pri" href="mailto:erenes1667@gmail.com" data-mail="subj.project" data-i18n="hero.mail">Email me</a>
+      <a class="btn gh" href="#work" data-i18n="hero.see">See the work</a>
     </div>
   </div>
 </section>
 
 <section class="sec" id="work" aria-labelledby="work-h">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <p class="eyebrow">Work</p>
-        <h2 id="work-h" class="display">Things I<br>built <span class="serif">myself</span></h2>
-      </div>
-      <p class="lede">My own tools and products. Screenshots come from the builds and use sample data. Most demos have a Turkish interface.</p>
-    </div>
-
-    <div class="work-h reveal"><h3>Agents and tools</h3><span>Six builds</span></div>
+    <div class="sh reveal"><h2 id="work-h" data-i18n="sec.work">Recent builds</h2></div>
     <div class="grid">
-
-      <article class="card item reveal">
-        <div class="media">
-          <div class="plate" aria-hidden="true">
-            <div class="step"><i>1</i>Hold a hotkey on the Mac, speak</div>
-            <div class="step"><i>2</i>Whisper large-v3 on my GPU box</div>
-            <div class="step"><i>3</i>Clean text types into the focused app</div>
-            <small>Diagram, not a screenshot</small>
-          </div>
-        </div>
-        <div class="body">
-          <h4>Wispr Local</h4>
-          <p>Self-hosted speech to text. The Mac is a thin client, the speech model runs on my own GPU machine over a private network.</p>
-          <div class="spec">Mac client · GPU server · Python</div>
+      <article class="card reveal c7 r1 wide" data-p="angrybench">
+        <button class="hit" type="button" aria-haspopup="dialog" aria-label="Angrybench" data-i18n-aria="p.angrybench.name"></button>
+        <div class="vis"><div class="dg" role="img" aria-label="A score of 90 out of 100: 35 of 40 customers passed, 2 unsure, 3 failed." data-i18n-aria="p.angrybench.alt0"><div class="abs"><b>90</b><i>/ 100</i></div><div class="abg"><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="f"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="u"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="f"></i><i class="p"></i><i class="p"></i><i class="f"></i><i class="u"></i></div><div class="abl"><span class="p"><b>35</b> <span data-i18n="ab.pass">passed</span></span><span class="u"><b>2</b> <span data-i18n="ab.unsure">unsure</span></span><span class="f"><b>3</b> <span data-i18n="ab.fail">failed</span></span></div><span class="smp"><span data-i18n="tag.run">Sample run</span></span></div></div>
+        <span class="open" aria-hidden="true"></span>
+        <div class="meta">
+          <h3 data-i18n="p.angrybench.name">Angrybench</h3>
+          <p data-i18n="p.angrybench.line">40 angry customers vs your agent</p>
         </div>
       </article>
-
-      <article class="card item reveal">
-        <div class="media"><img src="assets/work/rail.jpg" width="1000" height="625" loading="lazy" decoding="async" alt="Rail's menu: turn off, activate for 5 minutes to 5 hours, custom, and sleep options."></div>
-        <div class="body">
-          <h4>Rail</h4>
-          <p>A menu-bar app that keeps an Apple Silicon Mac awake. Right-click to toggle, left-click for timers and sleep options.</p>
-          <div class="spec">macOS menu bar · Swift</div>
-          <a class="lnk" href="https://github.com/erenes1667/rail" rel="noopener">GitHub repo</a>
+      <article class="card reveal c5 r1" data-p="afterhours">
+        <button class="hit" type="button" aria-haspopup="dialog" aria-label="After-Hours Desk" data-i18n-aria="p.afterhours.name"></button>
+        <div class="vis"><img src="assets/work2/afterhours-c.webp" data-src-tr="assets/work2/afterhours-tr-c.webp" width="960" height="600" loading="lazy" decoding="async" alt="A phone ringing: an unanswered call to a sample shop." data-i18n-alt="p.afterhours.calt"><span class="smp" data-i18n="tag.sample">Sample shop</span></div>
+        <span class="open" aria-hidden="true"></span>
+        <div class="meta">
+          <h3 data-i18n="p.afterhours.name">After-Hours Desk</h3>
+          <p data-i18n="p.afterhours.line">Missed call after 5? Booked by text</p>
         </div>
       </article>
-
-      <article class="card item reveal">
-        <div class="media">
-          <div class="plate" aria-hidden="true">
-            <div class="step"><i>1</i>I message the bot on Telegram</div>
-            <div class="step"><i>2</i>It runs on my own always-on server</div>
-            <div class="step"><i>3</i>Fast model by default, bigger one on request</div>
-            <small>Diagram, not a screenshot</small>
-          </div>
-        </div>
-        <div class="body">
-          <h4>Telegram assistant</h4>
-          <p>An always-on assistant that answers only one allowed chat, keeps memory and calls tools on the server. Private, so description only.</p>
-          <div class="spec">Python · Telegram · own server</div>
+      <article class="card reveal c3 r2" data-p="pricesentry">
+        <button class="hit" type="button" aria-haspopup="dialog" aria-label="Price Sentry" data-i18n-aria="p.pricesentry.name"></button>
+        <div class="vis"><img src="assets/work2/pricesentry-en-c.webp" data-src-tr="assets/work2/pricesentry-c.webp" width="960" height="600" loading="lazy" decoding="async" alt="Six watched prices with seven-day lines and percent changes." data-i18n-alt="p.pricesentry.alt0"></div>
+        <span class="open" aria-hidden="true"></span>
+        <div class="meta">
+          <h3 data-i18n="p.pricesentry.name">Price Sentry</h3>
+          <p data-i18n="p.pricesentry.line">Rival price alerts on Telegram</p>
         </div>
       </article>
-
-      <article class="card item reveal">
-        <div class="media"><img src="assets/work/after-hours-desk.jpg" width="1000" height="625" loading="lazy" decoding="async" alt="After-Hours Desk demo: a simulated missed call on a sample plumbing shop, with the booking job card filling in."></div>
-        <div class="body">
-          <h4>After-Hours Desk</h4>
-          <p>A missed-call text-back and booking agent for home-service shops. The caller gets a text, the agent books a slot, the office reads a morning summary. The demo uses a sample shop.</p>
-          <div class="spec">Python stdlib · sample data</div>
+      <article class="card reveal c3 r2" data-p="hometile">
+        <button class="hit" type="button" aria-haspopup="dialog" aria-label="Hometile" data-i18n-aria="p.hometile.name"></button>
+        <div class="vis"><img src="assets/work2/hometile-c.webp" width="960" height="600" loading="lazy" decoding="async" alt="A 3D relief map of Besiktas in red, green and blue." data-i18n-alt="p.hometile.alt0"></div>
+        <span class="open" aria-hidden="true"></span>
+        <div class="meta">
+          <h3 data-i18n="p.hometile.name">Hometile</h3>
+          <p data-i18n="p.hometile.line">Your neighbourhood as a relief tile</p>
         </div>
       </article>
-
-      <article class="card item reveal">
-        <div class="media"><img src="assets/work/fiyat-nobeti.jpg" width="1000" height="625" loading="lazy" decoding="async" alt="Fiyat Nobeti: a list of watched product URLs with price lines, and a Telegram connection panel."></div>
-        <div class="body">
-          <h4>Fiyat Nobeti</h4>
-          <p>Watches competitor product prices, sends a Telegram alert on each move, and writes a Monday summary in Turkish: who dropped, by how much, what to do.</p>
-          <div class="spec">Python stdlib · one cron line</div>
+      <article class="card reveal c3 r2" data-p="routecarve">
+        <button class="hit" type="button" aria-haspopup="dialog" aria-label="Routecarve" data-i18n-aria="p.routecarve.name"></button>
+        <div class="vis"><img src="assets/work2/routecarve-c.webp" width="960" height="600" loading="lazy" decoding="async" alt="A trophy with an orange running route raised over terrain." data-i18n-alt="p.routecarve.alt0"></div>
+        <span class="open" aria-hidden="true"></span>
+        <div class="meta">
+          <h3 data-i18n="p.routecarve.name">Routecarve</h3>
+          <p data-i18n="p.routecarve.line">Your run, carved into a trophy</p>
         </div>
       </article>
-
-      <article class="card item reveal">
-        <div class="media"><img src="assets/work/ajan-test.jpg" width="1000" height="625" loading="lazy" decoding="async" alt="Ajan Test report: a score out of 100, a grid of 40 scripted customer results and the worst transcripts."></div>
-        <div class="body">
-          <h4>Ajan Test</h4>
-          <p>A stress bench for chatbots and voice agents. It plays 40 scripted hostile customers at your agent and returns a scored report with the worst transcripts.</p>
-          <div class="spec">Python stdlib · Turkish interface</div>
+      <article class="card reveal c3 r2 wide" data-p="lithoglow">
+        <button class="hit" type="button" aria-haspopup="dialog" aria-label="Lithoglow" data-i18n-aria="p.lithoglow.name"></button>
+        <div class="vis"><img src="assets/work2/lithoglow-c.webp" width="960" height="600" loading="lazy" decoding="async" alt="A rectangular lithophane lamp lit with a warm sunset." data-i18n-alt="p.lithoglow.alt0"></div>
+        <span class="open" aria-hidden="true"></span>
+        <div class="meta">
+          <h3 data-i18n="p.lithoglow.name">Lithoglow</h3>
+          <p data-i18n="p.lithoglow.line">Your photo, lit from inside</p>
         </div>
       </article>
-    </div>
-
-    <div class="work-h reveal"><h3>Print generators</h3><span>Six builds</span></div>
-    <div class="grid">
-
-      <article class="card item reveal">
-        <div class="media"><img src="assets/work/casefoundry.jpg" width="1000" height="625" loading="lazy" decoding="async" alt="CaseFoundry app icon: a phone outline with two camera rings."></div>
-        <div class="body">
-          <h4>CaseFoundry</h4>
-          <p>An offline Mac workshop that turns phone geometry into printable case models. Placement editor, fit checks, live 3D preview, STL and multipart 3MF out.</p>
-          <div class="spec">macOS app · STL and 3MF</div>
-          <a class="lnk" href="https://github.com/erenes1667/casefoundry" rel="noopener">GitHub repo</a>
+      <article class="card reveal c6 r2" data-p="casefoundry">
+        <button class="hit" type="button" aria-haspopup="dialog" aria-label="CaseFoundry" data-i18n-aria="p.casefoundry.name"></button>
+        <div class="vis"><img src="assets/work2/casefoundry-c.webp" width="960" height="600" loading="lazy" decoding="async" alt="A 3D phone case with a woven pattern." data-i18n-alt="p.casefoundry.alt0"></div>
+        <span class="open" aria-hidden="true"></span>
+        <div class="meta">
+          <h3 data-i18n="p.casefoundry.name">CaseFoundry</h3>
+          <p data-i18n="p.casefoundry.line">Printable phone cases from measured geometry</p>
         </div>
       </article>
-
-      <article class="card item reveal">
-        <div class="media"><img src="assets/work/isim-engine.jpg" width="1000" height="625" loading="lazy" decoding="async" alt="Isim Engine: a name keychain in 3D with print options on the right."></div>
-        <div class="body">
-          <h4>İsim Engine</h4>
-          <p>Type a name, see it in 3D, download a print-ready STL. Keychain, ornament or standing lamp, plus a bulk plate for office orders. Turkish letters come out right.</p>
-          <div class="spec">Browser only · binary STL</div>
-        </div>
-      </article>
-
-      <article class="card item reveal">
-        <div class="media"><img src="assets/work/litofan-lamba.jpg" width="1000" height="625" loading="lazy" decoding="async" alt="Litofan Lamba: a lithophane lamp preview lit from behind."></div>
-        <div class="body">
-          <h4>Litofan Lamba</h4>
-          <p>Drop a photo, see the lithophane lamp in 3D and in light, download the STL. The preview and the file come from the same vertices, so what you see is what prints.</p>
-          <div class="spec">Browser only · three.js · STL</div>
-        </div>
-      </article>
-
-      <article class="card item reveal">
-        <div class="media"><img src="assets/work/kabartma-harita.jpg" width="1000" height="625" loading="lazy" decoding="async" alt="Kabartma Harita: a 3D relief tile of an Istanbul neighbourhood in six colors."></div>
-        <div class="body">
-          <h4>Kabartma Harita</h4>
-          <p>Type an Istanbul address, get a 20 cm relief tile. Water, parks, roads, buildings and the home marker each print as their own body for the AMS. Map data from OpenStreetMap.</p>
-          <div class="spec">Browser · 3MF and STL</div>
-        </div>
-      </article>
-
-      <article class="card item reveal">
-        <div class="media"><img src="assets/work/rota-kupa.jpg" width="1000" height="625" loading="lazy" decoding="async" alt="Rota Kupa: a trophy with an orange route ribbon over terrain, built from a sample GPX loop."></div>
-        <div class="body">
-          <h4>Rota Kupa</h4>
-          <p>Upload a GPX file, get a 110 mm trophy. The terrain is the route's own elevation, the route stands on it as a ribbon. One 3MF with four named bodies. The demo loop is sample data.</p>
-          <div class="spec">Browser · three.js · 3MF</div>
-        </div>
-      </article>
-
-      <article class="card item reveal">
-        <div class="media"><img src="assets/work/filament-portre.jpg" width="1000" height="625" loading="lazy" decoding="async" alt="Filament Portre: a cat photo turned into a flat multicolor relief preview."></div>
-        <div class="body">
-          <h4>Filament Portre</h4>
-          <p>Photo to multicolor relief plaque. Pick 4 to 6 colors, check the front-lit look in 3D, download files for the P2S with AMS.</p>
-          <div class="spec">Browser · three.js · 3MF and STL</div>
+      <article class="card reveal c6 r2" data-p="rail">
+        <button class="hit" type="button" aria-haspopup="dialog" aria-label="Rail" data-i18n-aria="p.rail.name"></button>
+        <div class="vis"><img src="assets/work2/rail-c.webp" width="960" height="600" loading="lazy" decoding="async" alt="Rail&#x27;s orange menu-bar pill, lit." data-i18n-alt="p.rail.alt0"></div>
+        <span class="open" aria-hidden="true"></span>
+        <div class="meta">
+          <h3 data-i18n="p.rail.name">Rail</h3>
+          <p data-i18n="p.rail.line">Keeps your Mac awake</p>
         </div>
       </article>
     </div>
-    <p class="note">Demo links are not public yet. If you want to click one, ask and I will send it.</p>
-  </div>
-</section>
-
-<section class="sec" id="process" aria-labelledby="process-h">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <p class="eyebrow">How I work</p>
-        <h2 id="process-h" class="display">Four steps,<br><span class="serif">no surprises</span></h2>
-      </div>
-      <p class="lede">You see something working before you decide anything.</p>
+    <div class="more-row"><button class="btn gh" type="button" id="more" aria-expanded="false" aria-controls="more-grid" data-i18n="more.open">More builds</button></div>
+    <div class="grid" id="more-grid" hidden>
+      <article class="card reveal c6 r2" data-p="filament">
+        <button class="hit" type="button" aria-haspopup="dialog" aria-label="Filament Portrait" data-i18n-aria="p.filament.name"></button>
+        <div class="vis"><img src="assets/work2/filament-c.webp" width="960" height="600" loading="lazy" decoding="async" alt="A cat portrait as a framed multicolor relief plaque." data-i18n-alt="p.filament.alt0"></div>
+        <span class="open" aria-hidden="true"></span>
+        <div class="meta">
+          <h3 data-i18n="p.filament.name">Filament Portrait</h3>
+          <p data-i18n="p.filament.line">Front-lit filament portrait of your pet</p>
+        </div>
+      </article>
+      <article class="card reveal c6 r2" data-p="hushtype">
+        <button class="hit" type="button" aria-haspopup="dialog" aria-label="Hushtype" data-i18n-aria="p.hushtype.name"></button>
+        <div class="vis"><div class="dg" role="img" aria-label="The Option key, a sound wave and a text cursor." data-i18n-aria="p.hushtype.alt0"><div class="hk"><b>⌥</b></div><div class="wv"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i></div><div class="field"><span class="typed"><span data-i18n="hush.typed">Hold a key, speak</span></span></div></div></div>
+        <span class="open" aria-hidden="true"></span>
+        <div class="meta">
+          <h3 data-i18n="p.hushtype.name">Hushtype</h3>
+          <p data-i18n="p.hushtype.line">Hold a key, speak, text appears</p>
+        </div>
+      </article>
     </div>
-    <ol class="steps">
-      <li class="reveal"><span class="k">01</span><h3>Brief</h3><p>You send a short brief. I answer with scope and price in one message.</p></li>
-      <li class="reveal"><span class="k">02</span><h3>Proof page</h3><p>I build a small working page for your brief, on sample data. You click it and judge it.</p></li>
-      <li class="reveal"><span class="k">03</span><h3>Build</h3><p>If you like the proof, I build the real thing on your accounts or your server.</p></li>
-      <li class="reveal"><span class="k">04</span><h3>Handover</h3><p>You get the files, the access and a plain-language doc. It runs without me.</p></li>
-    </ol>
   </div>
 </section>
 
 <section class="contact" id="contact" aria-labelledby="contact-h">
   <div class="wrap">
-    <p class="eyebrow">Contact</p>
-    <h2 id="contact-h" class="display" style="font-size:clamp(40px,7vw,84px);margin-bottom:8px">Send the brief<span class="serif">.</span></h2>
-    <a class="mail" href="mailto:erenes1667@gmail.com">erenes1667@gmail.com</a>
-    <div class="cols">
-      <div><h3>Email</h3><p>erenes1667@gmail.com. Say what you sell, what is broken or missing, and what done looks like.</p></div>
-      <div><h3>GitHub</h3><p><a href="https://github.com/erenes1667" rel="noopener">github.com/erenes1667</a></p></div>
-      <div><h3>Payment</h3><p>Payoneer, bank transfer, or the platform's escrow.</p></div>
+    <p class="eyebrow" id="contact-h" data-i18n="sec.contact">Contact</p>
+    <a class="mail reveal" href="mailto:erenes1667@gmail.com" data-mail="subj.project">erenes1667@gmail.com</a>
+    <p class="hint" data-i18n="contact.hint">Send your goal, budget and deadline.</p>
+    <div class="cta2">
+      <button class="btn pri" type="button" id="copy"><span data-i18n="copy.mail">Copy email</span></button>
+      <a class="btn gh" lang="en" href="https://github.com/erenes1667" target="_blank" rel="noopener noreferrer" data-i18n="contact.gh">GitHub</a>
     </div>
+    <p class="sr" id="copy-live" aria-live="polite"></p>
   </div>
 </section>
-
 </main>
 
-<footer class="site-foot">
-  <div class="wrap">
-    <span>Enes Eren Studio. Istanbul, UTC+3.</span>
-    <span>Contact: erenes1667@gmail.com</span>
-    <span>Hand-written HTML. No tracking.</span>
-  </div>
-</footer>
+<footer class="foot"><div class="wrap" data-i18n="foot">Enes Eren, Istanbul</div></footer>
 
-<script src="assets/site.js"></script>
+<dialog class="lb" id="lb" aria-modal="true" aria-labelledby="lb-name">
+  <div class="lb-in">
+    <div class="stage">
+      <button class="x" type="button" id="lb-x" aria-label="Close" data-i18n-aria="lb.close"></button>
+      <span class="count" id="lb-count" aria-hidden="true"></span>
+      <div class="shotw">
+        <div class="shot" id="lb-shot"></div>
+        <button class="nav2 p" type="button" id="lb-p" aria-label="Previous" data-i18n-aria="lb.prev"></button>
+        <button class="nav2 n" type="button" id="lb-n" aria-label="Next" data-i18n-aria="lb.next"></button>
+      </div>
+      <div class="thumbs" id="lb-t"></div>
+    </div>
+    <div class="info">
+      <h3 id="lb-name" tabindex="-1" autofocus></h3>
+      <p id="lb-l1"></p>
+      <p id="lb-l2"></p>
+      <p class="note" id="lb-cap" hidden></p>
+      <div class="acts">
+        <a class="btn pri" id="lb-mail" href="mailto:erenes1667@gmail.com" data-i18n="lb.mail">Ask for one like this</a>
+        <a class="btn gh" id="lb-link" lang="en" target="_blank" rel="noopener noreferrer" hidden></a>
+        <a class="btn gh" id="lb-demo" target="_blank" rel="noopener noreferrer" hidden></a>
+      </div>
+      <p class="credit" id="lb-credit" hidden></p>
+    </div>
+  </div>
+</dialog>
+
+<script src="assets/home.js"></script>
 </body>
 </html>

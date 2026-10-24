@@ -8,9 +8,9 @@
   "walls": 4,
   "infill_pct": 20,
   "layers": 25,
-  "time_model_only": "35m 59s",
-  "time_total": "36m 19s",
-  "time_total_s": 2179,
+  "time_model_only": "29m 27s",
+  "time_total": "29m 47s",
+  "time_total_s": 1787,
   "colour_changes": 2,
   "colour_change_layers": [
    11,
@@ -33,13 +33,13 @@
     3
    ]
   ],
-  "model_g": 19.14,
-  "total_g": 21.1,
+  "model_g": 14.15,
+  "total_g": 16.1,
   "waste_g": 1.95,
   "per_spool_g": [
-   9.6,
-   7.87,
-   3.62
+   8.11,
+   6.04,
+   1.95
   ],
   "feature_types": [
    "Bottom surface",

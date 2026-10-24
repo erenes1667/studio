@@ -1,40 +1,40 @@
 [
  {
   "slug": "car",
-  "name": "Retro car, front view",
+  "name": "Retro car, side profile",
   "colors": 3,
   "bodies": [
    {
     "id": "car-1-charcoal",
-    "name": "Outline and tyres",
+    "name": "Outline and tires",
     "color": "#26262b",
     "z0": 0,
     "z1": 2,
     "stl": "car-1-charcoal.stl",
-    "tris": 2356
+    "tris": 2456
    },
    {
     "id": "car-2-red",
-    "name": "Body",
+    "name": "Body and rims",
     "color": "#c9402a",
     "z0": 2,
     "z1": 3.6,
     "stl": "car-2-red.stl",
-    "tris": 1784
+    "tris": 2900
    },
    {
     "id": "car-3-cream",
-    "name": "Glass, lamps, bumper",
+    "name": "Glass, lamps, bumpers",
     "color": "#efe4cb",
     "z0": 3.6,
     "z1": 5,
     "stl": "car-3-cream.stl",
-    "tris": 3096
+    "tris": 2996
    }
   ],
   "bbox_mm": [
-   95.6,
    101.6,
+   79.519,
    5
   ]
  },

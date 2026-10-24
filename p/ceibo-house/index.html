@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Ceibo House Flow Map | Enes Eren Studio</title>
+<title>Ceibo House Flows | Enes Eren Studio</title>
 <meta name="description" content="Sample Klaviyo flows, campaigns, segments and a launch plan for a woven flag blanket store. Made by Enes Eren Studio.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230c0a08'/%3E%3Cpath d='M0 24h64v16H0z' fill='%23e2a63c'/%3E%3C/svg%3E">
 <style>
 @font-face{font-family:'Fraunces';font-style:normal;font-weight:300 700;font-display:swap;src:url(fonts/fraunces-normal-300-700.woff2) format('woff2')}
 @font-face{font-family:'Fraunces';font-style:italic;font-weight:300 700;font-display:swap;src:url(fonts/fraunces-italic-300-700.woff2) format('woff2')}
@@ -21,7 +22,8 @@
   --serif:'Fraunces',Georgia,serif; --sans:'Schibsted Grotesk',system-ui,sans-serif; --mono:'DM Mono',ui-monospace,monospace;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:none;text-size-adjust:none}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:none;text-size-adjust:none}
+#price,#segments,#audit,#plan,#work{scroll-margin-top:72px}
 body{margin:0;background:var(--bg);color:var(--cream);font:400 17px/1.6 var(--sans);overflow-x:hidden;
   background-image:radial-gradient(1100px 600px at 80vw -120px,rgba(200,85,45,.16),transparent 70vh),radial-gradient(900px 500px at -10vw 40vh,rgba(226,166,60,.07),transparent 60vh)}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.5;
@@ -37,12 +39,13 @@ p{margin:0}
 /* top bar */
 .bar{position:sticky;top:0;z-index:40;background:rgba(12,10,8,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:54px}
-.bar .home{font:500 13px/1 var(--mono);letter-spacing:.08em;text-decoration:none;text-transform:uppercase}
+.bar .home{display:inline-flex;align-items:center;min-height:44px;font:500 13px/1 var(--mono);letter-spacing:.08em;text-decoration:none;text-transform:uppercase}
 .bar nav{display:none;gap:22px}
 .bar nav a{font:400 13px/1 var(--mono);color:var(--mute);text-decoration:none;letter-spacing:.06em}
 .bar nav a:hover{color:var(--ochre)}
 .bar .tag{font:400 11px/1 var(--mono);color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
 @media(min-width:960px){.bar nav{display:flex}.bar .tag{display:none}}
+@media(max-width:959px){.bar .tag{display:none}.bar .home{flex:none}.bar nav{display:flex;gap:20px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;padding-right:26px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}.bar nav::-webkit-scrollbar{display:none}.bar nav a{flex:none;padding:20px 0}}
 
 /* hero */
 .hero-s{padding:56px 0 40px;position:relative}
@@ -67,8 +70,6 @@ p{margin:0}
 .blanket::after{content:"";position:absolute;left:0;right:0;bottom:-26px;height:26px;
   background:repeating-linear-gradient(90deg,#efe5cf 0 3px,transparent 3px 8px);
   -webkit-mask-image:linear-gradient(#000,transparent);mask-image:linear-gradient(#000,transparent)}
-.blanket .sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 30px,rgba(255,255,255,.14) 80px,transparent 150px);background-size:600px 2000px;animation:sheen 7s linear infinite}
-@keyframes sheen{from{background-position:-300px 0}to{background-position:700px 0}}
 .art figcaption{position:absolute;left:-6px;bottom:-62px;font:400 11px/1.4 var(--mono);color:var(--dim);letter-spacing:.08em;text-transform:uppercase;max-width:260px}
 @media(min-width:960px){.hero-grid{grid-template-columns:1.25fr .75fr}.hero-s{padding:84px 0 56px}}
 
@@ -147,7 +148,21 @@ a.box:hover,a.box:focus-visible{border-color:var(--cream)}
 .subj{font-weight:700;font-size:14px;color:#1f1810}
 .prev{color:#6b5b42;font-size:13px}
 .paper{padding:0 0 22px}
-.logoslot{margin:16px auto 14px;width:132px;height:30px;border:1px dashed #a89870;display:flex;align-items:center;justify-content:center;font:500 9.5px/1 'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#8a7a58}
+.wm{margin:18px auto 14px;text-align:center;font:600 24px/1 'Fraunces',Georgia,serif;font-variation-settings:'opsz' 48;letter-spacing:-.01em;color:#9b3a1e}
+.wm::after{content:"";display:block;width:64px;height:3px;margin:9px auto 0;background:repeating-linear-gradient(90deg,#9b3a1e 0 16px,#e2a63c 16px 32px,#2f4a3d 32px 48px,#efe5cf 48px 64px)}
+.cartrow{position:relative;margin:4px 22px 14px;padding:10px;border:1px solid #cdbf9e;background:#fbf6e8;display:grid;grid-template-columns:78px 1fr;gap:12px;align-items:center}
+.cartrow .ph{width:78px;height:78px;background:url(img/blanket-sofa.jpg) 52% 66%/auto 280% no-repeat}
+.cartrow .ph.w{background-image:url(img/weave.jpg);background-position:50% 50%;background-size:cover}
+.cartrow b{display:block;font:700 15px/1.25 Georgia,serif;color:#1f1810}
+.cartrow .sz{display:block;margin-top:3px;font:400 13px/1.3 Helvetica,Arial,sans-serif;color:#6b5b42}
+.cartrow .tg{display:inline-block;margin-top:8px;font:500 9px/1 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8a4a22;border:1px solid #cdbf9e;padding:4px 6px}
+.qline{margin:0 22px 14px;padding:10px 12px;border:1px dashed #a89870;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font:400 13px/1 Helvetica,Arial,sans-serif;color:#6b5b42}
+.qline i{font-style:normal;font-weight:700;color:#1f1810;border:1px solid #cdbf9e;background:#fbf6e8;padding:6px 9px}
+.ship{margin:0 22px 14px}
+.ship .sb{height:8px;background:#e6dbc2;border:1px solid #cdbf9e}
+.ship .sb i{display:block;height:100%;width:62%;background:#b4491f}
+.email[data-variant="free"] .ship .sb i{width:100%;background:#2f4a3d}
+.ship small{display:block;margin-top:6px;font:500 10px/1.3 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#6b5b42}
 .hero{position:relative;height:190px;display:flex;flex-direction:column;justify-content:flex-end;padding:12px 14px;color:#fff}
 .hero.small{height:112px;padding:8px 9px}
 .slotlabel,.slotname{position:relative;z-index:1;align-self:flex-start;background:rgba(20,14,8,.78);font:500 9px/1 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;padding:5px 7px;color:#f4ecda}
@@ -179,22 +194,23 @@ a.box:hover,a.box:focus-visible{border-color:var(--cream)}
 .efoot p{font:inherit;color:inherit;margin:0 0 3px}
 .ul{text-decoration:underline}
 .vf{display:none}
-.email[data-variant="free"] .vs{display:none}
+.email[data-variant="free"] .vs,#vgoal[data-variant="free"] .vs{display:none}
 .email[data-variant="free"] .vf{display:block}
-.email[data-variant="free"] span.vf{display:inline}
+.email[data-variant="free"] span.vf,#vgoal[data-variant="free"] span.vf{display:inline}
 .email figcaption{width:375px;padding:14px 4px 0}
 @media(max-width:420px){.email figcaption{padding-inline:16px}}
 @media(max-width:374px){.email figcaption{width:auto}}
 .goal{font:400 14px/1.5 var(--sans);color:#d8ccb2}
 .goal b{display:block;font:500 10px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);margin-bottom:5px}
 .vtoggle{display:flex;gap:0;margin-bottom:12px}
-.vtoggle button{flex:1;font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:10px 8px;background:transparent;color:var(--mute);border:1px solid var(--line);cursor:pointer}
+.vtoggle button{flex:1;min-height:44px;font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:10px 8px;background:transparent;color:var(--mute);border:1px solid var(--line);cursor:pointer}
 .vtoggle button[aria-pressed="true"]{background:var(--ochre);color:#1a1208;border-color:var(--ochre)}
 
 /* viewer dialog */
 dialog{border:1px solid #4a3b27;background:var(--bg2);color:var(--cream);padding:0;width:min(940px,100%);max-width:100%;max-height:100vh;max-height:100dvh;margin:auto}
 dialog::backdrop{background:rgba(6,4,2,.82);backdrop-filter:blur(4px)}
-.vwrap{display:grid;gap:22px;padding:18px 0 22px;max-height:100dvh;overflow:auto}
+.vwrap{display:grid;gap:22px;padding:18px 0 22px;max-height:100dvh;overflow:auto;overscroll-behavior:contain}
+body:has(dialog[open]){overflow:hidden}
 .vmeta{padding:0 16px}
 .vmeta .kick{display:block;margin-bottom:8px}
 .vmeta h3{font-size:30px;margin-bottom:12px}
@@ -207,10 +223,11 @@ dialog::backdrop{background:rgba(6,4,2,.82);backdrop-filter:blur(4px)}
 .vnav button,.vclose{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--cream);border:1px solid var(--line);padding:12px 14px;cursor:pointer}
 .vnav button:hover,.vclose:hover{border-color:var(--ochre);color:var(--ochre)}
 .vnav button:disabled{opacity:.35;cursor:default}
+@media(max-width:899px){.vclose,.vnav button{min-height:44px;min-width:44px}}
 .vclose{justify-self:end;margin-right:16px;grid-row:1}
 @media(min-width:900px){
   .vwrap{grid-template-columns:375px 1fr;gap:32px;padding:26px 28px;align-items:start}
-  .vmeta{padding:0;grid-column:2;grid-row:1 / span 2;padding-top:44px}
+  .vmeta{padding:0;grid-column:2;grid-row:1 / span 2;padding-top:44px;max-width:420px}
   .vbody{grid-column:1;grid-row:1 / span 2;justify-content:flex-start}
   .vclose{position:absolute;right:20px;top:18px;margin:0}
   .vnav{padding:0}
@@ -273,20 +290,219 @@ dialog::backdrop{background:rgba(6,4,2,.82);backdrop-filter:blur(4px)}
 /* footer */
 footer{margin-top:90px;border-top:1px solid var(--line);padding:34px 0 60px;background:var(--bg2)}
 footer .wrap{display:grid;gap:18px;font:400 13px/1.6 var(--mono);color:var(--mute)}
-footer a{color:var(--cream);text-decoration-color:var(--ochre);text-underline-offset:4px}
+footer a{display:inline-block;padding:13px 0;color:var(--cream);text-decoration-color:var(--ochre);text-underline-offset:4px}
 footer .studio{font:500 24px/1 var(--serif);color:var(--cream)}
 @media(min-width:800px){footer .wrap{grid-template-columns:1fr 1fr;align-items:end}footer .r{text-align:right}}
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rise{opacity:1;transform:none;animation:none}
-  .blanket .sheen{animation:none}
   .mail .box{transition:none}
 }
 
 /* phone viewer: no side clip (UA dialog:modal max-width) */
 dialog:modal{max-width:100%}
 @media(max-width:420px){.vwrap{grid-template-columns:minmax(0,1fr)}.vbody{min-width:0}.vbody .email,.vbody .em,.vbody .email figcaption{width:auto;max-width:100%;min-width:0}.vbody .em img{max-width:100%;height:auto}}
+
+/* ===== v3: work first, price as one block ===== */
+.top{position:relative;padding:30px 0 14px}
+.top::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(90deg,#9b3a1e 0 28px,var(--cream) 28px 33px,var(--ochre) 33px 61px,var(--cream) 61px 66px,#2f4a3d 66px 94px,var(--cream) 94px 99px)}
+.top-g{display:grid;gap:18px;align-items:end}
+.top h1{font-size:clamp(38px,5vw,66px);font-weight:450;line-height:.98;letter-spacing:-.025em;margin:12px 0 12px}
+.top h1 em{font-style:italic;color:var(--ochre);font-weight:400}
+.top .lede{font-size:clamp(17px,2vw,20px);max-width:30em}
+.top-r{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.facts{margin:0;font:400 12px/1 var(--mono);letter-spacing:.06em;color:var(--mute);text-transform:uppercase;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.facts b{color:var(--ochre);font-weight:500;font-size:15px}
+.facts i{width:3px;height:3px;border-radius:50%;background:var(--dim);margin:0 4px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;background:var(--ochre);color:#1a1208;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:1px solid var(--ochre);transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:var(--ochre)}
+@media(min-width:900px){.top-r{gap:16px 26px}}
+
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none;margin-top:10px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;background:transparent;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--mute);font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:16px 16px 14px;cursor:pointer;display:flex;gap:9px;align-items:center;transition:color .2s,border-color .2s}
+.tabs button i{font-style:normal;font-size:11px;color:var(--dim);border:1px solid var(--line);padding:3px 6px;border-radius:9px}
+.tabs button:hover{color:var(--cream)}
+.tabs button[aria-selected="true"]{color:var(--ochre);border-bottom-color:var(--ochre)}
+.tabs button[aria-selected="true"] i{color:var(--ochre);border-color:var(--ochre)}
+
+.grp:not([hidden]){animation:grp .5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes grp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.grp>.flow,.grp>.sent{width:min(1200px,calc(100% - 32px));margin:16px auto 0;background:none;border:0;padding:0}
+.sent{font:400 13px/1.5 var(--mono);color:var(--mute);border-left:2px solid var(--brick);padding:4px 0 4px 14px!important}
+.flow .lane{display:flex;align-items:center;overflow-x:auto;padding:10px 2px 14px;margin:0;scrollbar-width:thin;scrollbar-color:#4a3b27 transparent}
+.flow .lane::before{display:none}
+.flow .n{flex:none;margin:0 24px 0 0}
+.flow .n::before{display:none}
+.flow .n:not(:last-child)::after{content:"";position:absolute;left:100%;top:50%;width:24px;border-top:2px dashed #4a3b27}
+.flow .n small,.flow .mail .open,.flow .rule{display:none}
+.flow .n .box{padding:8px 11px}
+.flow .n b{font-size:15px}
+.flow .mail .box{padding:9px 12px;min-width:112px}
+.flow .wait{margin-left:0}
+.flow .wait .box{padding:5px 11px}
+.flow .gate .box{padding:6px 10px}
+.flow .gate b{font-size:13px}
+.flow .gate .yes{font-size:10.5px}
+
+.gal{display:flex;grid-template-columns:none;justify-content:flex-start;gap:20px;overflow-x:auto;scroll-snap-type:x proximity;
+  padding:14px max(16px,calc((100vw - 1200px)/2)) 24px;scroll-padding-inline:max(16px,calc((100vw - 1200px)/2));scrollbar-width:thin;scrollbar-color:#4a3b27 transparent}
+.gal .email{flex:none;width:min(375px,calc(100vw - 56px));scroll-snap-align:start;cursor:pointer;outline-offset:4px}
+.gal .em{width:100%;max-height:560px;overflow:hidden;position:relative;transition:transform .25s,box-shadow .25s}
+.gal .em::after{content:"Open full email";position:absolute;left:0;right:0;bottom:0;height:108px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:20px;
+  background:linear-gradient(rgba(244,236,218,0),var(--paper) 50px);font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#a8431f}
+.gal .email:hover .em,.gal .email:focus-visible .em{transform:translateY(-4px);box-shadow:0 30px 60px -24px rgba(0,0,0,.9),0 0 0 1px var(--ochre)}
+.gal .email figcaption{width:auto;padding:12px 2px 0}
+.gal .goal{font-size:13.5px;color:var(--mute)}
+.sample{margin:4px 0 0;font:400 12px/1.5 var(--mono);color:var(--mute)}
+.galnote{margin:6px 0 0;font:400 12.5px/1.5 var(--mono);color:var(--mute);border-left:2px solid var(--brick);padding:2px 0 2px 14px}
+
+.pr{padding:36px 0 8px}
+.pk{position:relative;border:1px solid var(--line);background:linear-gradient(160deg,var(--panel2),var(--bg2));padding:26px 20px 22px}
+.pk::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(90deg,#9b3a1e 0 28px,var(--cream) 28px 33px,var(--ochre) 33px 61px,var(--cream) 61px 66px,#2f4a3d 66px 94px,var(--cream) 94px 99px)}
+.pk-h{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 18px;margin-bottom:16px}
+.pk-d{font:400 12px/1 var(--mono);letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+.pk-g{display:grid;gap:0}
+.pk-c{padding:16px 0;border-top:1px solid var(--line)}
+.pk-c:first-child{border-top:0}
+.pk-c b{font:450 clamp(46px,6vw,64px)/1 var(--serif);letter-spacing:-.03em;font-variation-settings:'opsz' 48}
+.pk-c span{margin-left:10px;font:400 12px/1 var(--mono);letter-spacing:.08em;color:var(--ochre);text-transform:uppercase}
+.pk-c p{margin-top:8px;font-size:15.5px;line-height:1.45;color:#d8ccb2;max-width:26em}
+@media(min-width:860px){.pk{padding:28px 28px 24px}.pk-g{grid-template-columns:1fr 1.25fr 1fr}.pk-c{padding:6px 24px;border-top:0;border-left:1px solid var(--line)}.pk-c:first-child{border-left:0;padding-left:0}}
+
+.more{padding:28px 0 0}
+.more details{border-top:1px solid var(--line)}
+.more details:last-child{border-bottom:1px solid var(--line)}
+.more summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px;padding:20px 40px 20px 0;position:relative}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:"+";position:absolute;right:4px;top:18px;font:400 26px/1 var(--mono);color:var(--ochre)}
+.more details[open] summary::after{content:"\2212"}
+.more summary b{font:500 clamp(22px,3vw,28px)/1.1 var(--serif)}
+.more summary span{font:400 12px/1.4 var(--mono);letter-spacing:.06em;color:var(--mute);text-transform:uppercase}
+.more summary:hover b{color:var(--ochre)}
+.dbody{padding:4px 0 34px}
+.dbody .segs{margin-top:0}
+footer{margin-top:56px}
+.segs{display:block;column-gap:18px}
+@media(min-width:760px){.segs{columns:2}}
+@media(min-width:1100px){.segs{columns:3}}
+.seg{break-inside:avoid;margin:0 0 18px}
+@media(max-width:899px){.flow .lane{scrollbar-width:none}.flow .lane::-webkit-scrollbar{display:none}}
+.flow .lane.fade{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 32px),transparent)}
+.pr .sample{margin:16px 0 0;max-width:62ch}
+.sample b{display:block;margin-bottom:6px;font:500 10px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ochre)}
+.end{padding:54px 0 0}
+.end p{font:italic 400 clamp(26px,4vw,40px)/1.15 var(--serif);color:var(--cream);letter-spacing:-.01em}
+.end p b{font-style:normal;font-weight:450;color:var(--ochre)}
+#vgoal .goal{font-size:14px}
+#vgoal .goal b{display:none}
+#vgoal .vtoggle{margin-bottom:10px;max-width:340px}
+.railbox{margin-top:26px;border:1px solid var(--line);background:var(--panel);padding:18px 18px 16px;max-width:380px}
+.rail{list-style:none;margin:0;padding:0;position:relative}
+.rail::before{content:"";position:absolute;left:11px;top:16px;bottom:16px;width:2px;background:#4a3b27}
+.rail li{position:relative}
+.rail button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:24px 1fr;gap:14px;align-items:start;width:100%;padding:8px 0;cursor:pointer;color:var(--mute)}
+.rail .nb{position:relative;width:24px;height:24px;border-radius:50%;background:var(--bg2);border:2px solid #4a3b27;font:500 11px/20px var(--mono);text-align:center;color:var(--mute)}
+.rail b{display:block;font:500 16px/1.2 var(--serif);color:var(--cream)}
+.rail small{display:block;margin-top:3px;font:400 11px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.rail li.cur .nb{background:var(--ochre);border-color:var(--ochre);color:#1a1208}
+.rail li:not(.cur) button:hover b{color:var(--ochre)}
+.rail li:not(.cur) b{color:#bfb299}
+.rail button:focus-visible{outline:2px solid var(--ochre);outline-offset:3px}
+.railbox .vnav{padding:0;margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:899px){.vbody{order:-1}.vmeta{padding-top:4px}.rail{display:none}.railbox{margin-top:0;border:0;background:none;padding:0}.railbox .vnav{border:0;margin-top:14px;padding-top:0}}
+@media(prefers-reduced-motion:reduce){.grp:not([hidden]){animation:none}.gal .em{transition:none}}
+
+/* v3 visual-first */
+.hero.p-a,.hero.p-b,.hero.p-c,.hero.p-cap,.hero.p-flat,.hero.p-gift{background-size:cover;background-position:center;background-repeat:no-repeat}
+.hero.p-a{background-image:url(img/blanket-sofa.jpg)}
+.hero.p-b{background-image:url(img/weave.jpg)}
+.hero.p-c{background-image:url(img/teaser.jpg)}
+.hero.p-cap{background-image:url(img/cap.jpg)}
+.hero.p-flat{background-image:url(img/flatlay.jpg)}
+.hero.p-gift{background-image:url(img/gift.jpg)}
+.hero.p-a>span,.hero.p-b>span,.hero.p-c>span,.hero.p-cap>span,.hero.p-flat>span,.hero.p-gift>span{display:none}
+.hero.p-a,.hero.p-b,.hero.p-c,.hero.p-cap,.hero.p-flat,.hero.p-gift{height:210px}
+.hero.small.p-a,.hero.small.p-b{height:112px}
+.top{padding:0;min-height:340px;display:flex;align-items:center;overflow:hidden}
+.top::after{content:"";position:absolute;top:0;right:0;bottom:0;width:62%;background:url(img/blanket-sofa.jpg) 60% 40%/cover;-webkit-mask-image:linear-gradient(90deg,transparent,#000 58%);mask-image:linear-gradient(90deg,transparent,#000 58%)}
+.top .wrap{position:relative;z-index:1;padding-top:48px;padding-bottom:42px}
+.top .lede{display:none}
+.top h1{font-size:clamp(36px,5vw,60px);margin:10px 0 22px;max-width:9.5em;text-shadow:0 2px 18px rgba(0,0,0,.7)}
+.top .facts{text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.top-g>div{max-width:680px}
+@media(max-width:700px){.top{min-height:0}.top::after{width:100%;opacity:.42;-webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent)}.top .wrap{padding-top:34px;padding-bottom:26px}}
+.pk{padding:18px 20px 14px}
+.pk-h{margin-bottom:8px}
+.pk-g{grid-template-columns:repeat(3,1fr)}
+.pk-c{padding:6px 18px 6px 0;border-top:0}
+.pk-c+.pk-c{padding-left:18px;border-left:1px solid var(--line)}
+.pk-c b{font-size:clamp(34px,4vw,44px)}
+.pk-c p{font-size:14px;margin-top:6px}
+@media(max-width:700px){.pk-g{grid-template-columns:1fr}.pk-c{padding:10px 0;border-top:1px solid var(--line);border-left:0!important;padding-left:0!important}.pk-c:first-child{border-top:0}.pk-c b{font-size:34px}}
+
+/* v4 fixes */
+.bar .chip{display:none;align-items:center;min-height:44px;font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:#1a1208;background:var(--ochre);padding:0 14px;white-space:nowrap}
+@media(max-width:699px){.bar .chip{display:inline-flex}.bar nav{display:none}}
+.tabs .ls{display:none}
+.flownote{margin:14px 0 0;font:400 13px/1.5 var(--mono);color:var(--mute);border-left:2px solid var(--ochre);padding:2px 0 2px 14px}
+@media(max-width:600px){
+  .tabs{gap:0;justify-content:space-between}
+  .tabs button{padding:16px 6px 14px;font-size:11.5px;letter-spacing:.06em}
+  .tabs button i{display:none}
+  .tabs .lf{display:none}.tabs .ls{display:inline}
+}
+.plannote{font:400 13px/1.5 var(--mono);color:var(--mute);border-left:2px solid var(--ochre);padding:2px 0 2px 14px;margin:0 0 20px;max-width:46em}
+.pr .sample{font:400 17px/1.55 var(--sans);color:#d8ccb2;max-width:44em}
+.sample b{font-size:12px;margin-bottom:8px}
+.end .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px}
+.end .btn{min-height:52px;padding:0 26px}
+/* gallery cards: subject, image, headline, one action */
+.gal .inrow:nth-child(3),.gal .paper p,.gal .paper .care,.gal .paper .qline,.gal .paper .efoot,.gal .paper .cta,.gal .email figcaption{display:none}
+.gal .email{display:flex;flex-direction:column}
+.gal .em{max-height:none;flex:1;display:flex;flex-direction:column}
+.gal .em .paper{flex:1;display:flex;flex-direction:column}
+.gal .em .paper h3{margin-bottom:auto;padding-bottom:18px}
+.gal .em::after{margin-top:auto}
+.gal .paper{padding-bottom:0}
+.gal .paper h3{margin-bottom:18px}
+.gal .em::after{position:static;display:block;height:auto;padding:15px 0 16px;border-top:1px solid #cdbf9e;background:none;text-align:center;font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#a8431f}
+.gal .email:hover .em::after,.gal .email:focus-visible .em::after{background:#a8431f;color:#fff7e6}
+/* phone hero: a real photo area, title on the lower third */
+@media(max-width:700px){
+  .top{min-height:380px;align-items:flex-end}
+  .top::after{width:100%;opacity:1;-webkit-mask-image:none;mask-image:none;background:linear-gradient(180deg,rgba(12,10,8,0) 22%,rgba(12,10,8,.72) 62%,var(--bg) 96%),url(img/blanket-sofa.jpg) 60% 40%/cover}
+  .top .wrap{padding-top:150px;padding-bottom:22px}
+  .top .btn{display:none}
+  .top-r{display:block}
+  .facts{display:flex;flex-wrap:wrap;gap:8px 18px}
+  .facts i{display:none}
+  .facts span{display:inline-flex;align-items:baseline;gap:10px}
+}
+
+@media(max-width:700px) and (max-height:700px){.top{min-height:280px}.top .wrap{padding-top:92px;padding-bottom:14px}.top h1{margin-bottom:12px}}
+/* v5 design pass: taller cinematic hero, editorial stat numerals, equal cards, reveal on scroll, closed segments */
+@media(min-width:701px){
+  .top .facts{flex-wrap:nowrap;white-space:nowrap}
+  .top{min-height:clamp(460px,60vh,620px)}
+  .top::after{width:68%;background-position:62% 42%;-webkit-mask-image:linear-gradient(90deg,transparent 2%,#000 50%);mask-image:linear-gradient(90deg,transparent 2%,#000 50%)}
+  .top h1{font-size:clamp(46px,6.2vw,90px);margin:14px 0 28px;max-width:8.6em}
+  .top-r{gap:22px 30px}
+}
+.facts{gap:0 14px;align-items:baseline}
+.facts b{font:450 clamp(22px,2.4vw,30px)/1 var(--serif);letter-spacing:-.02em;margin-right:6px}
+@media(max-width:700px){.facts{gap:6px 18px}.facts b{font-size:24px;margin:0}}
+@media(prefers-reduced-motion:no-preference){
+  .top::after{animation:kb 14s ease-out 1 forwards}
+  @keyframes kb{from{transform:scale(1)}to{transform:scale(1.07)}}
+  }
+.gal .pgrid{display:none}
+.galc{display:none}
+@media(max-width:600px){
+  .gal .email{width:min(375px,calc(100vw - 84px))}
+  .galc{display:block;margin:-12px 16px 0;font:500 11px/1 var(--mono);letter-spacing:.16em;color:var(--mute);text-transform:uppercase}
+}
 </style>
 </head>
 <body>
@@ -294,56 +510,43 @@ dialog:modal{max-width:100%}
   <div class="wrap">
     <a class="home" href="../../index.html">Enes Eren Studio</a>
     <span class="tag">Sample work</span>
-    <nav aria-label="Sections"><a href="#flows">Flows</a><a href="#emails">Emails</a><a href="#segments">Segments</a><a href="#audit">Audit</a><a href="#plan">Launch plan</a><a href="#pricing">Pricing</a></nav>
+    <a class="chip" href="#price">Scope and price</a>
+    <nav aria-label="Sections"><a href="#work">Emails</a><a href="#price">Price</a><a href="#segments">Segments</a><a href="#audit">Audit</a><a href="#plan">Plan</a></nav>
   </div>
 </header>
 
 <main>
-<section class="hero-s">
-  <div class="wrap hero-grid">
+<section class="top">
+  <div class="wrap top-g">
     <div>
-      <span class="kick rise d1">Sample work for Ceibo House</span>
-      <h1 class="rise d2">Email that feels like <em>home</em>.</h1>
-      <p class="lede rise d3">Three Klaviyo flows, three campaigns, six segments and a ten-day setup plan for a store that sells woven flag blankets and embroidered caps. Built before the bid, so you can click through it.</p>
-      <div class="counts rise d3"><span><b>3</b> flows</span><span><b>12</b> emails</span><span><b>6</b> segments</span><span><b>12</b> audit checks</span><span><b>10</b> day plan</span></div>
-      <p class="note rise d4">Everything here is sample. Copy in [brackets] needs real facts from the store. No Ceibo logo, product photos or store data are used. Product images are labelled slots.</p>
-      <p class="note rise d4">You already run flows, so these are reference versions to compare against your own.</p>
+      <span class="kick">Sample work for Ceibo House</span>
+      <h1>Email that feels like <em>home</em>.</h1>
+      <p class="lede">Three flows, three campaigns, six segments. Tap any email.</p>
+      <div class="top-r">
+        <p class="facts"><span><b>3</b> campaigns</span> <i></i> <span><b>6</b> segments</span> <i></i> <span><b>12</b> audit checks</span></p>
+        <a class="btn" href="#price">Scope and price</a>
+      </div>
     </div>
-    <figure class="art rise d4" aria-hidden="true" style="margin:0">
-      <div class="blanket"><div class="sheen"></div></div>
-      <figcaption>Sample weave, drawn in CSS. Not a Ceibo product.</figcaption>
-    </figure>
   </div>
 </section>
 
-<section class="s" id="flows">
+<section class="work" id="work">
   <div class="wrap">
-    <div class="sh"><div><span class="num">01</span><h2>The flow map. <em>Click an email.</em></h2></div>
-    <p>Each lane starts with its trigger. Teal chips are waits, dashed red boxes are branches, cream cards are emails. Open any card to read the email at phone width.</p></div>
-    <div class="legend"><span><i class="lt"></i>Trigger</span><span><i class="lw"></i>Wait</span><span><i class="lg"></i>Branch</span><span><i class="lm"></i>Email, click to open</span></div>
-    <div class="flows"><article class="flow" id="flow-welcome"><header><h3>Welcome</h3></header><ol class="lane"><li class="n trig"><div class="box"><span class="k">Trigger</span><b>Pop-up signup</b><small>Profile joins the list from the site pop-up</small></div></li><li class="n mail"><a class="box" href="#em-w1" data-open="w1"><span class="k">Email 1 · 0h</span><b>Welcome in</b><small>Welcome in. Pull up a chair.</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>2d</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Placed order since signup?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-w2" data-open="w2"><span class="k">Email 2 · Day 2</span><b>The flags</b><small>Start with the flag you grew up under</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>3d</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Placed order since signup?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-w3" data-open="w3"><span class="k">Email 3 · Day 5</span><b>The easy first step</b><small>Not ready for a blanket? Start with a cap.</small><span class="open">Open email</span></a></li></ol><p class="rule"><b>Exit rule</b> Any placed order exits the flow, so buyers never get a &quot;come and buy&quot; email.</p></article><article class="flow" id="flow-abandoned"><header><h3>Abandoned checkout</h3></header><ol class="lane"><li class="n trig"><div class="box"><span class="k">Trigger</span><b>Started Checkout</b><small>Shopify checkout event reaches Klaviyo</small></div></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>1h</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Placed order since checkout?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-a1" data-open="a1"><span class="k">Email 1 · 1h</span><b>Cart reminder</b><small>You left something at the door</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>23h</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Placed order since checkout?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-a2" data-open="a2"><span class="k">Email 2 · 24h</span><b>Need a hand?</b><small>Any questions before you finish?</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>48h</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Placed order since checkout?</b><span class="yes">Yes: exit flow</span></div></li><li class="n gate cart"><a class="box" href="#em-a3" data-open="a3" data-variant="free"><span class="k">Branch</span><b>Cart over your free-shipping threshold?</b><span class="yes">Yes: free-shipping version</span></a></li><li class="n mail"><a class="box" href="#em-a3" data-open="a3"><span class="k">Email 3 · 72h</span><b>Last reminder</b><small>Last note about your cart</small><span class="open">Open email</span></a></li></ol><p class="rule"><b>Exit rule</b> Order placed exits the flow. A cart over your free-shipping threshold gets the free-shipping version of email 3.</p></article><article class="flow" id="flow-post"><header><h3>Post-purchase</h3></header><ol class="lane"><li class="n trig"><div class="box"><span class="k">Trigger</span><b>Placed Order</b><small>Every paid Shopify order</small></div></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>1d</b></div></li><li class="n mail"><a class="box" href="#em-p1" data-open="p1"><span class="k">Email 1 · Day 1</span><b>Thank you and care guide</b><small>Thank you, and how to care for your blanket</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>9d</b></div></li><li class="n mail"><a class="box" href="#em-p2" data-open="p2"><span class="k">Email 2 · Day 10</span><b>Review ask</b><small>How does it feel at home?</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>20d</b></div></li><li class="n mail"><a class="box" href="#em-p3" data-open="p3"><span class="k">Email 3 · Day 30</span><b>Cap cross-sell</b><small>Something to wear with it</small><span class="open">Open email</span></a></li></ol><p class="rule"><b>Exit rule</b> No exit branch. Every buyer gets all three, spaced across the first month.</p></article></div>
+    <div class="tabs" role="tablist" aria-label="Flows and campaigns"><button type="button" role="tab" id="t3" aria-controls="g3" aria-selected="true">Campaigns<i>3</i></button><button type="button" role="tab" id="t0" aria-controls="g0" aria-selected="false" tabindex="-1">Welcome<i>3</i></button><button type="button" role="tab" id="t1" aria-controls="g1" aria-selected="false" tabindex="-1"><span class="lf">Abandoned checkout</span><span class="ls">Checkout</span><i>3</i></button><button type="button" role="tab" id="t2" aria-controls="g2" aria-selected="false" tabindex="-1"><span class="lf">Post-purchase</span><span class="ls">Post-buy</span><i>3</i></button></div>
+    <p class="flownote" id="flownote" hidden>Flow samples show how I would fix yours. New flows are extra.</p>
   </div>
-</section>
-
-<section class="s" id="emails">
-  <div class="wrap">
-    <div class="sh"><div><span class="num">02</span><h2>Every email, <em>as it lands.</em></h2></div>
-    <p>Twelve emails at 375 pixels, the width of a phone. Each shows its subject line, preview text, one button and a footer with unsubscribe, with the goal written under it. Dashed boxes are slots for the store's own logo and photos.</p></div>
-  </div>
-  <div class="wrap galw">
-    <div class="gal-h"><h3>Welcome flow</h3><p>3 emails · pop-up signup trigger</p></div>
-    <div class="gal"><figure class="email" id="em-w1" data-id="w1" data-flow="welcome" data-tag="Welcome" data-timing="0h after signup" data-name="Welcome in">
+  <div class="grp" role="tabpanel" id="g0" aria-labelledby="t0" hidden><article class="flow" aria-label="Welcome flow map" id="flow-welcome"><ol class="lane"><li class="n trig"><div class="box"><span class="k">Trigger</span><b>Pop-up signup</b><small>Profile joins the list from the site pop-up</small></div></li><li class="n mail"><a class="box" href="#em-w1" data-open="w1"><span class="k">Email 1 · 0h</span><b>Welcome in</b><small>Welcome in. Pull up a chair.</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>2d</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Ordered yet?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-w2" data-open="w2"><span class="k">Email 2 · Day 2</span><b>The flags</b><small>Start with the flag you grew up under</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>3d</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Ordered yet?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-w3" data-open="w3"><span class="k">Email 3 · Day 5</span><b>The easy first step</b><small>Not ready for a blanket? Start with a cap.</small><span class="open">Open email</span></a></li></ol><p class="rule"><b>Exit rule</b> Any order exits the flow.</p></article><div class="gal"><figure class="email" id="em-w1" data-id="w1" data-flow="welcome" data-tag="Welcome" data-timing="0h after signup" data-name="Welcome in">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj">Welcome in. Pull up a chair.</b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev">A few words on what we make, and who for.</span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
+      <div class="wm">Ceibo House</div>
       <div class="hero p-a"><span class="slotlabel">Product slot</span><span class="slotname">flag blanket, folded over a sofa arm</span></div>
       <h3>Glad you are here.</h3>
-      <p>We make woven flag blankets and embroidered caps for people who carry a place with them.</p><p>[Two lines of the founder story go here, from the client.]</p>
+      <p>Woven flag blankets and embroidered caps, for people who carry a place with them.</p><p>[Two lines of the founder story go here, from the client.]</p>
       <span class="cta">Meet the blankets</span>
       <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
     </div>
@@ -352,49 +555,48 @@ dialog:modal{max-width:100%}
 </figure><figure class="email" id="em-w2" data-id="w2" data-flow="welcome" data-tag="Welcome" data-timing="Day 2" data-name="The flags">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj">Start with the flag you grew up under</b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev">Every blanket begins with a place.</span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
+      <div class="wm">Ceibo House</div>
       <div class="hero p-b"><span class="slotlabel">Product slot</span><span class="slotname">flag blanket, close crop of the weave</span></div>
       <h3>Every blanket starts with a place.</h3>
-      <p>Pick the flag that means home to you, or the one you want to give. Two pieces below come straight from the catalog feed.</p><div class="pgrid"><div class="hero p-a small"><span class="slotlabel">Product slot</span><span class="slotname">best seller, from catalog feed</span></div><div class="hero p-b small"><span class="slotlabel">Product slot</span><span class="slotname">newest flag, from catalog feed</span></div></div>
+      <p>Pick the flag that means home, or the one you want to give.</p><div class="pgrid"><div class="hero p-a small"><span class="slotlabel">Product slot</span><span class="slotname">best seller, from catalog feed</span></div><div class="hero p-b small"><span class="slotlabel">Product slot</span><span class="slotname">newest flag, from catalog feed</span></div></div>
       <span class="cta">Browse the flags</span>
       <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
     </div>
   </div>
-  <figcaption><p class="goal"><b>Goal</b> Turn the story into product views with a catalog-fed block.</p></figcaption>
+  <figcaption><p class="goal"><b>Goal</b> Turn the story into product views, fed from your catalog.</p></figcaption>
 </figure><figure class="email" id="em-w3" data-id="w3" data-flow="welcome" data-tag="Welcome" data-timing="Day 5" data-name="The easy first step">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj">Not ready for a blanket? Start with a cap.</b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev">A smaller piece of home.</span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
+      <div class="wm">Ceibo House</div>
       <div class="hero p-cap"><span class="slotlabel">Product slot</span><span class="slotname">embroidered cap, three-quarter view</span></div>
       <h3>A smaller piece of home.</h3>
-      <p>If a blanket feels like a big first step, a cap is an easy one. Our embroidered caps carry the same sense of place, and they go where you go.</p>
+      <p>A cap is an easy first step, and it goes where you go.</p>
       <span class="cta">See the caps</span>
       <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
     </div>
   </div>
   <figcaption><p class="goal"><b>Goal</b> Give hesitant subscribers a lower-commitment way in before the flow ends.</p></figcaption>
-</figure></div>
-    <div class="gal-h"><h3>Abandoned checkout flow</h3><p>3 emails · Started Checkout trigger · email 3 has a free-shipping version</p></div>
-    <div class="gal"><figure class="email" id="em-a1" data-id="a1" data-flow="abandoned" data-tag="Abandoned checkout" data-timing="1h after checkout starts" data-name="Cart reminder">
+</figure></div></div>
+<div class="grp" role="tabpanel" id="g1" aria-labelledby="t1" hidden><article class="flow" aria-label="Abandoned checkout flow map" id="flow-abandoned"><ol class="lane"><li class="n trig"><div class="box"><span class="k">Trigger</span><b>Started Checkout</b><small>Shopify checkout event reaches Klaviyo</small></div></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>1h</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Ordered yet?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-a1" data-open="a1"><span class="k">Email 1 · 1h</span><b>Cart reminder</b><small>You left something at the door</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>23h</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Ordered yet?</b><span class="yes">Yes: exit flow</span></div></li><li class="n mail"><a class="box" href="#em-a2" data-open="a2"><span class="k">Email 2 · 24h</span><b>Need a hand?</b><small>Any questions before you finish?</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>48h</b></div></li><li class="n gate"><div class="box"><span class="k">Branch</span><b>Ordered yet?</b><span class="yes">Yes: exit flow</span></div></li><li class="n gate cart"><a class="box" href="#em-a3" data-open="a3" data-variant="free"><span class="k">Branch</span><b>Cart over free shipping?</b><span class="yes">Yes: free-shipping version</span></a></li><li class="n mail"><a class="box" href="#em-a3" data-open="a3"><span class="k">Email 3 · 72h</span><b>Last reminder</b><small>Last note about your cart</small><span class="open">Open email</span></a></li></ol><p class="rule"><b>Exit rule</b> Order placed exits. Big carts get the free-shipping email 3.</p></article><div class="gal"><figure class="email" id="em-a1" data-id="a1" data-flow="abandoned" data-tag="Abandoned checkout" data-timing="1h after checkout starts" data-name="Cart reminder">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj">You left something at the door</b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev">Your cart is saved and waiting.</span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
-      <div class="hero p-cart"><span class="slotlabel">Product slot</span><span class="slotname">dynamic cart block: item image, name, size</span></div>
+      <div class="wm">Ceibo House</div>
+      <div class="cartrow"><span class="ph"></span><div><b>Woven flag blanket</b><span class="sz">Size [from the cart]</span><span class="tg">Dynamic cart block</span></div></div>
       <h3>Your cart is still here.</h3>
       <p>You were close. The pieces you picked are saved just as you left them.</p>
       <span class="cta">Return to checkout</span>
@@ -405,15 +607,15 @@ dialog:modal{max-width:100%}
 </figure><figure class="email" id="em-a2" data-id="a2" data-flow="abandoned" data-tag="Abandoned checkout" data-timing="24h after checkout starts" data-name="Need a hand?">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj">Any questions before you finish?</b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev">Reply to this email and we will help.</span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
-      <div class="hero p-cart"><span class="slotlabel">Product slot</span><span class="slotname">dynamic cart block: item image, name, size</span></div>
+      <div class="wm">Ceibo House</div>
+      <div class="cartrow"><span class="ph"></span><div><b>Woven flag blanket</b><span class="sz">Size [from the cart]</span><span class="tg">Dynamic cart block</span></div></div><div class="qline">Ask us <i>Size</i><i>Flag</i><i>Shipping</i><i>Care</i></div>
       <h3>Anything holding you back?</h3>
-      <p>Size, flag, shipping, how to care for it. If something stopped you, ask. Reply to this email and we will help.</p>
+      <p>If something stopped you, ask. Reply to this email and we will help.</p>
       <span class="cta">Finish my order</span>
       <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
     </div>
@@ -422,34 +624,33 @@ dialog:modal{max-width:100%}
 </figure><figure class="email" id="em-a3" data-id="a3" data-flow="abandoned" data-tag="Abandoned checkout" data-timing="72h after checkout starts" data-name="Last reminder" data-variant="std">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj"><span class="vs">Last note about your cart</span><span class="vf">Your cart ships free</span></b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev"><span class="vs">After this, we will leave you to it.</span><span class="vf">Free shipping applies to this order.</span></span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
-      <div class="banner vf">Free shipping applies. [Threshold set by the client]</div><div class="hero p-cart"><span class="slotlabel">Product slot</span><span class="slotname">dynamic cart block: item image, name, size</span></div>
+      <div class="wm">Ceibo House</div>
+      <div class="cartrow"><span class="ph"></span><div><b>Woven flag blanket</b><span class="sz">Size [from the cart]</span><span class="tg">Dynamic cart block</span></div></div><div class="ship"><div class="sb"><i></i></div><small><span class="vs">Free shipping over [threshold set by the client]</span><span class="vf">Free shipping applies to this cart</span></small></div>
       <h3><span class="vs">A last note about your cart.</span><span class="vf">Free shipping on this cart.</span></h3>
-      <p class="vs">We will not keep emailing. If now is not the time, no problem. If it is, your cart is one click away.</p><p class="vf">Your order is over the free-shipping line, so delivery costs nothing. Your cart is one click away.</p>
+      <p class="vs">This is our last note. Your cart stays one click away.</p><p class="vf">This cart ships free. It is one click away.</p>
       <span class="cta"><span class="vs">Back to my cart</span><span class="vf">Back to my cart</span></span>
       <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
     </div>
   </div>
   <figcaption><div class="vtoggle" role="group" aria-label="Version"><button type="button" data-v="std" aria-pressed="true">Standard</button><button type="button" data-v="free" aria-pressed="false">Cart over threshold</button></div><p class="goal"><b>Goal</b> <span class="vs">Make one final, low-pressure ask, then stop.</span><span class="vf">Use free shipping as the reason to finish on larger carts.</span></p></figcaption>
-</figure></div>
-    <div class="gal-h"><h3>Post-purchase flow</h3><p>3 emails · Placed Order trigger</p></div>
-    <div class="gal"><figure class="email" id="em-p1" data-id="p1" data-flow="post" data-tag="Post-purchase" data-timing="Day 1 after order" data-name="Thank you and care guide">
+</figure></div></div>
+<div class="grp" role="tabpanel" id="g2" aria-labelledby="t2" hidden><article class="flow" aria-label="Post-purchase flow map" id="flow-post"><ol class="lane"><li class="n trig"><div class="box"><span class="k">Trigger</span><b>Placed Order</b><small>Every paid Shopify order</small></div></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>1d</b></div></li><li class="n mail"><a class="box" href="#em-p1" data-open="p1"><span class="k">Email 1 · Day 1</span><b>Thank you and care guide</b><small>Thank you, and how to care for your blanket</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>9d</b></div></li><li class="n mail"><a class="box" href="#em-p2" data-open="p2"><span class="k">Email 2 · Day 10</span><b>Review ask</b><small>How does it feel at home?</small><span class="open">Open email</span></a></li><li class="n wait"><div class="box"><span class="k">Wait</span><b>20d</b></div></li><li class="n mail"><a class="box" href="#em-p3" data-open="p3"><span class="k">Email 3 · Day 30</span><b>Cap cross-sell</b><small>Something to wear with it</small><span class="open">Open email</span></a></li></ol><p class="rule"><b>Exit rule</b> No exit branch. Every buyer gets all three, spaced across the first month.</p></article><div class="gal"><figure class="email" id="em-p1" data-id="p1" data-flow="post" data-tag="Post-purchase" data-timing="Day 1 after order" data-name="Thank you and care guide">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj">Thank you, and how to care for your blanket</b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev">Three small steps to keep it looking its best.</span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
-      <div class="hero p-cart"><span class="slotlabel">Product slot</span><span class="slotname">order summary block, dynamic</span></div>
+      <div class="wm">Ceibo House</div>
+      <div class="cartrow"><span class="ph w"></span><div><b>Woven flag blanket</b><span class="sz">Size [from the order]</span><span class="tg">Dynamic order block</span></div></div>
       <h3>Thank you.</h3>
-      <p>Your order is on its way to feeling like home. Here is a short guide so your piece stays that way.</p><ol class="care"><li>[Washing step, from the maker]</li><li>[Drying step, from the maker]</li><li>[Storing step, from the maker]</li></ol>
+      <p>Your order is on its way. Three steps keep it looking its best.</p><ol class="care"><li>[Washing step, from the maker]</li><li>[Drying step, from the maker]</li><li>[Storing step, from the maker]</li></ol>
       <span class="cta">Read the care guide</span>
       <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
     </div>
@@ -458,15 +659,15 @@ dialog:modal{max-width:100%}
 </figure><figure class="email" id="em-p2" data-id="p2" data-flow="post" data-tag="Post-purchase" data-timing="Day 10 after order" data-name="Review ask">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj">How does it feel at home?</b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev">One honest review helps the next person choose.</span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
+      <div class="wm">Ceibo House</div>
       <div class="hero p-stars"><span class="slotlabel">Product slot</span><span class="slotname">star rating block, from the review app</span></div>
       <h3>Has it found its spot?</h3>
-      <p>By now your piece has settled in. Tell us how it looks and feels. It takes two minutes, and photos are welcome.</p>
+      <p>Tell us how it looks and feels at home. Two minutes, photos welcome.</p>
       <span class="cta">Write a review</span>
       <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
     </div>
@@ -475,12 +676,12 @@ dialog:modal{max-width:100%}
 </figure><figure class="email" id="em-p3" data-id="p3" data-flow="post" data-tag="Post-purchase" data-timing="Day 30 after order" data-name="Cap cross-sell">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj">Something to wear with it</b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev">A cap to go with your blanket.</span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
+      <div class="wm">Ceibo House</div>
       <div class="hero p-cap"><span class="slotlabel">Product slot</span><span class="slotname">embroidered cap, flat lay</span></div>
       <h3>Take a little home with you.</h3>
       <p>The blanket stays on the couch. A cap carries the feeling out the door.</p>
@@ -489,20 +690,19 @@ dialog:modal{max-width:100%}
     </div>
   </div>
   <figcaption><p class="goal"><b>Goal</b> Cross-sell a cap to blanket buyers, 30 days after the order.</p></figcaption>
-</figure></div>
-    <div class="gal-h"><h3>Three campaign examples</h3><p>Sent to segments, not triggered</p></div>
-    <div class="gal"><figure class="email" id="em-c1" data-id="c1" data-flow="campaign" data-tag="Campaign" data-timing="Launch day" data-name="Flags of home">
+</figure></div></div>
+<div class="grp" role="tabpanel" id="g3" aria-labelledby="t3"><p class="sent">Sent to a segment on a chosen day. No trigger, no waits.</p><div class="gal"><figure class="email" id="em-c1" data-id="c1" data-flow="campaign" data-tag="Campaign" data-timing="Launch day" data-name="Flags of home">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj">New: Flags of home</b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev">The new flag blankets have landed.</span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
-      <div class="hero p-a"><span class="slotlabel">Product slot</span><span class="slotname">new collection, hero flat lay</span></div>
+      <div class="wm">Ceibo House</div>
+      <div class="hero p-flat"><span class="slotlabel">Product slot</span><span class="slotname">new collection, hero flat lay</span></div>
       <h3>Flags of home.</h3>
-      <p>A new run of woven flag blankets, each one a place you can wrap around your shoulders.</p><p>[Name each new flag and one detail per flag, from the client.]</p><div class="pgrid"><div class="hero p-a small"><span class="slotlabel">Product slot</span><span class="slotname">new flag one</span></div><div class="hero p-b small"><span class="slotlabel">Product slot</span><span class="slotname">new flag two</span></div></div>
+      <p>A new run of woven flag blankets. Each one is a place.</p><p>[Name each new flag and one detail per flag, from the client.]</p><div class="pgrid"><div class="hero p-a small"><span class="slotlabel">Product slot</span><span class="slotname">new flag one</span></div><div class="hero p-b small"><span class="slotlabel">Product slot</span><span class="slotname">new flag two</span></div></div>
       <span class="cta">See the new flags</span>
       <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
     </div>
@@ -511,86 +711,70 @@ dialog:modal{max-width:100%}
 </figure><figure class="email" id="em-c2" data-id="c2" data-flow="campaign" data-tag="Campaign" data-timing="Late November" data-name="Gift a piece of home">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj">Give someone a piece of home</b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev">Gifts for people far from where they started.</span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
-      <div class="hero p-b"><span class="slotlabel">Product slot</span><span class="slotname">gift set, blanket and cap together</span></div>
+      <div class="wm">Ceibo House</div>
+      <div class="hero p-gift"><span class="slotlabel">Product slot</span><span class="slotname">gift set, blanket and cap together</span></div>
       <h3>Gift a piece of home.</h3>
-      <p>Some people carry a place with them. A woven flag blanket or an embroidered cap tells them you know it.</p><p>[Last order date for holiday delivery, from the client.]</p>
+      <p>For people who carry a place with them. A blanket or cap says you know.</p><p>[Last order date for holiday delivery, from the client.]</p>
       <span class="cta">Shop gifts</span>
       <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
     </div>
   </div>
-  <figcaption><p class="goal"><b>Goal</b> Reach gift buyers in late November, ahead of the delivery cut-off. Segments: Engaged 90 and past buyers.</p></figcaption>
+  <figcaption><p class="goal"><b>Goal</b> Gift buyers, late November, before the delivery cut-off. Segments: Engaged 90 and past buyers.</p></figcaption>
 </figure><figure class="email" id="em-c3" data-id="c3" data-flow="campaign" data-tag="Campaign" data-timing="Launch eve" data-name="VIP early access">
   <div class="em">
     <div class="inbox">
-      <div class="inrow"><span class="sender">Sender name [sample]</span><span class="time">9:41</span></div>
+      <div class="inrow"><span class="sender">Ceibo House</span><span class="time">9:41</span></div>
       <div class="inrow"><span class="lab">Subject</span><b class="subj">You get the first look</b></div>
       <div class="inrow"><span class="lab">Preview</span><span class="prev">Early access, before everyone else.</span></div>
     </div>
     <div class="paper">
-      <div class="logoslot">Logo slot</div>
+      <div class="wm">Ceibo House</div>
       <div class="hero p-c"><span class="slotlabel">Product slot</span><span class="slotname">unreleased piece, teaser crop</span></div>
       <h3>First look, for you.</h3>
-      <p>You have ordered from us more than once, so you see new pieces before anyone else. Early access opens now.</p><p>[Early-access window dates, from the client.]</p>
+      <p>You have ordered more than once, so you see new pieces first.</p><p>[Early-access window dates, from the client.]</p>
       <span class="cta">Shop early access</span>
       <div class="efoot"><p>You are getting this because you signed up at [store name].</p><p>[Store name and postal address]</p><p><span class="ul">Unsubscribe</span> &nbsp;|&nbsp; <span class="ul">Manage preferences</span></p></div>
     </div>
   </div>
   <figcaption><p class="goal"><b>Goal</b> Reward repeat buyers and give a launch its first wave of orders. Segment: VIP.</p></figcaption>
-</figure></div>
-  </div>
+</figure></div></div>
+  <div class="wrap"><p class="galnote">Sample copy. Images are generated moods, not Ceibo products. [Brackets] need the store's facts.</p></div>
+
 </section>
 
-<section class="s" id="segments">
+<section class="pr" id="price">
   <div class="wrap">
-    <div class="sh"><div><span class="num">03</span><h2>Six segments, <em>written out.</em></h2></div>
-    <p>Each one is a real Klaviyo condition, so it can be rebuilt in a minute. Engaged has three windows and buyers split into blankets and caps, so the cards below show eight conditions in six segments. Collection names such as "Blankets" are samples and get matched to the store's own.</p></div>
-    <div class="segs"><article class="seg"><h3>Engaged 30 / 90 / 180</h3><p>Campaign audiences. The window widens as the list gets older.</p><div class="code"><span class="clab">30 days</span><span class="cond">Opened Email at least once in the last 30 days</span><span class="op">OR</span><span class="cond">Clicked Email at least once in the last 30 days</span></div><div class="code"><span class="clab">90 days</span><span class="cond">Opened Email at least once in the last 90 days</span><span class="op">OR</span><span class="cond">Clicked Email at least once in the last 90 days</span></div><div class="code"><span class="clab">180 days</span><span class="cond">Opened Email at least once in the last 180 days</span><span class="op">OR</span><span class="cond">Clicked Email at least once in the last 180 days</span></div></article><article class="seg"><h3>Blanket buyers</h3><p>Cap cross-sell, care content, new-flag launches.</p><div class="code"><span class="cond">Placed Order at least once over all time</span><span class="op">AND</span><span class="cond">where Collections contains &quot;Blankets&quot;</span></div></article><article class="seg"><h3>Cap buyers</h3><p>Blanket cross-sell, new-cap launches.</p><div class="code"><span class="cond">Placed Order at least once over all time</span><span class="op">AND</span><span class="cond">where Collections contains &quot;Caps&quot;</span></div></article><article class="seg"><h3>VIP</h3><p>Early access campaign. Two or more orders.</p><div class="code"><span class="cond">Placed Order at least 2 times over all time</span></div></article><article class="seg"><h3>Sunset</h3><p>Last-chance email, then stop mailing. Protects sender reputation.</p><div class="code"><span class="cond">Opened Email zero times in the last 180 days</span><span class="op">AND</span><span class="cond">Clicked Email zero times in the last 180 days</span><span class="op">AND</span><span class="cond">Placed Order zero times in the last 365 days</span><span class="op">AND</span><span class="cond">Profile created more than 180 days ago</span></div></article><article class="seg"><h3>Checkout started without order</h3><p>Campaign and reporting view. The flow covers the first 72 hours.</p><div class="code"><span class="cond">Started Checkout at least once in the last 30 days</span><span class="op">AND</span><span class="cond">Placed Order zero times in the last 30 days</span></div></article></div>
-  </div>
-</section>
-
-<section class="s" id="audit">
-  <div class="wrap">
-    <div class="sh"><div><span class="num">04</span><h2>A 12-point audit <em>before anything sends.</em></h2></div>
-    <p>The first thing I do in a Klaviyo account on Shopify. Tick them off as you read.</p></div>
-    <p class="auditcount"><b id="ac">0</b> of 12 checked</p>
-    <ul class="audit"><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>List health</b><small>One master list, no duplicate profiles, consent source recorded on every profile.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Sunset policy</b><small>The Sunset segment exists and has a rule: last-chance email, then stop.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>DKIM and DMARC</b><small>DKIM signs mail from the sending domain. A DMARC record exists and is read.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Branded sending and tracking domain</b><small>Mail sends from the store domain, links track on a branded subdomain.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Form sync</b><small>The pop-up writes to the right list, with consent, and the welcome flow fires.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Catalog feed</b><small>Products sync from Shopify, images load, out-of-stock items stay out of blocks.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>UTM tagging</b><small>Every campaign and flow link carries consistent UTMs so orders trace back.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Flow filters</b><small>Each flow has its exit rule and no flow double-sends to the same person.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Smart Sending</b><small>Smart Sending is on for campaigns and set on purpose for each flow.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Review sync</b><small>The review app feeds Klaviyo, so the review ask and star blocks use real data.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Trigger metrics firing</b><small>Started Checkout and Placed Order show recent events, not stale ones.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Suppressions and consent</b><small>Unsubscribes, bounces and Shopify marketing consent all agree in Klaviyo.</small></span></label></li></ul>
-  </div>
-</section>
-
-<section class="s" id="plan">
-  <div class="wrap">
-    <div class="sh"><div><span class="num">05</span><h2>Ten days, <em>day by day.</em></h2></div>
-    <p>Foundations first, then a review of your existing flows with sample versions to compare, then the two templates. Client review happens before anything goes live.</p></div>
-    <div class="weeks"><span class="weeklab">Days 1 to 5</span><span class="weeklab">Days 6 to 10</span></div>
-    <ol class="plan"><li><span class="d">Day 1</span><div><b>Access and audit</b><p>Klaviyo, Shopify and DNS access. Run the 12-point audit and write down what is red.</p></div></li><li><span class="d">Day 2</span><div><b>Fix the foundations</b><p>DKIM, DMARC and the branded domain. Clean duplicates. Check form sync.</p></div></li><li><span class="d">Day 3</span><div><b>Build the segments</b><p>All six segments, checked against real profile counts.</p></div></li><li><span class="d">Day 4</span><div><b>Feed and tracking</b><p>Catalog feed, UTMs, Smart Sending and review sync set up and tested.</p></div></li><li><span class="d">Day 5</span><div><b>Welcome flow, review and improve</b><p>Review your current welcome flow. Compare it with the sample version here, and fix gaps. Build it only if missing.</p></div></li><li><span class="d">Day 6</span><div><b>Abandoned checkout, review and improve</b><p>Review the current flow and the order exit. Compare the cart-over-threshold branch with the sample. Build it only if missing.</p></div></li><li><span class="d">Day 7</span><div><b>Post-purchase, review and improve</b><p>Review the current flow and timing. Compare with the thank-you, review ask and cap cross-sell samples. Build it only if missing.</p></div></li><li><span class="d">Day 8</span><div><b>Two templates</b><p>Two email templates in the brand's look, checked at phone width.</p></div></li><li><span class="d">Day 9</span><div><b>Client review</b><p>Walk through the audit, the flow fixes and the templates together. Collect copy gaps: story, care steps.</p></div></li><li><span class="d">Day 10</span><div><b>Sign-off and handover</b><p>Client approves. Flow fixes go live one at a time, trigger checked first. Hand over the monthly campaign calendar.</p></div></li></ol>
-  </div>
-</section>
-
-<section class="s" id="pricing">
-  <div class="wrap">
-    <div class="sh"><div><span class="num">06</span><h2>Two numbers. <em>Nothing hidden.</em></h2></div>
-    <p>The same pricing as in my bid.</p></div>
-    <div class="price">
-      <article class="pc"><h3>Setup, once</h3><div class="amt">$450</div>
-        <ul><li>Account and deliverability audit, all 12 checks</li><li>DKIM, DMARC and domain fixes</li><li>The six segments, built and checked</li><li>Flow fixes: review of your existing flows, with sample versions of welcome, abandoned checkout and post-purchase to compare</li><li>2 templates in the brand's look</li></ul></article>
-      <article class="pc"><h3>Management, monthly</h3><div class="amt">$200<small>a month</small></div>
-        <ul><li>Up to 4 campaigns a month, written, built, tested and scheduled for approval</li><li>Flow upkeep and small fixes</li><li>List hygiene and the sunset rule</li><li>A short plain-language note each month on what ran</li><li>Extra campaign: $60</li><li>Not included: new flows, pop-ups</li></ul></article>
+    <div class="pk">
+      <div class="pk-h"><span class="kick">Scope and price</span><span class="pk-d">10 days for the setup, then monthly</span></div>
+      <div class="pk-g">
+        <div class="pk-c"><b>$450</b><span>setup, fixed</span><p>Audit, segments, 2 templates, flow fixes, 90-day plan</p></div>
+        <div class="pk-c"><b>$200</b><span>a month</span><p>Up to 4 campaigns, testing, scheduling, one-page report, minor flow maintenance</p></div>
+        <div class="pk-c"><b>$60</b><span>each extra campaign</span><p>Not included: new flows, pop-ups</p></div>
+      </div>
     </div>
-    <p class="fine">No results are promised here. Email results depend on the list, the offer and the products. The plan above is the work I commit to.</p>
   </div>
 </section>
+
+<section class="more" id="more">
+  <div class="wrap">
+    <details id="segments"><summary><b>Six segment groups</b><span>Engagement has three windows</span></summary><div class="dbody"><div class="segs"><article class="seg"><h3>Engagement tiers 30 / 90 / 180</h3><p>Campaign audiences. Windows widen as the list ages.</p><div class="code"><span class="clab">30 days</span><span class="cond">Opened Email at least once in the last 30 days</span><span class="op">OR</span><span class="cond">Clicked Email at least once in the last 30 days</span></div><div class="code"><span class="clab">90 days</span><span class="cond">Opened Email at least once in the last 90 days</span><span class="op">OR</span><span class="cond">Clicked Email at least once in the last 90 days</span></div><div class="code"><span class="clab">180 days</span><span class="cond">Opened Email at least once in the last 180 days</span><span class="op">OR</span><span class="cond">Clicked Email at least once in the last 180 days</span></div></article><article class="seg"><h3>Buyers by line: blankets</h3><p>Cap cross-sell, care content, new-flag launches.</p><div class="code"><span class="cond">Placed Order at least once over all time</span><span class="op">AND</span><span class="cond">where Collections contains &quot;Blankets&quot;</span></div></article><article class="seg"><h3>Buyers by line: caps</h3><p>Blanket cross-sell, new-cap launches.</p><div class="code"><span class="cond">Placed Order at least once over all time</span><span class="op">AND</span><span class="cond">where Collections contains &quot;Caps&quot;</span></div></article><article class="seg"><h3>VIPs by order count</h3><p>Early access campaign. Two or more orders.</p><div class="code"><span class="cond">Placed Order at least 2 times over all time</span></div></article><article class="seg"><h3>Sunset</h3><p>Last-chance email, then stop. Protects sender reputation.</p><div class="code"><span class="cond">Opened Email zero times in the last 180 days</span><span class="op">AND</span><span class="cond">Clicked Email zero times in the last 180 days</span><span class="op">AND</span><span class="cond">Placed Order zero times in the last 365 days</span><span class="op">AND</span><span class="cond">Profile created more than 180 days ago</span></div></article><article class="seg"><h3>Checkout started, no order</h3><p>Campaign view. Flow covers the first 72 hours.</p><div class="code"><span class="cond">Started Checkout at least once in the last 30 days</span><span class="op">AND</span><span class="cond">Placed Order zero times in the last 30 days</span></div></article></div></div></details>
+    <details id="audit"><summary><b>12-point audit</b><span>Tick them off as you read</span></summary><div class="dbody"><p class="auditcount"><b id="ac">0</b> of 12 checked</p><ul class="audit"><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>List health</b><small>One list, no duplicates, consent on every profile.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Sunset policy</b><small>Sunset segment exists, with a stop rule.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>DKIM and DMARC</b><small>Both are set up and passing.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Sending domain</b><small>Mail sends from your store domain.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Form sync</b><small>Sign-ups reach the right list and welcome flow.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Product feed</b><small>Shopify products reach Klaviyo.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>UTM tagging</b><small>Every link carries UTMs, so orders trace back.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Flow filters</b><small>Flows exit on order, with no double sends.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Send frequency</b><small>Repeat sends are capped on purpose.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Review sync</b><small>Reviews reach Klaviyo, so stars are real.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Order events</b><small>Placed Order fires in Klaviyo.</small></span></label></li><li><label><input type="checkbox"><span class="box"></span><span class="t"><b>Suppressions and consent</b><small>Unsubscribes and consent match in Shopify and Klaviyo.</small></span></label></li></ul></div></details>
+    <details id="plan"><summary><b>10-day setup plan</b><span>Day by day, client review before launch</span></summary><div class="dbody"><p class="plannote">Days 5 to 7: I review and improve the flows you have. Missing flows are quoted separately.</p><ol class="plan"><li><span class="d">Day 1</span><div><b>Access and audit</b><p>Get Klaviyo, Shopify and DNS access. Run the audit.</p></div></li><li><span class="d">Day 2</span><div><b>Fix the foundations</b><p>Fix sender setup and duplicates. Check the sign-up form.</p></div></li><li><span class="d">Day 3</span><div><b>Build the segments</b><p>Build all six segment groups. Check them against real profile counts.</p></div></li><li><span class="d">Day 4</span><div><b>Feed and tracking</b><p>Set up and test the product feed, UTMs and review sync.</p></div></li><li><span class="d">Day 5</span><div><b>Welcome flow</b></div></li><li><span class="d">Day 6</span><div><b>Abandoned checkout flow</b></div></li><li><span class="d">Day 7</span><div><b>Post-purchase flow</b></div></li><li><span class="d">Day 8</span><div><b>Two templates</b><p>Two email templates in the brand's look, checked on phones.</p></div></li><li><span class="d">Day 9</span><div><b>Client review</b><p>Review the audit, fixes and templates. Collect missing copy.</p></div></li><li><span class="d">Day 10</span><div><b>Sign-off and handover</b><p>Client approves. Fixes go live one by one. 90-day plan and calendar handed over.</p></div></li></ol></div></details>
+  </div>
+</section>
+
+<section class="end"><div class="wrap"><p>Reply on Freelancer to start. <b>Day 1 is the audit.</b></p><a class="btn" href="https://www.freelancer.com/projects/email-marketing/shopify-klaviyo-email-marketing-manager" target="_blank" rel="noopener">Back to the bid</a></div></section>
 </main>
 
 <footer>
   <div class="wrap">
-    <div><div class="studio">Enes Eren Studio</div><p style="margin-top:8px">Klaviyo and Shopify email, built by hand. Istanbul.</p></div>
-    <div class="r"><a href="../../index.html">Back to the studio home</a><br><a href="https://github.com/erenes1667">github.com/erenes1667</a><br>erenes1667@gmail.com</div>
+    <div><div class="studio">Enes Eren Studio</div><p style="margin-top:8px">Klaviyo and Shopify email. Istanbul.</p></div>
+    <div class="r"><a href="../../index.html">Back to the studio home</a><br><a href="https://github.com/erenes1667">github.com/erenes1667</a></div>
   </div>
 </footer>
 
@@ -598,8 +782,9 @@ dialog:modal{max-width:100%}
   <div class="vwrap">
     <button type="button" class="vclose" id="vclose">Close</button>
     <div class="vmeta"><span class="kick" id="vflow"></span><h3 id="vname"></h3>
-      <dl><div><dt>Step</dt><dd id="vstep"></dd></div><div><dt>Timing</dt><dd id="vtime"></dd></div></dl>
-      <div class="vnav"><button type="button" id="vprev">Previous</button><button type="button" id="vnext">Next</button></div></div>
+      <dl><div><dt>Step</dt><dd id="vstep"></dd></div><div><dt>Timing</dt><dd id="vtime"></dd></div><div><dt>Goal</dt><dd id="vgoal"></dd></div></dl>
+      <div class="railbox"><ol class="rail" id="vrail" aria-label="Emails in this flow"></ol>
+      <div class="vnav"><button type="button" id="vprev">Previous</button><button type="button" id="vnext">Next</button></div></div></div>
     <div class="vbody" id="vbody"></div>
   </div>
 </dialog>
@@ -612,9 +797,11 @@ dialog:modal{max-width:100%}
   function open(id,variant){
     var src=byId(id); if(!src) return;
     cur=id;
-    var c=src.cloneNode(true); c.removeAttribute('id');
-    if(variant&&c.getAttribute('data-variant')) setV(c,variant);
+    var c=src.cloneNode(true); c.removeAttribute('id');c.removeAttribute('data-open');c.removeAttribute('tabindex');c.removeAttribute('role');c.removeAttribute('aria-label');
     body.textContent=''; body.appendChild(c);
+    var gd=document.getElementById('vgoal'),cap=c.querySelector('figcaption');
+    gd.textContent=''; gd.setAttribute('data-variant',c.getAttribute('data-variant')||'std'); if(cap) gd.appendChild(cap);
+    if(variant&&c.getAttribute('data-variant')) setV(c,variant);
     var flow=figs.filter(function(f){return f.getAttribute('data-flow')===src.getAttribute('data-flow')});
     var i=flow.indexOf(src);
     document.getElementById('vflow').textContent=src.getAttribute('data-tag');
@@ -625,21 +812,47 @@ dialog:modal{max-width:100%}
     p.disabled=i<=0; n.disabled=i>=flow.length-1;
     p.onclick=function(){open(flow[i-1].getAttribute('data-id'))};
     n.onclick=function(){open(flow[i+1].getAttribute('data-id'))};
+    var rail=document.getElementById('vrail'); rail.textContent='';
+    flow.forEach(function(f,k){
+      var li=document.createElement('li'),b=document.createElement('button');
+      b.type='button'; if(k===i){li.className='cur';b.setAttribute('aria-current','step')}
+      b.innerHTML='<span class="nb"></span><span><b></b><small></small></span>';
+      b.querySelector('.nb').textContent=k+1; b.querySelector('b').textContent=f.getAttribute('data-name'); b.querySelector('small').textContent=f.getAttribute('data-timing');
+      b.onclick=function(){if(k!==i)open(f.getAttribute('data-id'))};
+      li.appendChild(b); rail.appendChild(li);
+    });
     [].forEach.call(document.querySelectorAll('.n.mail'),function(li){li.classList.toggle('on',li.querySelector('a').getAttribute('data-open')===id)});
     if(!dlg.open){ if(dlg.showModal) dlg.showModal(); else dlg.setAttribute('open',''); }
     body.parentNode.scrollTop=0;
   }
   function setV(fig,v){
     fig.setAttribute('data-variant',v);
-    [].forEach.call(fig.querySelectorAll('.vtoggle button'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-v')===v?'true':'false')});
+    var gd=document.getElementById('vgoal'); if(fig.closest('#vbody')) gd.setAttribute('data-variant',v);
+    [].forEach.call((fig.closest('#vbody')?dlg:fig).querySelectorAll('.vtoggle button'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-v')===v?'true':'false')});
   }
+  figs.forEach(function(f){f.setAttribute('data-open',f.getAttribute('data-id'));f.tabIndex=0;f.setAttribute('role','button');f.setAttribute('aria-label','Open email: '+f.getAttribute('data-name'))});
   document.addEventListener('click',function(e){
-    var a=e.target.closest&&e.target.closest('[data-open]');
-    if(a){e.preventDefault();open(a.getAttribute('data-open'),a.getAttribute('data-variant'));return}
     var t=e.target.closest&&e.target.closest('.vtoggle button');
-    if(t){setV(t.closest('.email'),t.getAttribute('data-v'))}
+    if(t){setV(t.closest('.email')||body.querySelector('.email'),t.getAttribute('data-v'));return}
+    var a=e.target.closest&&e.target.closest('[data-open]');
+    if(a&&!a.closest('#vbody')){e.preventDefault();open(a.getAttribute('data-open'),a.getAttribute('data-variant'));return}
     if(e.target===dlg){dlg.close()}
   });
+  document.addEventListener('keydown',function(e){
+    if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('.gal .email')){e.preventDefault();open(e.target.getAttribute('data-id'),e.target.getAttribute('data-variant'))}
+  });
+  var tabs=[].slice.call(document.querySelectorAll('.tabs [role=tab]'));
+  function pick(i){tabs.forEach(function(t,k){var on=k===i;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!on});document.getElementById('flownote').hidden=i===0;fades()}
+  tabs.forEach(function(t,i){t.addEventListener('click',function(){pick(i)});t.addEventListener('keydown',function(e){var k=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(k){var j=(i+k+tabs.length)%tabs.length;pick(j);tabs[j].focus()}})});
+  var lanes=[].slice.call(document.querySelectorAll('.flow .lane'));
+  function fades(){lanes.forEach(function(l){l.classList.toggle('fade',l.scrollWidth>l.clientWidth+2&&l.scrollLeft+l.clientWidth<l.scrollWidth-2)})}
+  lanes.forEach(function(l){l.addEventListener('scroll',fades,{passive:true})});
+  addEventListener('resize',fades); addEventListener('load',fades); fades();
+  function oh(){try{var d=document.querySelector(location.hash);if(d&&d.tagName==='DETAILS')d.open=true}catch(e){}}
+  addEventListener('hashchange',oh); oh();
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var d=document.querySelector(a.getAttribute('href'));if(d&&d.tagName==='DETAILS'){d.open=true}});
+  document.documentElement.classList.add('js');
+  [].forEach.call(document.querySelectorAll('.gal'),function(g){var n=g.children.length,c=document.createElement('p');c.className='galc';c.textContent='1 / '+n;g.parentNode.insertBefore(c,g.nextSibling);g.addEventListener('scroll',function(){var w=g.firstElementChild.getBoundingClientRect().width+20;c.textContent=Math.min(n,Math.round(g.scrollLeft/w)+1)+' / '+n},{passive:true})});
   document.getElementById('vclose').addEventListener('click',function(){dlg.close()});
   var ac=document.getElementById('ac'),boxes=document.querySelectorAll('.audit input');
   [].forEach.call(boxes,function(b){b.addEventListener('change',function(){ac.textContent=document.querySelectorAll('.audit input:checked').length})});

@@ -3,12 +3,12 @@
   "watertight": true,
   "winding": true,
   "volume_ok": true,
-  "volume_mm3": 13178.8,
+  "volume_mm3": 9723.4,
   "shells": 1,
-  "tris": 2356,
+  "tris": 2456,
   "bbox": [
-   95.6,
    101.6,
+   79.519,
    2.0
   ],
   "z": [
@@ -22,12 +22,12 @@
   "watertight": true,
   "winding": true,
   "volume_ok": true,
-  "volume_mm3": 8828.5,
-  "shells": 1,
-  "tris": 1784,
+  "volume_mm3": 5867.6,
+  "shells": 4,
+  "tris": 2900,
   "bbox": [
-   92.0,
-   86.4,
+   98.0,
+   71.714,
    1.6
   ],
   "z": [
@@ -41,12 +41,12 @@
   "watertight": true,
   "winding": true,
   "volume_ok": true,
-  "volume_mm3": 2821.0,
-  "shells": 7,
-  "tris": 3096,
+  "volume_mm3": 1220.9,
+  "shells": 10,
+  "tris": 2996,
   "bbox": [
-   78.4,
-   79.3,
+   93.884,
+   66.586,
    1.4
   ],
   "z": [
